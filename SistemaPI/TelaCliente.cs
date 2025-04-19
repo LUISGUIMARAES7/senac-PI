@@ -16,18 +16,16 @@ namespace SistemaPI
         {
             InitializeComponent();
         }
-
-        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+       
+        private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TelaProdutos telaProdutos = new TelaProdutos();
-            telaProdutos.ShowDialog();
+            new TelaProduto().ShowDialog();
             this.Close();
         }
 
-        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pedidosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TelaPedidos telaPedidos = new TelaPedidos();
-            telaPedidos.ShowDialog();
+            new TelaPedido().ShowDialog();
             this.Close();
         }
     }

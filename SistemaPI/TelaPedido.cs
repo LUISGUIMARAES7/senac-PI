@@ -10,24 +10,22 @@ using System.Windows.Forms;
 
 namespace SistemaPI
 {
-    public partial class TelaPedidos : Form
+    public partial class TelaPedido : Form
     {
-        public TelaPedidos()
+        public TelaPedido()
         {
             InitializeComponent();
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaProdutos telaProdutos = new TelaProdutos();
-            telaProdutos.ShowDialog();
+            new TelaProduto().ShowDialog();
             this.Close();
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaCliente telaCliente = new TelaCliente();
-            telaCliente.ShowDialog();
+            new TelaCliente().ShowDialog();
             this.Close();
         }
     }
