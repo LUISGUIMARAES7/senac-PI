@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gaKsHC4wJ40=",
+  "dgSpecHash": "SvAci18ZaHg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-programador-sistemas\\SistemaPI\\SistemaPI.csproj",
+  "projectFilePath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FeLuh\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.100\\microsoft.net.sdk.compilers.toolset.9.0.100.nupkg.sha512",
     "C:\\Users\\FeLuh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
