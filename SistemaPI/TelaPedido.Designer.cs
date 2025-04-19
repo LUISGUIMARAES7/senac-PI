@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             labelErro = new Label();
-            groupBox3 = new GroupBox();
-            textBoxTotal = new TextBox();
+            groupBox = new GroupBox();
+            maskedTextBox1 = new MaskedTextBox();
+            textBoxProduto = new TextBox();
+            textBoxCliente = new TextBox();
             labelTotal = new Label();
             numericQuantidade = new NumericUpDown();
             labelProduto = new Label();
@@ -46,9 +48,7 @@
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
-            textBoxCliente = new TextBox();
-            textBoxProduto = new TextBox();
-            groupBox3.SuspendLayout();
+            groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -63,33 +63,52 @@
             labelErro.Size = new Size(0, 15);
             labelErro.TabIndex = 20;
             // 
-            // groupBox3
+            // groupBox
             // 
-            groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox3.Controls.Add(textBoxProduto);
-            groupBox3.Controls.Add(textBoxCliente);
-            groupBox3.Controls.Add(textBoxTotal);
-            groupBox3.Controls.Add(labelTotal);
-            groupBox3.Controls.Add(numericQuantidade);
-            groupBox3.Controls.Add(labelProduto);
-            groupBox3.Controls.Add(labelQuantidade);
-            groupBox3.Controls.Add(labelCliente);
-            groupBox3.Location = new Point(27, 78);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(645, 107);
-            groupBox3.TabIndex = 19;
-            groupBox3.TabStop = false;
+            groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox.Controls.Add(maskedTextBox1);
+            groupBox.Controls.Add(textBoxProduto);
+            groupBox.Controls.Add(textBoxCliente);
+            groupBox.Controls.Add(labelTotal);
+            groupBox.Controls.Add(numericQuantidade);
+            groupBox.Controls.Add(labelProduto);
+            groupBox.Controls.Add(labelQuantidade);
+            groupBox.Controls.Add(labelCliente);
+            groupBox.Location = new Point(27, 78);
+            groupBox.Name = "groupBox";
+            groupBox.Size = new Size(645, 107);
+            groupBox.TabIndex = 19;
+            groupBox.TabStop = false;
             // 
-            // textBoxTotal
+            // maskedTextBox1
             // 
-            textBoxTotal.Location = new Point(464, 74);
-            textBoxTotal.Name = "textBoxTotal";
-            textBoxTotal.ReadOnly = true;
-            textBoxTotal.Size = new Size(100, 23);
-            textBoxTotal.TabIndex = 22;
+            maskedTextBox1.Anchor = AnchorStyles.Top;
+            maskedTextBox1.Location = new Point(464, 74);
+            maskedTextBox1.Mask = "$";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.ReadOnly = true;
+            maskedTextBox1.Size = new Size(100, 23);
+            maskedTextBox1.TabIndex = 22;
+            // 
+            // textBoxProduto
+            // 
+            textBoxProduto.Anchor = AnchorStyles.Top;
+            textBoxProduto.Location = new Point(121, 45);
+            textBoxProduto.Name = "textBoxProduto";
+            textBoxProduto.Size = new Size(443, 23);
+            textBoxProduto.TabIndex = 1;
+            // 
+            // textBoxCliente
+            // 
+            textBoxCliente.Anchor = AnchorStyles.Top;
+            textBoxCliente.Location = new Point(121, 18);
+            textBoxCliente.Name = "textBoxCliente";
+            textBoxCliente.Size = new Size(443, 23);
+            textBoxCliente.TabIndex = 0;
             // 
             // labelTotal
             // 
+            labelTotal.Anchor = AnchorStyles.Top;
             labelTotal.AutoSize = true;
             labelTotal.Location = new Point(426, 81);
             labelTotal.Name = "labelTotal";
@@ -99,13 +118,15 @@
             // 
             // numericQuantidade
             // 
+            numericQuantidade.Anchor = AnchorStyles.Top;
             numericQuantidade.Location = new Point(121, 72);
             numericQuantidade.Name = "numericQuantidade";
             numericQuantidade.Size = new Size(120, 23);
-            numericQuantidade.TabIndex = 17;
+            numericQuantidade.TabIndex = 2;
             // 
             // labelProduto
             // 
+            labelProduto.Anchor = AnchorStyles.Top;
             labelProduto.AutoSize = true;
             labelProduto.Location = new Point(54, 51);
             labelProduto.Name = "labelProduto";
@@ -115,6 +136,7 @@
             // 
             // labelQuantidade
             // 
+            labelQuantidade.Anchor = AnchorStyles.Top;
             labelQuantidade.AutoSize = true;
             labelQuantidade.Location = new Point(35, 77);
             labelQuantidade.Name = "labelQuantidade";
@@ -124,6 +146,7 @@
             // 
             // labelCliente
             // 
+            labelCliente.Anchor = AnchorStyles.Top;
             labelCliente.AutoSize = true;
             labelCliente.Location = new Point(54, 24);
             labelCliente.Name = "labelCliente";
@@ -137,7 +160,7 @@
             buttonCriar.Location = new Point(703, 92);
             buttonCriar.Name = "buttonCriar";
             buttonCriar.Size = new Size(75, 23);
-            buttonCriar.TabIndex = 6;
+            buttonCriar.TabIndex = 3;
             buttonCriar.Text = "Criar";
             buttonCriar.UseVisualStyleBackColor = true;
             // 
@@ -147,7 +170,7 @@
             buttonRemover.Location = new Point(703, 159);
             buttonRemover.Name = "buttonRemover";
             buttonRemover.Size = new Size(75, 23);
-            buttonRemover.TabIndex = 8;
+            buttonRemover.TabIndex = 5;
             buttonRemover.Text = "Remover";
             buttonRemover.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +180,7 @@
             buttonEditar.Location = new Point(703, 125);
             buttonEditar.Name = "buttonEditar";
             buttonEditar.Size = new Size(75, 23);
-            buttonEditar.TabIndex = 7;
+            buttonEditar.TabIndex = 4;
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
             // 
@@ -231,20 +254,6 @@
             pedidosToolStripMenuItem.Size = new Size(62, 20);
             pedidosToolStripMenuItem.Text = "Pedidos";
             // 
-            // textBoxCliente
-            // 
-            textBoxCliente.Location = new Point(121, 18);
-            textBoxCliente.Name = "textBoxCliente";
-            textBoxCliente.Size = new Size(443, 23);
-            textBoxCliente.TabIndex = 0;
-            // 
-            // textBoxProduto
-            // 
-            textBoxProduto.Location = new Point(121, 45);
-            textBoxProduto.Name = "textBoxProduto";
-            textBoxProduto.Size = new Size(443, 23);
-            textBoxProduto.TabIndex = 1;
-            // 
             // TelaPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -253,15 +262,15 @@
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
             Controls.Add(labelErro);
-            Controls.Add(groupBox3);
+            Controls.Add(groupBox);
             Controls.Add(dataGridView1);
             Controls.Add(buttonEditar);
             Controls.Add(buttonCriar);
             Controls.Add(buttonRemover);
             Name = "TelaPedido";
             StartPosition = FormStartPosition.CenterScreen;
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
+            groupBox.ResumeLayout(false);
+            groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
@@ -275,7 +284,7 @@
         #endregion
 
         private Label labelErro;
-        private GroupBox groupBox3;
+        private GroupBox groupBox;
         private Button buttonCriar;
         private Label labelQuantidade;
         private Button buttonRemover;
@@ -284,7 +293,6 @@
         private DataGridView dataGridView1;
         private NumericUpDown numericQuantidade;
         private Label labelProduto;
-        private TextBox textBoxTotal;
         private Label labelTotal;
         private Label labelCadastrarPedido;
         private Panel panel1;
@@ -294,5 +302,6 @@
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private TextBox textBoxProduto;
         private TextBox textBoxCliente;
+        private MaskedTextBox maskedTextBox1;
     }
 }

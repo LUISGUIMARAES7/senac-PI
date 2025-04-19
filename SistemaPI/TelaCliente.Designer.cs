@@ -78,6 +78,7 @@
             // 
             // maskedTextBoxTelefone
             // 
+            maskedTextBoxTelefone.Anchor = AnchorStyles.Top;
             maskedTextBoxTelefone.Location = new Point(119, 74);
             maskedTextBoxTelefone.Mask = "(99) 00000-0000";
             maskedTextBoxTelefone.Name = "maskedTextBoxTelefone";
@@ -86,6 +87,7 @@
             // 
             // labelTelefone
             // 
+            labelTelefone.Anchor = AnchorStyles.Top;
             labelTelefone.AutoSize = true;
             labelTelefone.Location = new Point(54, 82);
             labelTelefone.Name = "labelTelefone";
@@ -95,6 +97,7 @@
             // 
             // labelEmail
             // 
+            labelEmail.Anchor = AnchorStyles.Top;
             labelEmail.AutoSize = true;
             labelEmail.Location = new Point(54, 53);
             labelEmail.Name = "labelEmail";
@@ -104,6 +107,7 @@
             // 
             // labelNome
             // 
+            labelNome.Anchor = AnchorStyles.Top;
             labelNome.AutoSize = true;
             labelNome.Location = new Point(54, 24);
             labelNome.Name = "labelNome";
@@ -113,6 +117,7 @@
             // 
             // textBoxNome
             // 
+            textBoxNome.Anchor = AnchorStyles.Top;
             textBoxNome.Location = new Point(119, 16);
             textBoxNome.Name = "textBoxNome";
             textBoxNome.Size = new Size(405, 23);
@@ -120,6 +125,7 @@
             // 
             // textBoxEmail
             // 
+            textBoxEmail.Anchor = AnchorStyles.Top;
             textBoxEmail.Location = new Point(119, 45);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(405, 23);
