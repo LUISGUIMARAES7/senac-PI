@@ -11,8 +11,5 @@ CREATE TABLE IF NOT EXISTS pedido (
         REFERENCES cliente (id)
 );
 
-INSERT INTO pedido (produto_id, quantidade, cliente_id)
-VALUES 
-	(1,2,1 );
     
     select * from pedido;

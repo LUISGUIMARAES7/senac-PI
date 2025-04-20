@@ -5,8 +5,4 @@ CREATE TABLE IF NOT EXISTS produto (
     quantidade INT NOT NULL
 );
 
-INSERT INTO produto (nome, preco, quantidade)
-VALUES 
-	('ana connda',200.00,10 );
-    
      select * from produto;

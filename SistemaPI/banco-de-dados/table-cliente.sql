@@ -6,8 +6,5 @@ CREATE TABLE cliente (
     PRIMARY KEY (id)
 );
 
-INSERT INTO cliente (nome,email,telefone) 
-VALUES 
-	('João Silva','Sulva@email.com',355151515 );
     
     select * from cliente;

@@ -31,16 +31,16 @@ namespace SistemaPI
         private void InitializeComponent()
         {
             textBoxProduto = new TextBox();
-            buttonCriar = new Button();
-            buttonAtualizar = new Button();
+            buttonAdicionar = new Button();
+            buttonEditar = new Button();
             buttonRemover = new Button();
-            dataGridView1 = new DataGridView();
+            dataGridViewProdutos = new DataGridView();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             groupBox1 = new GroupBox();
-            maskedTextBox1 = new MaskedTextBox();
-            numericUpDown1 = new NumericUpDown();
+            textBoxPreco = new TextBox();
+            numericQuantidade = new NumericUpDown();
             labelErro = new Label();
             label4 = new Label();
             panel1 = new Panel();
@@ -48,9 +48,9 @@ namespace SistemaPI
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).BeginInit();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -63,25 +63,26 @@ namespace SistemaPI
             textBoxProduto.Size = new Size(252, 23);
             textBoxProduto.TabIndex = 0;
             // 
-            // buttonCriar
+            // buttonAdicionar
             // 
-            buttonCriar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonCriar.Location = new Point(703, 82);
-            buttonCriar.Name = "buttonCriar";
-            buttonCriar.Size = new Size(75, 23);
-            buttonCriar.TabIndex = 3;
-            buttonCriar.Text = "Criar";
-            buttonCriar.UseVisualStyleBackColor = true;
+            buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonAdicionar.Location = new Point(703, 82);
+            buttonAdicionar.Name = "buttonAdicionar";
+            buttonAdicionar.Size = new Size(75, 23);
+            buttonAdicionar.TabIndex = 3;
+            buttonAdicionar.Text = "Adicionar";
+            buttonAdicionar.UseVisualStyleBackColor = true;
+            buttonAdicionar.Click += buttonAdicionar_Click;
             // 
-            // buttonAtualizar
+            // buttonEditar
             // 
-            buttonAtualizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonAtualizar.Location = new Point(703, 118);
-            buttonAtualizar.Name = "buttonAtualizar";
-            buttonAtualizar.Size = new Size(75, 23);
-            buttonAtualizar.TabIndex = 4;
-            buttonAtualizar.Text = "Atualizar";
-            buttonAtualizar.UseVisualStyleBackColor = true;
+            buttonEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonEditar.Location = new Point(703, 118);
+            buttonEditar.Name = "buttonEditar";
+            buttonEditar.Size = new Size(75, 23);
+            buttonEditar.TabIndex = 4;
+            buttonEditar.Text = "Editar";
+            buttonEditar.UseVisualStyleBackColor = true;
             // 
             // buttonRemover
             // 
@@ -92,21 +93,22 @@ namespace SistemaPI
             buttonRemover.TabIndex = 5;
             buttonRemover.Text = "Remover";
             buttonRemover.UseVisualStyleBackColor = true;
+            buttonRemover.Click += buttonRemover_Click;
             // 
-            // dataGridView1
+            // dataGridViewProdutos
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(27, 191);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(751, 235);
-            dataGridView1.TabIndex = 9;
+            dataGridViewProdutos.AllowUserToAddRows = false;
+            dataGridViewProdutos.AllowUserToDeleteRows = false;
+            dataGridViewProdutos.AllowUserToResizeColumns = false;
+            dataGridViewProdutos.AllowUserToResizeRows = false;
+            dataGridViewProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridViewProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewProdutos.Location = new Point(27, 191);
+            dataGridViewProdutos.MultiSelect = false;
+            dataGridViewProdutos.Name = "dataGridViewProdutos";
+            dataGridViewProdutos.ReadOnly = true;
+            dataGridViewProdutos.Size = new Size(751, 235);
+            dataGridViewProdutos.TabIndex = 9;
             // 
             // label1
             // 
@@ -141,8 +143,8 @@ namespace SistemaPI
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(maskedTextBox1);
-            groupBox1.Controls.Add(numericUpDown1);
+            groupBox1.Controls.Add(textBoxPreco);
+            groupBox1.Controls.Add(numericQuantidade);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -153,22 +155,21 @@ namespace SistemaPI
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             // 
-            // maskedTextBox1
+            // textBoxPreco
             // 
-            maskedTextBox1.Anchor = AnchorStyles.Top;
-            maskedTextBox1.Location = new Point(348, 52);
-            maskedTextBox1.Mask = "$";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(100, 23);
-            maskedTextBox1.TabIndex = 1;
+            textBoxPreco.Anchor = AnchorStyles.Top;
+            textBoxPreco.Location = new Point(348, 53);
+            textBoxPreco.Name = "textBoxPreco";
+            textBoxPreco.Size = new Size(100, 23);
+            textBoxPreco.TabIndex = 1;
             // 
-            // numericUpDown1
+            // numericQuantidade
             // 
-            numericUpDown1.Anchor = AnchorStyles.Top;
-            numericUpDown1.Location = new Point(505, 54);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(85, 23);
-            numericUpDown1.TabIndex = 2;
+            numericQuantidade.Anchor = AnchorStyles.Top;
+            numericQuantidade.Location = new Point(505, 54);
+            numericQuantidade.Name = "numericQuantidade";
+            numericQuantidade.Size = new Size(85, 23);
+            numericQuantidade.TabIndex = 2;
             // 
             // labelErro
             // 
@@ -237,20 +238,20 @@ namespace SistemaPI
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
-            Controls.Add(buttonCriar);
+            Controls.Add(buttonAdicionar);
             Controls.Add(labelErro);
             Controls.Add(buttonRemover);
             Controls.Add(groupBox1);
-            Controls.Add(buttonAtualizar);
-            Controls.Add(dataGridView1);
+            Controls.Add(buttonEditar);
+            Controls.Add(dataGridViewProdutos);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "TelaProduto";
             StartPosition = FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -269,24 +270,24 @@ namespace SistemaPI
         private TextBox textBox4;
         private TextBox textBox5;
         private TextBox textBox6;
-        private Button buttonCriar;
-        private Button buttonAtualizar;
+        private Button buttonAdicionar;
+        private Button buttonEditar;
         private Button button2;
         private Button buttonRemover;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewProdutos;
         private Label label1;
         private Label label2;
         private Label label3;
         private GroupBox groupBox1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericQuantidade;
         private Label labelErro;
         private TextBox textBoxQuantidade;
         private Label label4;
         private Panel panel1;
-        private MaskedTextBox maskedTextBox1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem produtosToolStripMenuItem;
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
+        private TextBox textBoxPreco;
     }
 }
