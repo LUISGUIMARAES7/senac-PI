@@ -1,4 +1,5 @@
 using SistemaPI.dominio;
+using System.Globalization;
 
 namespace SistemaPI
 {
@@ -27,8 +28,9 @@ namespace SistemaPI
 
         private bool CriarProduto()
         {
+
             Produto.Nome = textBoxProduto.Text;
-            Produto.Preco = Convert.ToInt32(textBoxPreco.Text);
+            Produto.Preco = decimal.Parse(textBoxPreco.Text);
             Produto.Quantidade = (int)numericQuantidade.Value;
 
             string validacaoProduto = Produto.Validar();
@@ -51,6 +53,7 @@ namespace SistemaPI
             Produto.InserirProduto();
             BindingSource.DataSource = Produto.ListarProdutos();
             dataGridViewProdutos.DataSource = BindingSource;
+
         }
 
         private void buttonRemover_Click(object sender, EventArgs e)
@@ -58,5 +61,12 @@ namespace SistemaPI
 
         }
 
+        private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Cancelar o evento
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SistemaPI.repositorio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,19 @@ namespace SistemaPI.dominio
 
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int Preco { get; set; }
+        public decimal Preco { get; set; }
         public int Quantidade { get; set; }
 
         public string Validar()
         {
             if (string.IsNullOrWhiteSpace(Nome))
             {
-                return "O campo Nome é obrigatório";
+                return "O campo Produto é obrigatório";
+            }
+
+            if (Quantidade == 0)
+            {
+                return "O campo quantidade é obrigatório";
             }
 
             return string.Empty;
