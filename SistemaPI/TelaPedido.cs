@@ -19,13 +19,25 @@ namespace SistemaPI
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new TelaProduto().ShowDialog();
+            TelaProduto telaProduto = new TelaProduto();
+
+            telaProduto.Size = this.Size;
+            telaProduto.Location = this.Location;
+
+            this.Hide();
+            telaProduto.ShowDialog();
             this.Close();
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new TelaCliente().ShowDialog();
+            TelaCliente telaCliente = new TelaCliente();
+
+            telaCliente.Size = this.Size;
+            telaCliente.Location = this.Location;
+
+            this.Hide();
+            telaCliente.ShowDialog();
             this.Close();
         }
     }

@@ -25,7 +25,7 @@ namespace SistemaPI.dominio
                 return "O campo Produto é obrigatório";
             }
 
-            if (Quantidade == 0)
+            if (Quantidade < 1)
             {
                 return "O campo quantidade é obrigatório";
             }
