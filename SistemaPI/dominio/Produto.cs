@@ -1,4 +1,6 @@
-﻿using MySqlX.XDevAPI;
+﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
+using SistemaPI.banco_de_dados;
 using SistemaPI.repositorio;
 using System;
 using System.Collections.Generic;
@@ -52,6 +54,11 @@ namespace SistemaPI.dominio
         public void AtualizarProduto()
         {
             Repositorio.AtualizarProduto(this);
+        }
+
+        public void DeletarCliente(int id)
+        {
+            Repositorio.DeletarCliente(id);
         }
     }
 }

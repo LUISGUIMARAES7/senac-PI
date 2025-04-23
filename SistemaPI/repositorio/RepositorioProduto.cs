@@ -108,5 +108,22 @@ namespace SistemaPI.repositorio
                 }
             }
         }
+
+        public void DeletarCliente(int id)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+
+                string query = "DELETE FROM produto WHERE id = @id;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
     }
 }

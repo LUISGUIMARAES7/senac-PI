@@ -16,7 +16,7 @@ namespace SistemaPI
         {
             InitializeComponent();
         }
-       
+
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             TelaProduto telaProduto = new TelaProduto();
@@ -38,6 +38,18 @@ namespace SistemaPI
 
             this.Hide();
             telaPedido.ShowDialog();
+            this.Close();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaInicial telaInicial = new TelaInicial();
+
+            telaInicial.Size = this.Size;
+            telaInicial.Location = this.Location;
+
+            this.Hide();
+            telaInicial.ShowDialog();
             this.Close();
         }
     }

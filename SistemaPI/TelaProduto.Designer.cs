@@ -45,9 +45,11 @@ namespace SistemaPI
             label4 = new Label();
             panel1 = new Panel();
             menuStrip1 = new MenuStrip();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
@@ -206,12 +208,19 @@ namespace SistemaPI
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { produtosToolStripMenuItem, clientesToolStripMenuItem, pedidosToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, produtosToolStripMenuItem, clientesToolStripMenuItem, pedidosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 17;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(52, 20);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
             // produtosToolStripMenuItem
             // 
@@ -234,6 +243,13 @@ namespace SistemaPI
             pedidosToolStripMenuItem.Size = new Size(61, 20);
             pedidosToolStripMenuItem.Text = "Pedidos";
             pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click;
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
             // 
             // TelaProduto
             // 
@@ -292,5 +308,7 @@ namespace SistemaPI
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private TextBox textBoxPreco;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
+        private ToolStripMenuItem homeToolStripMenuItem;
     }
 }

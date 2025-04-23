@@ -40,5 +40,17 @@ namespace SistemaPI
             telaCliente.ShowDialog();
             this.Close();
         }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaInicial telaInicial = new TelaInicial();
+
+            telaInicial.Size = this.Size;
+            telaInicial.Location = this.Location;
+
+            this.Hide();
+            telaInicial.ShowDialog();
+            this.Close();
+        }
     }
 }

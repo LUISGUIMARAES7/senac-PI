@@ -90,6 +90,16 @@ namespace SistemaPI
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
+            if (dataGridViewProdutos.SelectedRows.Count == 0 || dataGridViewProdutos.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            int id = (int)dataGridViewProdutos.SelectedRows[0].Cells[0].Value;
+
+            Produto.DeletarCliente(id);
+
+            ListarProduto();
 
         }
 
@@ -121,6 +131,19 @@ namespace SistemaPI
             textBoxProduto.Text = produto.Nome.ToString();
             textBoxPreco.Text = produto.Preco.ToString();
             numericQuantidade.Text = produto.Quantidade.ToString();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaInicial telaInicial = new TelaInicial();
+
+            telaInicial.Size = this.Size;
+            telaInicial.Location = this.Location;
+
+            this.Hide();
+            telaInicial.ShowDialog();
+            this.Close();
+
         }
     }
 }

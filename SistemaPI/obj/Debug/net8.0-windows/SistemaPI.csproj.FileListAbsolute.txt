@@ -35,3 +35,4 @@ D:\Senac-PI\senac-PI\SistemaPI\obj\Debug\net8.0-windows\refint\SistemaPI.dll
 D:\Senac-PI\senac-PI\SistemaPI\obj\Debug\net8.0-windows\SistemaPI.pdb
 D:\Senac-PI\senac-PI\SistemaPI\obj\Debug\net8.0-windows\SistemaPI.genruntimeconfig.cache
 D:\Senac-PI\senac-PI\SistemaPI\obj\Debug\net8.0-windows\ref\SistemaPI.dll
+D:\Senac-PI\senac-PI\SistemaPI\obj\Debug\net8.0-windows\SistemaPI.TelaInicial.resources
