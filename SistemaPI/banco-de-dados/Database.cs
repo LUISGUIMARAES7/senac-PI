@@ -9,7 +9,7 @@ namespace SistemaPI.banco_de_dados
 {
     internal class Database
     {
-        private static readonly string ConnectionString = "datasource=localhost;username=root;password=;database=senac;";
+        private static readonly string ConnectionString = "datasource=localhost;username=root;password=;database=senac_pi;";
 
         public static MySqlConnection GetConnection()
         {

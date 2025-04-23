@@ -1,4 +1,5 @@
-﻿using SistemaPI.repositorio;
+﻿using MySqlX.XDevAPI;
+using SistemaPI.repositorio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +12,7 @@ namespace SistemaPI.dominio
 {
     internal class Produto
     {
-        private readonly Repositorio Repositorio = new();
+        private readonly RepositorioProduto Repositorio = new();
 
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -41,6 +42,16 @@ namespace SistemaPI.dominio
         public void InserirProduto()
         {
             Repositorio.InserirProduto(this);
+        }
+
+        public Produto? BuscarProdutoPorId(int id)
+        {
+            return Repositorio.BuscarProdutoPorId(id);
+        }
+
+        public void AtualizarProduto()
+        {
+            Repositorio.AtualizarProduto(this);
         }
     }
 }

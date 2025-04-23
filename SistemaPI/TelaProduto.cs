@@ -1,3 +1,4 @@
+using MySqlX.XDevAPI;
 using SistemaPI.dominio;
 using System.Globalization;
 
@@ -42,7 +43,7 @@ namespace SistemaPI
         {
 
             Produto.Nome = textBoxProduto.Text;
-            Produto.Preco = decimal.Parse(textBoxPreco.Text);
+            Produto.Preco = Convert.ToDecimal(textBoxPreco.Text);
             Produto.Quantidade = (int)numericQuantidade.Value;
 
             string validacaoProduto = Produto.Validar();
@@ -62,10 +63,29 @@ namespace SistemaPI
                 return;
             }
 
-            Produto.InserirProduto();
+            if (dataGridViewProdutos.SelectedRows.Count == 0 || dataGridViewProdutos.SelectedRows[0].Index < 0)
+            {
+                Produto.InserirProduto();
+                ListarProduto();
+                return;
+            }
+
+            int id = (int)dataGridViewProdutos.SelectedRows[0].Cells[0].Value;
+
+            if (Produto.BuscarProdutoPorId(id) == null)
+            {
+                return;
+            }
+
+            Produto.Id = id;
+            Produto.AtualizarProduto();
+            ListarProduto();
+        }
+
+        public void ListarProduto()
+        {
             BindingSource.DataSource = Produto.ListarProdutos();
             dataGridViewProdutos.DataSource = BindingSource;
-
         }
 
         private void buttonRemover_Click(object sender, EventArgs e)
@@ -79,6 +99,28 @@ namespace SistemaPI
             {
                 e.Handled = true; // Cancelar o evento
             }
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProdutos.SelectedRows.Count == 0 || dataGridViewProdutos.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            int id = (int)dataGridViewProdutos.SelectedRows[0].Cells[0].Value;
+
+            var produto = Produto.BuscarProdutoPorId(id);
+
+            if (produto == null)
+            {
+                return;
+            }
+            Produto = produto;
+
+            textBoxProduto.Text = produto.Nome.ToString();
+            textBoxPreco.Text = produto.Preco.ToString();
+            numericQuantidade.Text = produto.Quantidade.ToString();
         }
     }
 }

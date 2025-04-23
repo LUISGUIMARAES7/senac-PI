@@ -83,6 +83,7 @@ namespace SistemaPI
             buttonEditar.TabIndex = 4;
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
+            buttonEditar.Click += buttonEditar_Click;
             // 
             // buttonRemover
             // 
