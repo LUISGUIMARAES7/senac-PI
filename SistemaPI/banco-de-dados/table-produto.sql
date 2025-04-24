@@ -5,4 +5,6 @@ CREATE TABLE IF NOT EXISTS produto (
     quantidade INT NOT NULL
 );
 
-     select * from produto;
+SELECT * FROM produto;
+desc produto;
+     

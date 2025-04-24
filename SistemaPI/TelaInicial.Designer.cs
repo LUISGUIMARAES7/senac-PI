@@ -92,7 +92,7 @@
             // 
             groupBox1.BackColor = Color.White;
             groupBox1.Controls.Add(buttonProduto);
-            groupBox1.Location = new Point(22, 158);
+            groupBox1.Location = new Point(23, 45);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
@@ -104,7 +104,7 @@
             // 
             groupBox2.BackColor = Color.White;
             groupBox2.Controls.Add(buttonPedido);
-            groupBox2.Location = new Point(22, 45);
+            groupBox2.Location = new Point(23, 264);
             groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 2, 3, 2);
@@ -116,7 +116,7 @@
             // 
             groupBox3.BackColor = Color.White;
             groupBox3.Controls.Add(buttonCliente);
-            groupBox3.Location = new Point(22, 274);
+            groupBox3.Location = new Point(23, 156);
             groupBox3.Margin = new Padding(3, 2, 3, 2);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(3, 2, 3, 2);

@@ -163,7 +163,6 @@ namespace SistemaPI
             textBoxPreco.Anchor = AnchorStyles.Top;
             textBoxPreco.Location = new Point(348, 53);
             textBoxPreco.Name = "textBoxPreco";
-            textBoxPreco.PlaceholderText = "0,00";
             textBoxPreco.Size = new Size(100, 23);
             textBoxPreco.TabIndex = 1;
             textBoxPreco.KeyPress += textBoxPreco_KeyPress;

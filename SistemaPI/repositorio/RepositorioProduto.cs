@@ -109,7 +109,7 @@ namespace SistemaPI.repositorio
             }
         }
 
-        public void DeletarCliente(int id)
+        public void DeletarProduto(int id)
         {
             using (var conn = Database.GetConnection())
             {

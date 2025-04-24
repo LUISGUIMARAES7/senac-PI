@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaPI.dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SistemaPI
 {
     public partial class TelaCliente : Form
     {
+        private Cliente Cliente = new();
+        private readonly BindingSource BindingSource = [];
         public TelaCliente()
         {
             InitializeComponent();
+            BindingSource.DataSource = Cliente.ListarCliente();
+            dataGridViewClientes.DataSource = BindingSource;
         }
 
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -51,6 +57,75 @@ namespace SistemaPI
             this.Hide();
             telaInicial.ShowDialog();
             this.Close();
+        }
+
+        private void TelaCliente_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool CriarCliente()
+        {
+            Cliente.Nome = textBoxNome.Text;
+            try
+            {
+                Cliente.Telefone = maskedTextBoxTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+
+            }
+            catch { }
+
+            Cliente.Email = textBoxEmail.Text;
+
+            string validacaoProduto = Cliente.Validar();
+            if (!string.IsNullOrWhiteSpace(validacaoProduto))
+            {
+                labelErro.Text = validacaoProduto;
+                return false;
+            }
+
+            return true;
+        }
+
+        private void buttonCriar_Click(object sender, EventArgs e)
+        {
+            if (!CriarCliente())
+            {
+                return;
+            }
+
+            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            {
+                Cliente.InserirCliente();
+                ListarCliente();
+                return;
+            }
+
+            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+
+            if (Cliente.BuscarClientePorId(id) == null)
+            {
+                return;
+            }
+
+            LimparForm();
+            Cliente.Id = id;
+            Cliente.AtualizarCliente();
+            ListarCliente();
+            //buttonAdicionar.Text = "Adicionar";
+        }
+
+        public void ListarCliente()
+        {
+            BindingSource.DataSource = Cliente.ListarCliente();
+            dataGridViewClientes.DataSource = BindingSource;
+        }
+
+        private void LimparForm()
+        {
+            textBoxNome.Clear();
+            textBoxEmail.Clear();
+            maskedTextBoxTelefone.Clear();
+            labelErro.Text = string.Empty;
         }
     }
 }

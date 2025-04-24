@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using SistemaPI.banco_de_dados;
 using SistemaPI.repositorio;
@@ -25,7 +26,12 @@ namespace SistemaPI.dominio
         {
             if (string.IsNullOrWhiteSpace(Nome))
             {
-                return "O campo Produto é obrigatório";
+                return "O campo produto é obrigatório";
+            }
+
+            if (Preco <= 0)
+            {
+                return "O campo preço é obrigatório";
             }
 
             if (Quantidade < 1)
@@ -33,7 +39,7 @@ namespace SistemaPI.dominio
                 return "O campo quantidade é obrigatório";
             }
 
-            return string.Empty;
+            return "";
         }
 
         public List<Produto> ListarProdutos()
@@ -58,7 +64,7 @@ namespace SistemaPI.dominio
 
         public void DeletarCliente(int id)
         {
-            Repositorio.DeletarCliente(id);
+            Repositorio.DeletarProduto(id);
         }
     }
 }

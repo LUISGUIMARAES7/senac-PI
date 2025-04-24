@@ -40,16 +40,16 @@
             buttonCriar = new Button();
             buttonRemover = new Button();
             buttonEditar = new Button();
-            dataGridView2 = new DataGridView();
+            dataGridViewClientes = new DataGridView();
             label4 = new Label();
             panel1 = new Panel();
             menuStrip1 = new MenuStrip();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
-            homeToolStripMenuItem = new ToolStripMenuItem();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -141,6 +141,7 @@
             buttonCriar.TabIndex = 3;
             buttonCriar.Text = "Criar";
             buttonCriar.UseVisualStyleBackColor = true;
+            buttonCriar.Click += buttonCriar_Click;
             // 
             // buttonRemover
             // 
@@ -162,20 +163,20 @@
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewClientes
             // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToResizeColumns = false;
-            dataGridView2.AllowUserToResizeRows = false;
-            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(27, 191);
-            dataGridView2.MultiSelect = false;
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.Size = new Size(751, 235);
-            dataGridView2.TabIndex = 15;
+            dataGridViewClientes.AllowUserToAddRows = false;
+            dataGridViewClientes.AllowUserToDeleteRows = false;
+            dataGridViewClientes.AllowUserToResizeColumns = false;
+            dataGridViewClientes.AllowUserToResizeRows = false;
+            dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewClientes.Location = new Point(27, 191);
+            dataGridViewClientes.MultiSelect = false;
+            dataGridViewClientes.Name = "dataGridViewClientes";
+            dataGridViewClientes.ReadOnly = true;
+            dataGridViewClientes.Size = new Size(751, 235);
+            dataGridViewClientes.TabIndex = 15;
             // 
             // label4
             // 
@@ -208,6 +209,13 @@
             menuStrip1.TabIndex = 21;
             menuStrip1.Text = "menuStrip1";
             // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(52, 20);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
+            // 
             // produtosToolStripMenuItem
             // 
             produtosToolStripMenuItem.Font = new Font("Segoe UI", 9F);
@@ -231,13 +239,6 @@
             pedidosToolStripMenuItem.Text = "Pedidos";
             pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click_1;
             // 
-            // homeToolStripMenuItem
-            // 
-            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(52, 20);
-            homeToolStripMenuItem.Text = "Home";
-            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
-            // 
             // TelaCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -250,12 +251,13 @@
             Controls.Add(buttonRemover);
             Controls.Add(groupBox2);
             Controls.Add(buttonEditar);
-            Controls.Add(dataGridView2);
+            Controls.Add(dataGridViewClientes);
             Name = "TelaCliente";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += TelaCliente_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -278,7 +280,7 @@
         private Label labelNome;
         private TextBox textBoxNome;
         private TextBox textBoxEmail;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridViewClientes;
         private Label label4;
         private Panel panel1;
         private MaskedTextBox maskedTextBoxTelefone;

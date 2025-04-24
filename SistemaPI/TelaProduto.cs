@@ -41,9 +41,14 @@ namespace SistemaPI
 
         private bool CriarProduto()
         {
-
             Produto.Nome = textBoxProduto.Text;
-            Produto.Preco = Convert.ToDecimal(textBoxPreco.Text);
+            try
+            {
+                Produto.Preco = Convert.ToDecimal(textBoxPreco.Text);
+
+            }
+            catch { }
+           
             Produto.Quantidade = (int)numericQuantidade.Value;
 
             string validacaoProduto = Produto.Validar();
@@ -76,10 +81,11 @@ namespace SistemaPI
             {
                 return;
             }
-
+            LimparForm();
             Produto.Id = id;
             Produto.AtualizarProduto();
             ListarProduto();
+            buttonAdicionar.Text = "Adicionar";
         }
 
         public void ListarProduto()
@@ -118,6 +124,8 @@ namespace SistemaPI
                 return;
             }
 
+            buttonAdicionar.Text = "Salvar";
+
             int id = (int)dataGridViewProdutos.SelectedRows[0].Cells[0].Value;
 
             var produto = Produto.BuscarProdutoPorId(id);
@@ -131,6 +139,7 @@ namespace SistemaPI
             textBoxProduto.Text = produto.Nome.ToString();
             textBoxPreco.Text = produto.Preco.ToString();
             numericQuantidade.Text = produto.Quantidade.ToString();
+
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,6 +153,14 @@ namespace SistemaPI
             telaInicial.ShowDialog();
             this.Close();
 
+        }
+
+        public void LimparForm()
+        {
+            textBoxPreco.Clear();
+            textBoxProduto.Clear();
+            numericQuantidade.Value = 0;
+            labelErro.Text = string.Empty;
         }
     }
 }
