@@ -30,28 +30,28 @@
         {
             labelErro = new Label();
             groupBox = new GroupBox();
-            maskedTextBox1 = new MaskedTextBox();
-            textBoxProduto = new TextBox();
-            textBoxCliente = new TextBox();
+            comboBoxProduto = new ComboBox();
+            comboBoxCliente = new ComboBox();
+            maskedTextBoxTotal = new MaskedTextBox();
             labelTotal = new Label();
             numericQuantidade = new NumericUpDown();
             labelProduto = new Label();
             labelQuantidade = new Label();
             labelCliente = new Label();
-            buttonCriar = new Button();
+            buttonAdicionar = new Button();
             buttonRemover = new Button();
             buttonEditar = new Button();
-            dataGridView1 = new DataGridView();
+            dataGridViewPedidos = new DataGridView();
             labelCadastrarPedido = new Label();
             panel1 = new Panel();
             menuStrip1 = new MenuStrip();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
-            homeToolStripMenuItem = new ToolStripMenuItem();
             groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -67,9 +67,9 @@
             // groupBox
             // 
             groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox.Controls.Add(maskedTextBox1);
-            groupBox.Controls.Add(textBoxProduto);
-            groupBox.Controls.Add(textBoxCliente);
+            groupBox.Controls.Add(comboBoxProduto);
+            groupBox.Controls.Add(comboBoxCliente);
+            groupBox.Controls.Add(maskedTextBoxTotal);
             groupBox.Controls.Add(labelTotal);
             groupBox.Controls.Add(numericQuantidade);
             groupBox.Controls.Add(labelProduto);
@@ -81,31 +81,33 @@
             groupBox.TabIndex = 19;
             groupBox.TabStop = false;
             // 
-            // maskedTextBox1
+            // comboBoxProduto
             // 
-            maskedTextBox1.Anchor = AnchorStyles.Top;
-            maskedTextBox1.Location = new Point(464, 74);
-            maskedTextBox1.Mask = "$";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.ReadOnly = true;
-            maskedTextBox1.Size = new Size(100, 23);
-            maskedTextBox1.TabIndex = 22;
+            comboBoxProduto.Anchor = AnchorStyles.Top;
+            comboBoxProduto.FormattingEnabled = true;
+            comboBoxProduto.Location = new Point(121, 47);
+            comboBoxProduto.Name = "comboBoxProduto";
+            comboBoxProduto.Size = new Size(443, 23);
+            comboBoxProduto.TabIndex = 24;
             // 
-            // textBoxProduto
+            // comboBoxCliente
             // 
-            textBoxProduto.Anchor = AnchorStyles.Top;
-            textBoxProduto.Location = new Point(121, 45);
-            textBoxProduto.Name = "textBoxProduto";
-            textBoxProduto.Size = new Size(443, 23);
-            textBoxProduto.TabIndex = 1;
+            comboBoxCliente.Anchor = AnchorStyles.Top;
+            comboBoxCliente.FormattingEnabled = true;
+            comboBoxCliente.Location = new Point(121, 21);
+            comboBoxCliente.Name = "comboBoxCliente";
+            comboBoxCliente.Size = new Size(443, 23);
+            comboBoxCliente.TabIndex = 23;
             // 
-            // textBoxCliente
+            // maskedTextBoxTotal
             // 
-            textBoxCliente.Anchor = AnchorStyles.Top;
-            textBoxCliente.Location = new Point(121, 18);
-            textBoxCliente.Name = "textBoxCliente";
-            textBoxCliente.Size = new Size(443, 23);
-            textBoxCliente.TabIndex = 0;
+            maskedTextBoxTotal.Anchor = AnchorStyles.Top;
+            maskedTextBoxTotal.Location = new Point(464, 74);
+            maskedTextBoxTotal.Mask = "$";
+            maskedTextBoxTotal.Name = "maskedTextBoxTotal";
+            maskedTextBoxTotal.ReadOnly = true;
+            maskedTextBoxTotal.Size = new Size(100, 23);
+            maskedTextBoxTotal.TabIndex = 22;
             // 
             // labelTotal
             // 
@@ -155,15 +157,16 @@
             labelCliente.TabIndex = 10;
             labelCliente.Text = "Cliente";
             // 
-            // buttonCriar
+            // buttonAdicionar
             // 
-            buttonCriar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonCriar.Location = new Point(703, 92);
-            buttonCriar.Name = "buttonCriar";
-            buttonCriar.Size = new Size(75, 23);
-            buttonCriar.TabIndex = 3;
-            buttonCriar.Text = "Criar";
-            buttonCriar.UseVisualStyleBackColor = true;
+            buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonAdicionar.Location = new Point(703, 92);
+            buttonAdicionar.Name = "buttonAdicionar";
+            buttonAdicionar.Size = new Size(75, 23);
+            buttonAdicionar.TabIndex = 3;
+            buttonAdicionar.Text = "Adicionar";
+            buttonAdicionar.UseVisualStyleBackColor = true;
+            buttonAdicionar.Click += buttonCriar_Click;
             // 
             // buttonRemover
             // 
@@ -185,20 +188,21 @@
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewPedidos
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(27, 191);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(751, 235);
-            dataGridView1.TabIndex = 18;
+            dataGridViewPedidos.AllowUserToAddRows = false;
+            dataGridViewPedidos.AllowUserToDeleteRows = false;
+            dataGridViewPedidos.AllowUserToResizeColumns = false;
+            dataGridViewPedidos.AllowUserToResizeRows = false;
+            dataGridViewPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridViewPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPedidos.Location = new Point(27, 191);
+            dataGridViewPedidos.MultiSelect = false;
+            dataGridViewPedidos.Name = "dataGridViewPedidos";
+            dataGridViewPedidos.ReadOnly = true;
+            dataGridViewPedidos.Size = new Size(751, 235);
+            dataGridViewPedidos.TabIndex = 18;
             // 
             // labelCadastrarPedido
             // 
@@ -231,6 +235,13 @@
             menuStrip1.TabIndex = 24;
             menuStrip1.Text = "menuStrip1";
             // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(52, 20);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
+            // 
             // produtosToolStripMenuItem
             // 
             produtosToolStripMenuItem.Font = new Font("Segoe UI", 9F);
@@ -255,13 +266,6 @@
             pedidosToolStripMenuItem.Size = new Size(62, 20);
             pedidosToolStripMenuItem.Text = "Pedidos";
             // 
-            // homeToolStripMenuItem
-            // 
-            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(52, 20);
-            homeToolStripMenuItem.Text = "Home";
-            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
-            // 
             // TelaPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -271,16 +275,16 @@
             Controls.Add(panel1);
             Controls.Add(labelErro);
             Controls.Add(groupBox);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewPedidos);
             Controls.Add(buttonEditar);
-            Controls.Add(buttonCriar);
+            Controls.Add(buttonAdicionar);
             Controls.Add(buttonRemover);
             Name = "TelaPedido";
             StartPosition = FormStartPosition.CenterScreen;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -293,12 +297,12 @@
 
         private Label labelErro;
         private GroupBox groupBox;
-        private Button buttonCriar;
+        private Button buttonAdicionar;
         private Label labelQuantidade;
         private Button buttonRemover;
         private Button buttonEditar;
         private Label labelCliente;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewPedidos;
         private NumericUpDown numericQuantidade;
         private Label labelProduto;
         private Label labelTotal;
@@ -308,9 +312,9 @@
         private ToolStripMenuItem produtosToolStripMenuItem;
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
-        private TextBox textBoxProduto;
-        private TextBox textBoxCliente;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox maskedTextBoxTotal;
         private ToolStripMenuItem homeToolStripMenuItem;
+        private ComboBox comboBoxProduto;
+        private ComboBox comboBoxCliente;
     }
 }

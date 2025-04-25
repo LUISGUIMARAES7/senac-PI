@@ -37,7 +37,7 @@
             labelNome = new Label();
             textBoxNome = new TextBox();
             textBoxEmail = new TextBox();
-            buttonCriar = new Button();
+            buttonAdicionar = new Button();
             buttonRemover = new Button();
             buttonEditar = new Button();
             dataGridViewClientes = new DataGridView();
@@ -132,16 +132,16 @@
             textBoxEmail.Size = new Size(405, 23);
             textBoxEmail.TabIndex = 1;
             // 
-            // buttonCriar
+            // buttonAdicionar
             // 
-            buttonCriar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonCriar.Location = new Point(703, 90);
-            buttonCriar.Name = "buttonCriar";
-            buttonCriar.Size = new Size(75, 23);
-            buttonCriar.TabIndex = 3;
-            buttonCriar.Text = "Criar";
-            buttonCriar.UseVisualStyleBackColor = true;
-            buttonCriar.Click += buttonCriar_Click;
+            buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonAdicionar.Location = new Point(703, 90);
+            buttonAdicionar.Name = "buttonAdicionar";
+            buttonAdicionar.Size = new Size(75, 23);
+            buttonAdicionar.TabIndex = 3;
+            buttonAdicionar.Text = "Adicionar";
+            buttonAdicionar.UseVisualStyleBackColor = true;
+            buttonAdicionar.Click += buttonAdicionar_Click;
             // 
             // buttonRemover
             // 
@@ -152,6 +152,7 @@
             buttonRemover.TabIndex = 5;
             buttonRemover.Text = "Remover";
             buttonRemover.UseVisualStyleBackColor = true;
+            buttonRemover.Click += buttonRemover_Click;
             // 
             // buttonEditar
             // 
@@ -162,6 +163,7 @@
             buttonEditar.TabIndex = 4;
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
+            buttonEditar.Click += buttonEditar_Click;
             // 
             // dataGridViewClientes
             // 
@@ -169,7 +171,8 @@
             dataGridViewClientes.AllowUserToDeleteRows = false;
             dataGridViewClientes.AllowUserToResizeColumns = false;
             dataGridViewClientes.AllowUserToResizeRows = false;
-            dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridViewClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewClientes.Location = new Point(27, 191);
             dataGridViewClientes.MultiSelect = false;
@@ -246,7 +249,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
-            Controls.Add(buttonCriar);
+            Controls.Add(buttonAdicionar);
             Controls.Add(labelErro);
             Controls.Add(buttonRemover);
             Controls.Add(groupBox2);
@@ -272,7 +275,7 @@
         private Label labelErro;
         private GroupBox groupBox2;
         private NumericUpDown numericUpDown1;
-        private Button buttonCriar;
+        private Button buttonAdicionar;
         private Label labelTelefone;
         private Button buttonRemover;
         private Button buttonEditar;

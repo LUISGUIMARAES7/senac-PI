@@ -11,8 +11,7 @@ namespace SistemaPI
         public TelaProduto()
         {
             InitializeComponent();
-            BindingSource.DataSource = Produto.ListarProdutos();
-            dataGridViewProdutos.DataSource = BindingSource;
+            ListarProduto();
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)

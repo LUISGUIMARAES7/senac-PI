@@ -60,8 +60,6 @@ namespace SistemaPI.dominio
                 return "Já existe um cliente com esse telefone.";
             }
 
-            InserirCliente();
-
             return "";
         }
 
@@ -72,7 +70,12 @@ namespace SistemaPI.dominio
 
         public void AtualizarCliente()
         {
-            Repositorio.AtualizarCliente(this);
+            Repositorio.EditarCliente(this);
+        }
+
+        public void DeletarCliente(int id)
+        {
+            Repositorio.DeletarCliente(id);
         }
     }
 }

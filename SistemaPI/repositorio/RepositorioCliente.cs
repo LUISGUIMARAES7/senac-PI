@@ -102,7 +102,7 @@ namespace SistemaPI.repositorio
             }
         }
 
-        public void AtualizarCliente(Cliente cliente)
+        public void EditarCliente(Cliente cliente)
         {
             using (var conn = Database.GetConnection())
             {
@@ -119,6 +119,23 @@ namespace SistemaPI.repositorio
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public void DeletarCliente(int id)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+
+                string query = "DELETE FROM cliente WHERE id = @id;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }

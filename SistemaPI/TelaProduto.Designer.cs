@@ -105,6 +105,7 @@ namespace SistemaPI
             dataGridViewProdutos.AllowUserToResizeColumns = false;
             dataGridViewProdutos.AllowUserToResizeRows = false;
             dataGridViewProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridViewProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProdutos.Location = new Point(27, 191);
             dataGridViewProdutos.MultiSelect = false;

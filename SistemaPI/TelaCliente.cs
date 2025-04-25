@@ -19,8 +19,7 @@ namespace SistemaPI
         public TelaCliente()
         {
             InitializeComponent();
-            BindingSource.DataSource = Cliente.ListarCliente();
-            dataGridViewClientes.DataSource = BindingSource;
+            ListarCliente();
         }
 
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -86,7 +85,7 @@ namespace SistemaPI
             return true;
         }
 
-        private void buttonCriar_Click(object sender, EventArgs e)
+        private void buttonAdicionar_Click(object sender, EventArgs e)
         {
             if (!CriarCliente())
             {
@@ -111,7 +110,7 @@ namespace SistemaPI
             Cliente.Id = id;
             Cliente.AtualizarCliente();
             ListarCliente();
-            //buttonAdicionar.Text = "Adicionar";
+            buttonAdicionar.Text = "Adicionar";
         }
 
         public void ListarCliente()
@@ -126,6 +125,45 @@ namespace SistemaPI
             textBoxEmail.Clear();
             maskedTextBoxTelefone.Clear();
             labelErro.Text = string.Empty;
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            buttonAdicionar.Text = "Salvar";
+
+            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+
+            var cliente = Cliente.BuscarClientePorId(id);
+
+            if (cliente == null)
+            {
+                return;
+            }
+            Cliente = cliente;
+
+            textBoxNome.Text = cliente.Nome.ToString();
+            textBoxEmail.Text = cliente.Email.ToString();
+            maskedTextBoxTelefone.Text = cliente.Telefone.ToString();
+
+        }
+
+        private void buttonRemover_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+
+            Cliente.DeletarCliente(id);
+
+            ListarCliente();
         }
     }
 }
