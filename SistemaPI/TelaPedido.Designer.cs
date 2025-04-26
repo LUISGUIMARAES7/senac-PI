@@ -177,6 +177,7 @@
             buttonRemover.TabIndex = 5;
             buttonRemover.Text = "Remover";
             buttonRemover.UseVisualStyleBackColor = true;
+            buttonRemover.Click += buttonRemover_Click;
             // 
             // buttonEditar
             // 
@@ -187,6 +188,7 @@
             buttonEditar.TabIndex = 4;
             buttonEditar.Text = "Editar";
             buttonEditar.UseVisualStyleBackColor = true;
+            buttonEditar.Click += buttonEditar_Click;
             // 
             // dataGridViewPedidos
             // 

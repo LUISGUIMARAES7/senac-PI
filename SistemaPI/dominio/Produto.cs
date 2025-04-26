@@ -20,23 +20,29 @@ namespace SistemaPI.dominio
         public int Id { get; set; }
         public string Nome { get; set; }
         public decimal Preco { get; set; }
-        public int Quantidade { get; set; }
+        public int ?Quantidade { get; set; }
 
         public string Validar()
         {
             if (string.IsNullOrWhiteSpace(Nome))
             {
-                return "O campo produto é obrigatório";
+                return "O campo 'nome' é obrigatório.";
+            }
+
+            var produtoExistente = Repositorio.BuscarProdutoPorNome(Nome);
+            if (produtoExistente != null && produtoExistente?.Id == Id)
+            {
+                return "Já existe um produto com esse 'nome'.";
             }
 
             if (Preco <= 0)
             {
-                return "O campo preço é obrigatório";
+                return "O campo 'preço' é obrigatório.";
             }
 
-            if (Quantidade < 1)
+            if (Quantidade == null || Quantidade < 1)
             {
-                return "O campo quantidade é obrigatório";
+                return "O campo 'quantidade' é obrigatório.";
             }
 
             return "";

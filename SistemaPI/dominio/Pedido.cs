@@ -19,7 +19,7 @@ namespace SistemaPI.dominio
 
         public string Validar()
         {
-            if (Cliente.Id <= 0)
+            if (string.IsNullOrEmpty(Cliente.Nome))
             {
                 return "O campo cliente é obrigatório";
             }
@@ -35,6 +35,16 @@ namespace SistemaPI.dominio
             }
 
             return "";
+        }
+
+        public List<Cliente> ListarTodosClientes()
+        {
+            return Repositorio.ListarTodosClientes();
+        }
+
+        public List<Produto> ListarTodosProdutos()
+        {
+            return Repositorio.ListarTodosProdutos();
         }
 
         public List<Pedido> ListarPedidos()
@@ -55,6 +65,11 @@ namespace SistemaPI.dominio
         public void AtualizarPedido()
         {
             Repositorio.AtualizarPedido(this);
+        }
+
+        public void DeletarPedido(int id)
+        {
+            Repositorio.DeletarPedido(id);
         }
     }
 }

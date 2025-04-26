@@ -18,7 +18,10 @@ namespace SistemaPI
         public TelaPedido()
         {
             InitializeComponent();
+
             ListarPedido();
+            ListarTodosClientes();
+            ListarTodosProdutos();
 
         }
 
@@ -62,6 +65,26 @@ namespace SistemaPI
         {
             BindingSource.DataSource = Pedido.ListarPedidos();
             dataGridViewPedidos.DataSource = BindingSource;
+        }
+
+        public void ListarTodosClientes()
+        {
+            var clientes = Pedido.ListarTodosClientes();
+
+            foreach (var cliente in clientes)
+            {
+                comboBoxCliente.Items.Add(cliente.Nome);
+            }
+        }
+
+        public void ListarTodosProdutos()
+        {
+            var produtos = Pedido.ListarTodosProdutos();
+
+            foreach (var produto in produtos)
+            {
+                comboBoxProduto.Items.Add(produto.Nome);
+            }
         }
 
         private bool CriarPedido()
@@ -119,6 +142,44 @@ namespace SistemaPI
             comboBoxProduto.SelectedText = "";
             numericQuantidade.Value = 0;
             labelErro.Text = string.Empty;
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            buttonAdicionar.Text = "Salvar";
+
+            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+
+            var pedido = Pedido.BuscarPedidoPorId(id);
+
+            if (pedido == null)
+            {
+                return;
+            }
+            Pedido = pedido;
+
+            comboBoxCliente.SelectedValue = pedido.Cliente.ToString();
+            comboBoxProduto.Text = pedido.Produto.ToString();
+            numericQuantidade.Text = pedido.Quantidade.ToString();
+        }
+
+        private void buttonRemover_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+
+            Pedido.DeletarPedido(id);
+
+            ListarPedido();
         }
     }
 }

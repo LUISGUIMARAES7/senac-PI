@@ -44,11 +44,10 @@ namespace SistemaPI
             try
             {
                 Produto.Preco = Convert.ToDecimal(textBoxPreco.Text);
-
             }
             catch { }
-           
-            Produto.Quantidade = (int)numericQuantidade.Value;
+
+            Produto.Quantidade = (int) numericQuantidade.Value;
 
             string validacaoProduto = Produto.Validar();
             if (!string.IsNullOrWhiteSpace(validacaoProduto))
@@ -80,6 +79,7 @@ namespace SistemaPI
             {
                 return;
             }
+
             LimparForm();
             Produto.Id = id;
             Produto.AtualizarProduto();

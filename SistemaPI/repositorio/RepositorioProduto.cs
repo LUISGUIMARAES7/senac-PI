@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SistemaPI.repositorio
 {
@@ -57,6 +58,12 @@ namespace SistemaPI.repositorio
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public Produto? BuscarProdutoPorNome(string nome)
+        {
+            string query = "SELECT * FROM produto WHERE nome = @param;";
+            return BuscarProdutoPorUnique(query, nome);
         }
 
         public Produto? BuscarProdutoPorId(int id)

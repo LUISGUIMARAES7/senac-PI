@@ -96,6 +96,7 @@ namespace SistemaPI
             {
                 Cliente.InserirCliente();
                 ListarCliente();
+                LimparForm();
                 return;
             }
 

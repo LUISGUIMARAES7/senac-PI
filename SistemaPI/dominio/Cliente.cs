@@ -30,22 +30,32 @@ namespace SistemaPI.dominio
         {
             if (string.IsNullOrWhiteSpace(Nome))
             {
-                return "O campo nome é obrigatório";
+                return "O campo 'nome' é obrigatório.";
             }
 
-            if (string.IsNullOrWhiteSpace(Telefone) || Telefone.Length != 11)
+            if (!Nome.Contains(" ") || Nome.Trim().Split(" ").Length < 2)
             {
-                return "O campo Telefone é obrigatório";
+                return "O campo 'nome' está incompleto.";
             }
 
             if (string.IsNullOrWhiteSpace(Email))
             {
-                return "O campo Email é obrigatório";
+                return "O campo 'email' é obrigatório.";
             }
 
-            if (!Email.Contains('@') && !Email.Contains('.'))
+            if (!Email.Contains("@") || !Email.Contains(".com"))
             {
-                return "O campo Email deve ser um email válido";
+                return "O campo 'email' está incompleto.";
+            }
+
+            if (string.IsNullOrWhiteSpace(Telefone))
+            {
+                return "O campo 'telefone' é obrigatório.";
+            }
+
+            if (Telefone[2] != '9' || Telefone.Length != 11)
+            {
+                return "O campo 'telefone' está incompleto.";
             }
 
             var clienteExistente = Repositorio.BuscarClientePorEmail(Email);

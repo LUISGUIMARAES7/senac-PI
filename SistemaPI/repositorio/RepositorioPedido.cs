@@ -12,6 +12,60 @@ namespace SistemaPI.repositorio
 {
     internal class RepositorioPedido
     {
+        public List<Cliente> ListarTodosClientes()
+        {
+            var clientes = new List<Cliente>();
+
+            using (var conection = Database.GetConnection())
+            {
+                conection.Open();
+
+                string query = "SELECT * FROM cliente;";
+
+                using var cmd = new MySqlCommand(query, conection);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clientes.Add(new Cliente
+                    {
+                        Id = reader.GetInt32("id"),
+                        Nome = reader.GetString("nome"),
+                        Email = reader.GetString("email"),
+                        Telefone = reader.GetString("telefone")
+                    });
+                }
+            }
+
+            return clientes;
+        }
+
+        public List<Produto> ListarTodosProdutos()
+        {
+            var produtos = new List<Produto>();
+
+            using (var conection = Database.GetConnection())
+            {
+                conection.Open();
+
+                string query = "SELECT * FROM produto;";
+
+                using var cmd = new MySqlCommand(query, conection);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    produtos.Add(new Produto
+                    {
+                        Id = reader.GetInt32("id"),
+                        Nome = reader.GetString("nome"),
+                        Preco = reader.GetDecimal("preco"),
+                        Quantidade = reader.GetInt32("quantidade")
+                    });
+                }
+            }
+
+            return produtos;
+        }
+
         public List<Pedido> ListarPedidos()
         {
             var pedidos = new List<Pedido>();
@@ -175,5 +229,7 @@ namespace SistemaPI.repositorio
                 }
             }
         }
+
+
     }
 }
