@@ -122,10 +122,10 @@
             listBoxProdutosSelecionados.Anchor = AnchorStyles.Top;
             listBoxProdutosSelecionados.FormattingEnabled = true;
             listBoxProdutosSelecionados.ItemHeight = 15;
-            listBoxProdutosSelecionados.Location = new Point(35, 112);
+            listBoxProdutosSelecionados.Location = new Point(121, 112);
             listBoxProdutosSelecionados.Name = "listBoxProdutosSelecionados";
             listBoxProdutosSelecionados.ScrollAlwaysVisible = true;
-            listBoxProdutosSelecionados.Size = new Size(529, 94);
+            listBoxProdutosSelecionados.Size = new Size(443, 94);
             listBoxProdutosSelecionados.TabIndex = 25;
             // 
             // comboBoxProduto
