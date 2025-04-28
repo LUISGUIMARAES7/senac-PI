@@ -182,5 +182,10 @@ namespace SistemaPI
 
             ListarPedido();
         }
+
+        private void buttonAddProduto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

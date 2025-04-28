@@ -89,6 +89,7 @@
             // 
             // textBoxTotal
             // 
+            textBoxTotal.Anchor = AnchorStyles.Top;
             textBoxTotal.Location = new Point(287, 72);
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.ReadOnly = true;
@@ -97,6 +98,7 @@
             // 
             // buttonLimpar
             // 
+            buttonLimpar.Anchor = AnchorStyles.Top;
             buttonLimpar.Location = new Point(408, 72);
             buttonLimpar.Name = "buttonLimpar";
             buttonLimpar.Size = new Size(75, 23);
@@ -106,15 +108,18 @@
             // 
             // buttonAddProduto
             // 
+            buttonAddProduto.Anchor = AnchorStyles.Top;
             buttonAddProduto.Location = new Point(489, 72);
             buttonAddProduto.Name = "buttonAddProduto";
             buttonAddProduto.Size = new Size(75, 23);
             buttonAddProduto.TabIndex = 26;
             buttonAddProduto.Text = "Adicionar";
             buttonAddProduto.UseVisualStyleBackColor = true;
+            buttonAddProduto.Click += buttonAddProduto_Click;
             // 
             // listBoxProdutosSelecionados
             // 
+            listBoxProdutosSelecionados.Anchor = AnchorStyles.Top;
             listBoxProdutosSelecionados.FormattingEnabled = true;
             listBoxProdutosSelecionados.ItemHeight = 15;
             listBoxProdutosSelecionados.Location = new Point(35, 112);
