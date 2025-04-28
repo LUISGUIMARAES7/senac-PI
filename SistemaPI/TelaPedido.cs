@@ -91,10 +91,11 @@ namespace SistemaPI
         {
             try
             {
-                Pedido.Total = Convert.ToDecimal(maskedTextBoxTotal.Text);
+                Pedido.Total = Convert.ToDecimal(textBoxTotal.Text);
 
             }
             catch { }
+
             Pedido.Cliente = (Cliente)comboBoxCliente.SelectedValue;
             Pedido.Produto = (Produto)comboBoxProduto.SelectedValue;
             Pedido.Quantidade = (int)numericQuantidade.Value;
@@ -133,7 +134,7 @@ namespace SistemaPI
             Pedido.Id = id;
             Pedido.AtualizarPedido();
             ListarPedido();
-            buttonAdicionar.Text = "Adicionar";
+            buttonSalvar.Text = "Adicionar";
         }
 
         public void LimparForm()
@@ -151,7 +152,7 @@ namespace SistemaPI
                 return;
             }
 
-            buttonAdicionar.Text = "Salvar";
+            buttonSalvar.Text = "Salvar";
 
             int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
 

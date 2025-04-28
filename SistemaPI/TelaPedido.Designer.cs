@@ -30,15 +30,18 @@
         {
             labelErro = new Label();
             groupBox = new GroupBox();
+            textBoxTotal = new TextBox();
+            buttonLimpar = new Button();
+            buttonAddProduto = new Button();
+            listBoxProdutosSelecionados = new ListBox();
             comboBoxProduto = new ComboBox();
             comboBoxCliente = new ComboBox();
-            maskedTextBoxTotal = new MaskedTextBox();
             labelTotal = new Label();
             numericQuantidade = new NumericUpDown();
             labelProduto = new Label();
             labelQuantidade = new Label();
             labelCliente = new Label();
-            buttonAdicionar = new Button();
+            buttonSalvar = new Button();
             buttonRemover = new Button();
             buttonEditar = new Button();
             dataGridViewPedidos = new DataGridView();
@@ -67,9 +70,12 @@
             // groupBox
             // 
             groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox.Controls.Add(textBoxTotal);
+            groupBox.Controls.Add(buttonLimpar);
+            groupBox.Controls.Add(buttonAddProduto);
+            groupBox.Controls.Add(listBoxProdutosSelecionados);
             groupBox.Controls.Add(comboBoxProduto);
             groupBox.Controls.Add(comboBoxCliente);
-            groupBox.Controls.Add(maskedTextBoxTotal);
             groupBox.Controls.Add(labelTotal);
             groupBox.Controls.Add(numericQuantidade);
             groupBox.Controls.Add(labelProduto);
@@ -77,9 +83,45 @@
             groupBox.Controls.Add(labelCliente);
             groupBox.Location = new Point(27, 78);
             groupBox.Name = "groupBox";
-            groupBox.Size = new Size(645, 107);
+            groupBox.Size = new Size(645, 221);
             groupBox.TabIndex = 19;
             groupBox.TabStop = false;
+            // 
+            // textBoxTotal
+            // 
+            textBoxTotal.Location = new Point(287, 72);
+            textBoxTotal.Name = "textBoxTotal";
+            textBoxTotal.ReadOnly = true;
+            textBoxTotal.Size = new Size(100, 23);
+            textBoxTotal.TabIndex = 28;
+            // 
+            // buttonLimpar
+            // 
+            buttonLimpar.Location = new Point(408, 72);
+            buttonLimpar.Name = "buttonLimpar";
+            buttonLimpar.Size = new Size(75, 23);
+            buttonLimpar.TabIndex = 27;
+            buttonLimpar.Text = "Limpar";
+            buttonLimpar.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddProduto
+            // 
+            buttonAddProduto.Location = new Point(489, 72);
+            buttonAddProduto.Name = "buttonAddProduto";
+            buttonAddProduto.Size = new Size(75, 23);
+            buttonAddProduto.TabIndex = 26;
+            buttonAddProduto.Text = "Adicionar";
+            buttonAddProduto.UseVisualStyleBackColor = true;
+            // 
+            // listBoxProdutosSelecionados
+            // 
+            listBoxProdutosSelecionados.FormattingEnabled = true;
+            listBoxProdutosSelecionados.ItemHeight = 15;
+            listBoxProdutosSelecionados.Location = new Point(35, 112);
+            listBoxProdutosSelecionados.Name = "listBoxProdutosSelecionados";
+            listBoxProdutosSelecionados.ScrollAlwaysVisible = true;
+            listBoxProdutosSelecionados.Size = new Size(529, 94);
+            listBoxProdutosSelecionados.TabIndex = 25;
             // 
             // comboBoxProduto
             // 
@@ -99,21 +141,11 @@
             comboBoxCliente.Size = new Size(443, 23);
             comboBoxCliente.TabIndex = 23;
             // 
-            // maskedTextBoxTotal
-            // 
-            maskedTextBoxTotal.Anchor = AnchorStyles.Top;
-            maskedTextBoxTotal.Location = new Point(464, 74);
-            maskedTextBoxTotal.Mask = "$";
-            maskedTextBoxTotal.Name = "maskedTextBoxTotal";
-            maskedTextBoxTotal.ReadOnly = true;
-            maskedTextBoxTotal.Size = new Size(100, 23);
-            maskedTextBoxTotal.TabIndex = 22;
-            // 
             // labelTotal
             // 
             labelTotal.Anchor = AnchorStyles.Top;
             labelTotal.AutoSize = true;
-            labelTotal.Location = new Point(426, 81);
+            labelTotal.Location = new Point(249, 81);
             labelTotal.Name = "labelTotal";
             labelTotal.Size = new Size(32, 15);
             labelTotal.TabIndex = 21;
@@ -157,16 +189,16 @@
             labelCliente.TabIndex = 10;
             labelCliente.Text = "Cliente";
             // 
-            // buttonAdicionar
+            // buttonSalvar
             // 
-            buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonAdicionar.Location = new Point(703, 92);
-            buttonAdicionar.Name = "buttonAdicionar";
-            buttonAdicionar.Size = new Size(75, 23);
-            buttonAdicionar.TabIndex = 3;
-            buttonAdicionar.Text = "Adicionar";
-            buttonAdicionar.UseVisualStyleBackColor = true;
-            buttonAdicionar.Click += buttonCriar_Click;
+            buttonSalvar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonSalvar.Location = new Point(703, 92);
+            buttonSalvar.Name = "buttonSalvar";
+            buttonSalvar.Size = new Size(75, 23);
+            buttonSalvar.TabIndex = 3;
+            buttonSalvar.Text = "Salvar";
+            buttonSalvar.UseVisualStyleBackColor = true;
+            buttonSalvar.Click += buttonCriar_Click;
             // 
             // buttonRemover
             // 
@@ -199,11 +231,11 @@
             dataGridViewPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPedidos.Location = new Point(27, 191);
+            dataGridViewPedidos.Location = new Point(27, 305);
             dataGridViewPedidos.MultiSelect = false;
             dataGridViewPedidos.Name = "dataGridViewPedidos";
             dataGridViewPedidos.ReadOnly = true;
-            dataGridViewPedidos.Size = new Size(751, 235);
+            dataGridViewPedidos.Size = new Size(751, 121);
             dataGridViewPedidos.TabIndex = 18;
             // 
             // labelCadastrarPedido
@@ -279,7 +311,7 @@
             Controls.Add(groupBox);
             Controls.Add(dataGridViewPedidos);
             Controls.Add(buttonEditar);
-            Controls.Add(buttonAdicionar);
+            Controls.Add(buttonSalvar);
             Controls.Add(buttonRemover);
             Name = "TelaPedido";
             StartPosition = FormStartPosition.CenterScreen;
@@ -299,7 +331,7 @@
 
         private Label labelErro;
         private GroupBox groupBox;
-        private Button buttonAdicionar;
+        private Button buttonSalvar;
         private Label labelQuantidade;
         private Button buttonRemover;
         private Button buttonEditar;
@@ -314,9 +346,12 @@
         private ToolStripMenuItem produtosToolStripMenuItem;
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
-        private MaskedTextBox maskedTextBoxTotal;
         private ToolStripMenuItem homeToolStripMenuItem;
         private ComboBox comboBoxProduto;
         private ComboBox comboBoxCliente;
+        private TextBox textBoxTotal;
+        private Button buttonLimpar;
+        private Button buttonAddProduto;
+        private ListBox listBoxProdutosSelecionados;
     }
 }

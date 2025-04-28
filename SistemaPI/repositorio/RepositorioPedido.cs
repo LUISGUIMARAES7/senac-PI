@@ -125,27 +125,6 @@ namespace SistemaPI.repositorio
                     cmd.ExecuteNonQuery();
                 }
 
-                string queryCliente = "INSERT INTO cliente (nome, email, telefone) " +
-                                        "VALUES (@nome, @email, @telefone);";
-
-                using (var cmd = new MySqlCommand(queryCliente, conection))
-                {
-                    cmd.Parameters.AddWithValue("@nome", novoPedido.Cliente.Nome);
-                    cmd.Parameters.AddWithValue("@email", novoPedido.Cliente.Email);
-                    cmd.Parameters.AddWithValue("@telefone", novoPedido.Cliente.Telefone);
-                    cmd.ExecuteNonQuery();
-                }
-
-                string queryProduto = "INSERT INTO produto (nome , preco, quantidade) " +
-                                        "VALUES (@nome, @preco, @quantidade);";
-
-                using (var cmd = new MySqlCommand(queryProduto, conection))
-                {
-                    cmd.Parameters.AddWithValue("@nome", novoPedido.Produto.Nome);
-                    cmd.Parameters.AddWithValue("@preco", novoPedido.Produto.Preco);
-                    cmd.Parameters.AddWithValue("@quantidade", novoPedido.Produto.Quantidade);
-                    cmd.ExecuteNonQuery();
-                }
             }
         }
 
