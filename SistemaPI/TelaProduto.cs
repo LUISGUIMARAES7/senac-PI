@@ -47,7 +47,7 @@ namespace SistemaPI
             }
             catch { }
 
-            Produto.Quantidade = (int) numericQuantidade.Value;
+            Produto.Fornecedor = (Fornecedor) comboBoxFornecedor.SelectedIndex;
 
             string validacaoProduto = Produto.Validar();
             if (!string.IsNullOrWhiteSpace(validacaoProduto))
@@ -112,7 +112,7 @@ namespace SistemaPI
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
             {
-                e.Handled = true; // Cancelar o evento
+                e.Handled = true;
             }
         }
 
@@ -137,7 +137,7 @@ namespace SistemaPI
 
             textBoxProduto.Text = produto.Nome.ToString();
             textBoxPreco.Text = produto.Preco.ToString();
-            numericQuantidade.Text = produto.Quantidade.ToString();
+            comboBoxFornecedor.Text = produto.Fornecedor.ToString();
 
         }
 
@@ -158,7 +158,7 @@ namespace SistemaPI
         {
             textBoxPreco.Clear();
             textBoxProduto.Clear();
-            numericQuantidade.Value = 0;
+            comboBoxFornecedor.SelectedIndex = -1;
             labelErro.Text = string.Empty;
         }
     }

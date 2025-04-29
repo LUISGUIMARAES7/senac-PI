@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS fornecedor(
+	id INT AUTO_INCREMENT,
+    nome VARCHAR(20) UNIQUE NOT NULL,
+    
+    PRIMARY KEY(id)
+);
+
+CREATE DATABASE senac_pi;
+USE senac_pi;

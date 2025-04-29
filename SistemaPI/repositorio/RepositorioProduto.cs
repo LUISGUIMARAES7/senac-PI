@@ -33,7 +33,7 @@ namespace SistemaPI.repositorio
                         Id = reader.GetInt32("id"),
                         Nome = reader.GetString("nome"),
                         Preco = reader.GetDecimal("preco"),
-                        Quantidade = reader.GetInt32("quantidade")
+                        Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
                     });
                 }
             }
@@ -47,14 +47,14 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string queryProduto = "INSERT INTO produto (nome , preco, quantidade) " +
-                                        "VALUES (@nome, @preco, @quantidade);";
+                string queryProduto = "INSERT INTO produto (nome , preco, fornecedor) " +
+                                        "VALUES (@nome, @preco, @fornecedor);";
 
                 using (var cmd = new MySqlCommand(queryProduto, conection))
                 {
                     cmd.Parameters.AddWithValue("@nome", novoProduto.Nome);
                     cmd.Parameters.AddWithValue("@preco", novoProduto.Preco);
-                    cmd.Parameters.AddWithValue("@quantidade", novoProduto.Quantidade);
+                    cmd.Parameters.AddWithValue("@fornecedor", novoProduto.Fornecedor);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -68,7 +68,7 @@ namespace SistemaPI.repositorio
 
         public Produto? BuscarProdutoPorId(int id)
         {
-            string query = "SELECT nome, preco, quantidade FROM produto WHERE id = @param;";
+            string query = "SELECT nome, preco, fornecedor FROM produto WHERE id = @param;";
             return BuscarProdutoPorUnique(query, id.ToString());
         }
 
@@ -78,13 +78,13 @@ namespace SistemaPI.repositorio
             {
                 conn.Open();
 
-                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, quantidade = @quantidade WHERE id = @id;";
+                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, fornecedor = @fornecedor WHERE id = @id;";
                 using (var cmd = new MySqlCommand(queryEndereco, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", produto.Id);
                     cmd.Parameters.AddWithValue("@nome", produto.Nome);
                     cmd.Parameters.AddWithValue("@preco", produto.Preco);
-                    cmd.Parameters.AddWithValue("@quantidade", produto.Quantidade);
+                    cmd.Parameters.AddWithValue("@fornecedor", produto.Fornecedor);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -110,7 +110,7 @@ namespace SistemaPI.repositorio
                     {
                         Nome = reader.GetString("nome"),
                         Preco = reader.GetDecimal("preco"),
-                        Quantidade = reader.GetInt32("quantidade")
+                        Fornecedor = (Fornecedor)reader.GetInt32("fornecedor")
                     };
                 }
             }

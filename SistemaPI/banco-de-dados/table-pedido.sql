@@ -21,7 +21,4 @@ CREATE TABLE IF NOT EXISTS pedido (
     join produto on pedido.produto_id = produto.id;
     
 INSERT INTO pedido (produto_id, quantidade, cliente_id, total)
-VALUES (, @quantidade, @cliente_id, @total);
-
-    
-    
+VALUES (@quantidade, @cliente_id, @total);

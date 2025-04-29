@@ -58,7 +58,7 @@ namespace SistemaPI.repositorio
                         Id = reader.GetInt32("id"),
                         Nome = reader.GetString("nome"),
                         Preco = reader.GetDecimal("preco"),
-                        Quantidade = reader.GetInt32("quantidade")
+                        Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
                     });
                 }
             }
@@ -74,7 +74,7 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto,data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id;";
+                string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto, data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id;";
 
                 using var cmd = new MySqlCommand(query, conection);
                 using var reader = cmd.ExecuteReader();
@@ -90,7 +90,7 @@ namespace SistemaPI.repositorio
                             Id = reader.GetInt32("id"),
                             Nome = reader.GetString("nome"),
                             Preco = reader.GetDecimal("preco"),
-                            Quantidade = reader.GetInt32("quantidade")
+                            Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
                         },
                         Cliente = new Cliente
                         {
@@ -112,8 +112,8 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string queryPedido = "INSERT INTO pedido (produto_id, quantidade, cliente_id, total)" +
-                                        "VALUES(@produto_id, @quantidade, @cliente_id, @total);";
+                string queryPedido = "INSERT INTO pedido (produto_id, fornecedor, cliente_id, total)" +
+                                        "VALUES(@produto_id, @fornecedor, @cliente_id, @total);";
 
                 using (var cmd = new MySqlCommand(queryPedido, conection))
                 {
@@ -146,7 +146,7 @@ namespace SistemaPI.repositorio
 
         public Pedido? BuscarPedidoPorId(int id)
         {
-            string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto,data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id WHERE id = @param;;";
+            string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto, data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id WHERE id = @param;;";
             return BuscarPedidoPorUnique(query, id.ToString());
         }
 
@@ -175,7 +175,7 @@ namespace SistemaPI.repositorio
                             Id = reader.GetInt32("id"),
                             Nome = reader.GetString("nome"),
                             Preco = reader.GetDecimal("preco"),
-                            Quantidade = reader.GetInt32("quantidade")
+                            Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
                         },
                         Cliente = new Cliente
                         {
@@ -195,13 +195,13 @@ namespace SistemaPI.repositorio
             {
                 conn.Open();
 
-                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, quantidade = @quantidade WHERE id = @id;";
+                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, fornecedor = @fornecedor WHERE id = @id;";
                 using (var cmd = new MySqlCommand(queryEndereco, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", pedido.Id);
                     cmd.Parameters.AddWithValue("@cliente_id", pedido.Cliente.Id);
                     cmd.Parameters.AddWithValue("@produto_id", pedido.Produto.Id);
-                    cmd.Parameters.AddWithValue("@quantidade", pedido.Quantidade);
+                    cmd.Parameters.AddWithValue("@fornecedor", pedido.Produto.Fornecedor);
                     cmd.Parameters.AddWithValue("@total", pedido.Total);
 
                     cmd.ExecuteNonQuery();

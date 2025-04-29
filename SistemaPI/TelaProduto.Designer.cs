@@ -39,8 +39,8 @@ namespace SistemaPI
             label2 = new Label();
             label3 = new Label();
             groupBox1 = new GroupBox();
+            comboBoxFornecedor = new ComboBox();
             textBoxPreco = new TextBox();
-            numericQuantidade = new NumericUpDown();
             labelErro = new Label();
             label4 = new Label();
             panel1 = new Panel();
@@ -52,7 +52,6 @@ namespace SistemaPI
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).BeginInit();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -140,15 +139,15 @@ namespace SistemaPI
             label3.AutoSize = true;
             label3.Location = new Point(505, 36);
             label3.Name = "label3";
-            label3.Size = new Size(69, 15);
+            label3.Size = new Size(67, 15);
             label3.TabIndex = 12;
-            label3.Text = "Quantidade";
+            label3.Text = "Fornecedor";
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(comboBoxFornecedor);
             groupBox1.Controls.Add(textBoxPreco);
-            groupBox1.Controls.Add(numericQuantidade);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -159,6 +158,15 @@ namespace SistemaPI
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             // 
+            // comboBoxFornecedor
+            // 
+            comboBoxFornecedor.FormattingEnabled = true;
+            comboBoxFornecedor.Items.AddRange(new object[] { "--", "Avon", "Natura", "Eudora", "oBoticario", "Jequiti" });
+            comboBoxFornecedor.Location = new Point(505, 54);
+            comboBoxFornecedor.Name = "comboBoxFornecedor";
+            comboBoxFornecedor.Size = new Size(121, 23);
+            comboBoxFornecedor.TabIndex = 13;
+            // 
             // textBoxPreco
             // 
             textBoxPreco.Anchor = AnchorStyles.Top;
@@ -167,14 +175,6 @@ namespace SistemaPI
             textBoxPreco.Size = new Size(100, 23);
             textBoxPreco.TabIndex = 1;
             textBoxPreco.KeyPress += textBoxPreco_KeyPress;
-            // 
-            // numericQuantidade
-            // 
-            numericQuantidade.Anchor = AnchorStyles.Top;
-            numericQuantidade.Location = new Point(505, 54);
-            numericQuantidade.Name = "numericQuantidade";
-            numericQuantidade.Size = new Size(85, 23);
-            numericQuantidade.TabIndex = 2;
             // 
             // labelErro
             // 
@@ -270,7 +270,6 @@ namespace SistemaPI
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -298,7 +297,6 @@ namespace SistemaPI
         private Label label2;
         private Label label3;
         private GroupBox groupBox1;
-        private NumericUpDown numericQuantidade;
         private Label labelErro;
         private TextBox textBoxQuantidade;
         private Label label4;
@@ -310,5 +308,6 @@ namespace SistemaPI
         private TextBox textBoxPreco;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private ToolStripMenuItem homeToolStripMenuItem;
+        private ComboBox comboBoxFornecedor;
     }
 }
