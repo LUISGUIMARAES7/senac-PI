@@ -5,4 +5,6 @@ CREATE TABLE IF NOT EXISTS produto (
     fornecedor INT NOT NULL
 );
 
+SELECT * FROM produto;
+
 DESC produto;

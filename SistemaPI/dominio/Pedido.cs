@@ -14,25 +14,28 @@ namespace SistemaPI.dominio
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
         public Produto Produto { get; set; }
-        public int Quantidade { get; set; }
+        public DateTime DataPedido { get; set; }
         public decimal Total { get; set; }
+        public List<(Produto produto, int quantidade)> Itens = new();
+
+
 
         public string Validar()
         {
-            if (string.IsNullOrEmpty(Cliente.Nome))
-            {
-                return "O campo cliente é obrigatório";
-            }
+            //if (string.IsNullOrEmpty(Cliente.Nome))
+            //{
+            //    return "O campo cliente é obrigatório";
+            //}
 
-            if (Produto.Id <= 0)
-            {
-                return "O campo produto é obrigatório";
-            }
+            //if (Produto.Id <= 0)
+            //{
+            //    return "O campo produto é obrigatório";
+            //}
 
-            if (Quantidade < 1)
-            {
-                return "O campo quantidade é obrigatório";
-            }
+            //if (Quantidade < 1)
+            //{
+            //    return "O campo quantidade é obrigatório";
+            //}
 
             return "";
         }

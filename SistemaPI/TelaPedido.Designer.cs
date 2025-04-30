@@ -30,10 +30,14 @@
         {
             labelErro = new Label();
             groupBox = new GroupBox();
+            dgvProdutosSelecionados = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             textBoxTotal = new TextBox();
-            buttonLimpar = new Button();
+            buttonRemoverProduto = new Button();
             buttonAddProduto = new Button();
-            listBoxProdutosSelecionados = new ListBox();
             comboBoxProduto = new ComboBox();
             comboBoxCliente = new ComboBox();
             labelTotal = new Label();
@@ -53,6 +57,7 @@
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             groupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).BeginInit();
             panel1.SuspendLayout();
@@ -70,10 +75,10 @@
             // groupBox
             // 
             groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox.Controls.Add(dgvProdutosSelecionados);
             groupBox.Controls.Add(textBoxTotal);
-            groupBox.Controls.Add(buttonLimpar);
+            groupBox.Controls.Add(buttonRemoverProduto);
             groupBox.Controls.Add(buttonAddProduto);
-            groupBox.Controls.Add(listBoxProdutosSelecionados);
             groupBox.Controls.Add(comboBoxProduto);
             groupBox.Controls.Add(comboBoxCliente);
             groupBox.Controls.Add(labelTotal);
@@ -87,6 +92,47 @@
             groupBox.TabIndex = 19;
             groupBox.TabStop = false;
             // 
+            // dgvProdutosSelecionados
+            // 
+            dgvProdutosSelecionados.AllowUserToAddRows = false;
+            dgvProdutosSelecionados.AllowUserToDeleteRows = false;
+            dgvProdutosSelecionados.AllowUserToResizeColumns = false;
+            dgvProdutosSelecionados.AllowUserToResizeRows = false;
+            dgvProdutosSelecionados.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dgvProdutosSelecionados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProdutosSelecionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProdutosSelecionados.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dgvProdutosSelecionados.Location = new Point(91, 108);
+            dgvProdutosSelecionados.MultiSelect = false;
+            dgvProdutosSelecionados.Name = "dgvProdutosSelecionados";
+            dgvProdutosSelecionados.ReadOnly = true;
+            dgvProdutosSelecionados.Size = new Size(489, 105);
+            dgvProdutosSelecionados.TabIndex = 25;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Produto";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Quantidade";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Preço Unit.";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Total";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
             // textBoxTotal
             // 
             textBoxTotal.Anchor = AnchorStyles.Top;
@@ -96,15 +142,16 @@
             textBoxTotal.Size = new Size(100, 23);
             textBoxTotal.TabIndex = 28;
             // 
-            // buttonLimpar
+            // buttonRemoverProduto
             // 
-            buttonLimpar.Anchor = AnchorStyles.Top;
-            buttonLimpar.Location = new Point(408, 72);
-            buttonLimpar.Name = "buttonLimpar";
-            buttonLimpar.Size = new Size(75, 23);
-            buttonLimpar.TabIndex = 27;
-            buttonLimpar.Text = "Limpar";
-            buttonLimpar.UseVisualStyleBackColor = true;
+            buttonRemoverProduto.Anchor = AnchorStyles.Top;
+            buttonRemoverProduto.Location = new Point(408, 72);
+            buttonRemoverProduto.Name = "buttonRemoverProduto";
+            buttonRemoverProduto.Size = new Size(75, 23);
+            buttonRemoverProduto.TabIndex = 27;
+            buttonRemoverProduto.Text = "Remover";
+            buttonRemoverProduto.UseVisualStyleBackColor = true;
+            buttonRemoverProduto.Click += buttonRemoverProduto_Click;
             // 
             // buttonAddProduto
             // 
@@ -116,17 +163,6 @@
             buttonAddProduto.Text = "Adicionar";
             buttonAddProduto.UseVisualStyleBackColor = true;
             buttonAddProduto.Click += buttonAddProduto_Click;
-            // 
-            // listBoxProdutosSelecionados
-            // 
-            listBoxProdutosSelecionados.Anchor = AnchorStyles.Top;
-            listBoxProdutosSelecionados.FormattingEnabled = true;
-            listBoxProdutosSelecionados.ItemHeight = 15;
-            listBoxProdutosSelecionados.Location = new Point(121, 112);
-            listBoxProdutosSelecionados.Name = "listBoxProdutosSelecionados";
-            listBoxProdutosSelecionados.ScrollAlwaysVisible = true;
-            listBoxProdutosSelecionados.Size = new Size(443, 94);
-            listBoxProdutosSelecionados.TabIndex = 25;
             // 
             // comboBoxProduto
             // 
@@ -203,7 +239,7 @@
             buttonSalvar.TabIndex = 3;
             buttonSalvar.Text = "Salvar";
             buttonSalvar.UseVisualStyleBackColor = true;
-            buttonSalvar.Click += buttonCriar_Click;
+            buttonSalvar.Click += buttonSalvar_Click;
             // 
             // buttonRemover
             // 
@@ -322,6 +358,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).EndInit();
             panel1.ResumeLayout(false);
@@ -355,8 +392,12 @@
         private ComboBox comboBoxProduto;
         private ComboBox comboBoxCliente;
         private TextBox textBoxTotal;
-        private Button buttonLimpar;
+        private Button buttonRemoverProduto;
         private Button buttonAddProduto;
-        private ListBox listBoxProdutosSelecionados;
+        private DataGridView dgvProdutosSelecionados;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

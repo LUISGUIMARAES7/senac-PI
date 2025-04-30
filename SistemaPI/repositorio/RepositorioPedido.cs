@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace SistemaPI.repositorio
 {
@@ -83,7 +84,6 @@ namespace SistemaPI.repositorio
                     pedidos.Add(new Pedido
                     {
                         Id = reader.GetInt32("id"),
-                        Quantidade = reader.GetInt32("quantidade"),
                         Total = reader.GetDecimal("total"),
                         Produto = new Produto
                         {
@@ -108,23 +108,28 @@ namespace SistemaPI.repositorio
 
         public void InserirPedido(Pedido novoPedido)
         {
-            using (var conection = Database.GetConnection())
+            using (var connection = Database.GetConnection())
             {
-                conection.Open();
+                connection.Open();
 
-                string queryPedido = "INSERT INTO pedido (produto_id, fornecedor, cliente_id, total)" +
-                                        "VALUES(@produto_id, @fornecedor, @cliente_id, @total);";
+                string queryPedido = "INSERT INTO pedido (produto_id, cliente_id, total, data_pedido) VALUES (@produto_id, @cliente_id, @total, @data)";
+                MySqlCommand cmdPedido = new MySqlCommand(queryPedido, connection);
+                cmdPedido.Parameters.AddWithValue("@produto_id", novoPedido.Produto);
+                cmdPedido.Parameters.AddWithValue("@cliente_id", novoPedido.Cliente);
+                cmdPedido.Parameters.AddWithValue("@total", novoPedido.Total);
+                cmdPedido.Parameters.AddWithValue("@data", novoPedido.DataPedido);
+                cmdPedido.ExecuteNonQuery();
+                long pedidoId = cmdPedido.LastInsertedId;
 
-                using (var cmd = new MySqlCommand(queryPedido, conection))
+                foreach (var item in novoPedido.Itens)
                 {
-                    cmd.Parameters.AddWithValue("@produto_id", novoPedido.Produto.Id);
-                    cmd.Parameters.AddWithValue("@cliente_id", novoPedido.Cliente.Id);
-                    cmd.Parameters.AddWithValue("@quantidade", novoPedido.Quantidade);
-                    cmd.Parameters.AddWithValue("@id", novoPedido.Id);
-                    cmd.Parameters.AddWithValue("@total", novoPedido.Total);
-                    cmd.ExecuteNonQuery();
+                    string sqlProdutoPedido = "INSERT INTO produto_pedido (id_produto, id_pedido, quantidade) VALUES (@id_produto, @id_pedido, @quantidade)";
+                    MySqlCommand cmdProduto = new MySqlCommand(sqlProdutoPedido, connection);
+                    cmdProduto.Parameters.AddWithValue("@id_produto", item.produto.Id);
+                    cmdProduto.Parameters.AddWithValue("@id_pedido", pedidoId);
+                    cmdProduto.Parameters.AddWithValue("@quantidade",item.quantidade );
+                    cmdProduto.ExecuteNonQuery();
                 }
-
             }
         }
 
@@ -135,6 +140,19 @@ namespace SistemaPI.repositorio
                 conn.Open();
 
                 string query = "DELETE FROM pedido WHERE id = @id;";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+
+                string query = "DELETE FROM pedido_produto WHERE id = @id;";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -168,7 +186,6 @@ namespace SistemaPI.repositorio
                     return new Pedido
                     {
                         Id = reader.GetInt32("id"),
-                        Quantidade = reader.GetInt32("quantidade"),
                         Total = reader.GetDecimal("total"),
                         Produto = new Produto
                         {
@@ -209,6 +226,6 @@ namespace SistemaPI.repositorio
             }
         }
 
-
+        
     }
 }

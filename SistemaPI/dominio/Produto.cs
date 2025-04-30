@@ -22,6 +22,11 @@ namespace SistemaPI.dominio
         public decimal Preco { get; set; }
         public Fornecedor Fornecedor { get; set; }
 
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         public string Validar()
         {
             if (string.IsNullOrWhiteSpace(Nome))

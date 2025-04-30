@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "D:\\Senac-PI\\senac-PI\\SistemaPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\dominio\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:dominio\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\dominio\\fornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:dominio\\fornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\repositorio\\repositorioproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:repositorio\\repositorioproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\telaproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telaproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\telaproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telaproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\repositorio\\repositoriopedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:repositorio\\repositoriopedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\dominio\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +15,24 @@
       "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telapedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\repositorio\\repositoriopedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:repositorio\\repositoriopedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\banco-de-dados\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:banco-de-dados\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\telainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|D:\\Senac-PI\\senac-PI\\SistemaPI\\telapedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\telapedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telapedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\dominio\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:dominio\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\dominio\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:dominio\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\repositorio\\repositoriocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:repositorio\\repositoriocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|d:\\senac-pi\\senac-pi\\sistemapi\\telapedido.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9EB729B-DB50-45D4-B725-AACCE5BA28F9}|SistemaPI.csproj|solutionrelative:telapedido.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,151 +42,114 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "TelaPedido.cs [Projeto]",
               "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs",
               "RelativeDocumentMoniker": "TelaPedido.cs",
               "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs [Projeto]",
               "RelativeToolTip": "TelaPedido.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:34:02.453Z",
+              "WhenOpened": "2025-04-29T21:37:51.332Z",
               "IsPinned": true,
               "EditorCaption": " [Projeto]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "TelaPedido.cs",
+              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs",
+              "RelativeDocumentMoniker": "TelaPedido.cs",
+              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs",
+              "RelativeToolTip": "TelaPedido.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAADgv7gAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T21:39:47.634Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "RepositorioPedido.cs",
               "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioPedido.cs",
               "RelativeDocumentMoniker": "repositorio\\RepositorioPedido.cs",
               "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioPedido.cs",
               "RelativeToolTip": "repositorio\\RepositorioPedido.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAADwv08AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAADwv3QAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:35:10.061Z",
+              "WhenOpened": "2025-04-29T21:41:48.54Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Pedido.cs",
+              "RelativeDocumentMoniker": "dominio\\Pedido.cs",
+              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Pedido.cs",
+              "RelativeToolTip": "dominio\\Pedido.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAowCAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T21:39:33.122Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Pedido.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Pedido.cs",
-              "RelativeDocumentMoniker": "dominio\\Pedido.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Pedido.cs",
-              "RelativeToolTip": "dominio\\Pedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Cliente.cs",
+              "RelativeDocumentMoniker": "dominio\\Cliente.cs",
+              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Cliente.cs",
+              "RelativeToolTip": "dominio\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:36:25.004Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-04-29T23:23:44.548Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "TelaPedido.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs",
-              "RelativeDocumentMoniker": "TelaPedido.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.cs",
-              "RelativeToolTip": "TelaPedido.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAADwv7sAAAAAAAAAAAAAAA==",
+              "Title": "RepositorioCliente.cs",
+              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioCliente.cs",
+              "RelativeDocumentMoniker": "repositorio\\RepositorioCliente.cs",
+              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioCliente.cs",
+              "RelativeToolTip": "repositorio\\RepositorioCliente.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:14:56.541Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-04-29T23:04:43.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TelaPedido.Designer.cs",
+              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.Designer.cs",
+              "RelativeDocumentMoniker": "TelaPedido.Designer.cs",
+              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaPedido.Designer.cs",
+              "RelativeToolTip": "TelaPedido.Designer.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAQwPEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T22:43:58.108Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "TelaProduto.cs [Projeto]",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaProduto.cs",
-              "RelativeDocumentMoniker": "TelaProduto.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaProduto.cs [Projeto]",
-              "RelativeToolTip": "TelaProduto.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T01:04:21.934Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Database.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\banco-de-dados\\Database.cs",
-              "RelativeDocumentMoniker": "banco-de-dados\\Database.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\banco-de-dados\\Database.cs",
-              "RelativeToolTip": "banco-de-dados\\Database.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:54:29.154Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TelaProduto.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaProduto.cs",
-              "RelativeDocumentMoniker": "TelaProduto.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaProduto.cs",
-              "RelativeToolTip": "TelaProduto.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA1wKAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:45:15.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RepositorioProduto.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioProduto.cs",
-              "RelativeDocumentMoniker": "repositorio\\RepositorioProduto.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\repositorio\\RepositorioProduto.cs",
-              "RelativeToolTip": "repositorio\\RepositorioProduto.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAA9wEAAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:12:24.413Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Produto.cs",
               "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Produto.cs",
               "RelativeDocumentMoniker": "dominio\\Produto.cs",
               "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Produto.cs",
               "RelativeToolTip": "dominio\\Produto.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAcwCoAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:09:56.406Z",
+              "WhenOpened": "2025-04-29T22:09:50.454Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Fornecedor.cs",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Fornecedor.cs",
-              "RelativeDocumentMoniker": "dominio\\Fornecedor.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\dominio\\Fornecedor.cs*",
-              "RelativeToolTip": "dominio\\Fornecedor.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T00:07:21.077Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TelaInicial.cs [Projeto]",
-              "DocumentMoniker": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaInicial.cs",
-              "RelativeDocumentMoniker": "TelaInicial.cs",
-              "ToolTip": "D:\\Senac-PI\\senac-PI\\SistemaPI\\TelaInicial.cs [Projeto]",
-              "RelativeToolTip": "TelaInicial.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T22:14:46.073Z",
-              "EditorCaption": " [Projeto]"
             }
           ]
         }
