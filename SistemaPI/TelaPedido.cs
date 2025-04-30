@@ -73,6 +73,8 @@ namespace SistemaPI
             dataGridViewPedidos.DataSource = BindingSource;
         }
 
+      
+
         public void ListarTodosClientes()
         {
             var clientes = Pedido.ListarTodosClientes();
@@ -88,12 +90,6 @@ namespace SistemaPI
 
         public void ListarTodosProdutos()
         {
-            //var produtos = Pedido.ListarTodosProdutos();
-
-            //foreach (var produto in produtos)
-            //{
-            //    comboBoxProduto.Items.Add(produto.Nome);
-            //}
 
             var produtos = Pedido.ListarTodosProdutos();
 
@@ -111,13 +107,15 @@ namespace SistemaPI
         {
             try
             {
-                Pedido.Total = Convert.ToDecimal(textBoxTotal.Text);
+                Pedido.Total = Convert.ToDecimal(totalGeral);
+            }
+            catch
+            {
 
             }
-            catch { }
 
-            Pedido.Cliente = (Cliente)comboBoxCliente.SelectedValue;
-            Pedido.Produto = (Produto)comboBoxProduto.SelectedValue;
+            Pedido.Cliente = (Cliente)comboBoxCliente.SelectedItem;
+            Pedido.Produto = (Produto)comboBoxProduto.SelectedItem;
 
             string validacaoProduto = Pedido.Validar();
             if (!string.IsNullOrWhiteSpace(validacaoProduto))
@@ -126,20 +124,50 @@ namespace SistemaPI
                 return false;
             }
 
+            Pedido.DataPedido = DateTime.Now;
+            Pedido.Itens = new List<(Produto, int)>(itensPedido);
+            Pedido.Total = Pedido.Itens.Sum(i => i.produto.Preco * i.quantidade);
+
+            MessageBox.Show("Pedido salvo com sucesso!");
+
             return true;
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
 
-            
+            if (!CriarPedido())
+            {
+                return;
+            }
+
+            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            {
+                Pedido.InserirPedido();
+                ListarPedido();
+                LimparForm();
+                return;
+            }
+
+            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+
+            if (Pedido.BuscarPedidoPorId(id) == null)
+            {
+                return;
+            }
+
+            LimparForm();
+            Pedido.Id = id;
+            Pedido.AtualizarPedido();
+            ListarPedido();
         }
+    
 
 
         public void LimparForm()
         {
-            comboBoxCliente.SelectedText = "";
-            comboBoxProduto.SelectedText = "";
+            comboBoxCliente.SelectedItem = -1;
+            comboBoxProduto.SelectedItem = -1;
             numericQuantidade.Value = 0;
             labelErro.Text = string.Empty;
         }
@@ -166,6 +194,8 @@ namespace SistemaPI
             comboBoxCliente.SelectedValue = pedido.Cliente.ToString();
             comboBoxProduto.Text = pedido.Produto.ToString();
         }
+
+
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {

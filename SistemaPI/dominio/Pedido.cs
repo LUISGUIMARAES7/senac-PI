@@ -14,9 +14,9 @@ namespace SistemaPI.dominio
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
         public Produto Produto { get; set; }
-        public DateTime DataPedido { get; set; }
+        public DateTime DataPedido { get; set; } = DateTime.Now;
         public decimal Total { get; set; }
-        public List<(Produto produto, int quantidade)> Itens = new();
+        public List<(Produto produto, int quantidade)> Itens { get; set; } = new();
 
 
 
