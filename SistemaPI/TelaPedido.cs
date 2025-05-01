@@ -25,10 +25,10 @@ namespace SistemaPI
         {
             InitializeComponent();
 
-            ListarPedido();
             ListarTodosClientes();
             ListarTodosProdutos();
-
+            ListarPedido();
+            
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,8 +73,6 @@ namespace SistemaPI
             dataGridViewPedidos.DataSource = BindingSource;
         }
 
-      
-
         public void ListarTodosClientes()
         {
             var clientes = Pedido.ListarTodosClientes();
@@ -90,7 +88,6 @@ namespace SistemaPI
 
         public void ListarTodosProdutos()
         {
-
             var produtos = Pedido.ListarTodosProdutos();
 
             comboBoxProduto.DisplayMember = "Nome";
@@ -100,8 +97,37 @@ namespace SistemaPI
             {
                 comboBoxProduto.Items.Add(produto);
             }
-
         }
+
+        //private void InicializarDataGridView()
+        //{
+        //    // Limpa as colunas existentes
+        //    dataGridViewPedidos.Columns.Clear();
+
+        //    // Adiciona as colunas manualmente
+        //    dataGridViewPedidos.Columns.Add("pedidoId", "ID do Pedido");
+        //    dataGridViewPedidos.Columns.Add("clienteNome", "Nome do Cliente");
+        //    dataGridViewPedidos.Columns.Add("produtoNome", "Nome do Produto");
+        //    dataGridViewPedidos.Columns.Add("total", "Total");
+
+        //    // Certifique-se de que as colunas estão configuradas antes de adicionar dados
+        //}
+
+        //public void CarregarPedidos()
+        //{
+        //    var pedidos = Pedido.ListarPedidos();
+
+
+        //    foreach (var pedido in pedidos)
+        //    {
+        //        dataGridViewPedidos.Rows.Add(
+        //            pedido.Id,
+        //            pedido.Cliente.Nome,
+        //            pedido.Produto.Nome,
+        //            pedido.Total.ToString("C")
+        //        );
+        //    }
+        //}
 
         private bool CriarPedido()
         {
@@ -135,7 +161,6 @@ namespace SistemaPI
 
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-
             if (!CriarPedido())
             {
                 return;
@@ -161,8 +186,6 @@ namespace SistemaPI
             Pedido.AtualizarPedido();
             ListarPedido();
         }
-    
-
 
         public void LimparForm()
         {
@@ -233,12 +256,6 @@ namespace SistemaPI
 
             totalGeral += valorTotalProduto;
             textBoxTotal.Text = totalGeral.ToString("C");
-        }
-
-        public void AddProdutoListBox()
-        {
-            //Produto produtoSelecionado = (Produto)comboBoxProduto.SelectedItem;
-            //listBoxProdutosSelecionados.Items.Add(produtoSelecionado);
         }
 
         private void buttonRemoverProduto_Click(object sender, EventArgs e)

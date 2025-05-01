@@ -67,6 +67,60 @@ namespace SistemaPI.repositorio
             return produtos;
         }
 
+        //public List<Pedido> ListarPedidos()
+        //{
+        //    var pedidos = new List<Pedido>();
+
+        //    using (var connection = Database.GetConnection())
+        //    {
+        //        connection.Open();
+
+        //        string query = @"
+        //            SELECT
+        //                pedido.id AS pedido_id, 
+        //                cliente.id AS cliente_id, 
+        //                cliente.nome AS cliente_nome,
+        //                cliente.email AS cliente_email,
+        //                cliente.telefone AS cliente_telefone,
+        //                pedido.total AS pedido_total,
+        //                produto.id AS produto_id,
+        //                produto.nome AS produto_nome,
+        //                produto.preco AS produto_preco,
+        //                produto.fornecedor AS produto_fornecedor
+        //            FROM pedido
+        //            JOIN cliente ON pedido.cliente_id = cliente.id
+        //            JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
+        //            JOIN produto ON produto_pedido.id_produto = produto.id;";
+
+        //        using var cmd = new MySqlCommand(query, connection);
+        //        using var reader = cmd.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            pedidos.Add(new Pedido
+        //            {
+        //                Id = reader.GetInt32("pedido_id"),
+        //                Total = reader.GetDecimal("pedido_total"),
+        //                Produto = new Produto
+        //                {
+        //                    Id = reader.GetInt32("produto_id"),
+        //                    Nome = reader.GetString("produto_nome"),
+        //                    Preco = reader.GetDecimal("produto_preco"),
+        //                    Fornecedor = (Fornecedor)reader.GetInt32("produto_fornecedor")
+        //                },
+        //                Cliente = new Cliente
+        //                {
+        //                    Id = reader.GetInt32("cliente_id"),
+        //                    Nome = reader.GetString("cliente_nome"),
+        //                    Email = reader.GetString("cliente_email"),
+        //                    Telefone = reader.GetString("cliente_telefone")
+        //                }
+        //            });
+        //        }
+        //    }
+        //    return pedidos;
+        //}
+
         public List<Pedido> ListarPedidos()
         {
             var pedidos = new List<Pedido>();
@@ -76,28 +130,28 @@ namespace SistemaPI.repositorio
                 connection.Open();
 
                 string query = @"
-                    SELECT
-                        pedido.id AS pedido_id, 
-                        cliente.id AS cliente_id, 
-                        cliente.nome AS cliente_nome,
-                        cliente.email AS cliente_email,
-                        cliente.telefone AS cliente_telefone,
-                        pedido.total AS pedido_total,
-                        produto.id AS produto_id,
-                        produto.nome AS produto_nome,
-                        produto.preco AS produto_preco,
-                        produto.fornecedor AS produto_fornecedor
-                    FROM pedido
-                    JOIN cliente ON pedido.cliente_id = cliente.id
-                    JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
-                    JOIN produto ON produto_pedido.id_produto = produto.id;";
+            SELECT
+                pedido.id AS pedido_id, 
+                cliente.id AS cliente_id, 
+                cliente.nome AS cliente_nome,
+                cliente.email AS cliente_email,
+                cliente.telefone AS cliente_telefone,
+                pedido.total AS pedido_total,
+                produto.id AS produto_id,
+                produto.nome AS produto_nome,
+                produto.preco AS produto_preco,
+                produto.fornecedor AS produto_fornecedor
+            FROM pedido
+            JOIN cliente ON pedido.cliente_id = cliente.id
+            JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
+            JOIN produto ON produto_pedido.id_produto = produto.id;";
 
                 using var cmd = new MySqlCommand(query, connection);
                 using var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    pedidos.Add(new Pedido
+                    var pedido = new Pedido
                     {
                         Id = reader.GetInt32("pedido_id"),
                         Total = reader.GetDecimal("pedido_total"),
@@ -115,7 +169,8 @@ namespace SistemaPI.repositorio
                             Email = reader.GetString("cliente_email"),
                             Telefone = reader.GetString("cliente_telefone")
                         }
-                    });
+                    };
+                    pedidos.Add(pedido);
                 }
             }
 
@@ -137,22 +192,12 @@ namespace SistemaPI.repositorio
                 cmdPedido.ExecuteNonQuery();
                 long pedidoId = cmdPedido.LastInsertedId;
 
-                //if (pedidoId == 0)
-                //{
-                //    // Fallback: forçar SELECT se necessário
-                //    using (var cmdLastId = new MySqlCommand("SELECT LAST_INSERT_ID();", connection))
-                //    {
-                //        pedidoId = Convert.ToInt64(cmdLastId.ExecuteScalar());
-                //    }
-                //}
-                Console.WriteLine($"Itens no pedido: {novoPedido.Itens?.Count}");
-
                 foreach (var item in novoPedido.Itens)
                 {
                     string sqlProdutoPedido = "INSERT INTO produto_pedido (id_produto, id_pedido, quantidade) VALUES (@id_produto, @id_pedido, @quantidade)";
                     MySqlCommand cmdProduto = new MySqlCommand(sqlProdutoPedido, connection);
                     cmdProduto.Parameters.AddWithValue("@id_produto", item.produto.Id);
-                    cmdProduto.Parameters.AddWithValue("@id_pedido", pedidoId); // Use o ID recém-inserido
+                    cmdProduto.Parameters.AddWithValue("@id_pedido", pedidoId);
                     cmdProduto.Parameters.AddWithValue("@quantidade", item.quantidade);
                     cmdProduto.ExecuteNonQuery();
                 }
