@@ -13,10 +13,13 @@ namespace SistemaPI.dominio
 
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
-        public Produto Produto { get; set; }
-        public DateTime DataPedido { get; set; } = DateTime.Now;
+        public DateTime DataPedido { get; set; }
         public decimal Total { get; set; }
+        public List<ProdutoPedido> ItensPedido { get; set; } = new();
+
         public List<(Produto produto, int quantidade)> Itens { get; set; } = new();
+
+        public string Produtos { get; set; } = "";
 
 
 
@@ -56,19 +59,14 @@ namespace SistemaPI.dominio
         }
 
 
-        public void InserirPedido()
+        public void SalvarPedido()
         {
-            Repositorio.InserirPedido(this);
+            Repositorio.SalvarPedido(this);
         }
 
         public Pedido? BuscarPedidoPorId(int id)
         {
             return Repositorio.BuscarPedidoPorId(id);
-        }
-
-        public void AtualizarPedido()
-        {
-            Repositorio.AtualizarPedido(this);
         }
 
         public void DeletarPedido(int id)

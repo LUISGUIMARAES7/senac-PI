@@ -14,6 +14,33 @@ namespace SistemaPI.repositorio
 {
     internal class RepositorioProduto
     {
+        //public List<Produto> ListarProdutos()
+        //{
+        //    var produtos = new List<Produto>();
+
+        //    using (var conection = Database.GetConnection())
+        //    {
+        //        conection.Open();
+
+        //        string query = "SELECT * FROM produto;";
+
+        //        using var cmd = new MySqlCommand(query, conection);
+        //        using var reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            produtos.Add(new Produto
+        //            {
+        //                Id = reader.GetInt32("id"),
+        //                Nome = reader.GetString("nome"),
+        //                Preco = reader.GetDecimal("preco"),
+        //                Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
+        //            });
+        //        }
+        //    }
+
+        //    return produtos;
+        //}
+
         public List<Produto> ListarProdutos()
         {
             var produtos = new List<Produto>();
@@ -22,7 +49,15 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string query = "SELECT * FROM produto;";
+                string query = @"
+                                SELECT 
+                                    produto.id AS produto_id,
+                                    produto.nome AS produto_nome,
+                                    produto.preco AS produto_preco,
+                                    fornecedor.id AS fornecedor_id,
+                                    fornecedor.nome AS fornecedor_nome
+                                FROM produto
+                                JOIN fornecedor ON produto.fornecedor_id = fornecedor.id;";
 
                 using var cmd = new MySqlCommand(query, conection);
                 using var reader = cmd.ExecuteReader();
@@ -30,10 +65,14 @@ namespace SistemaPI.repositorio
                 {
                     produtos.Add(new Produto
                     {
-                        Id = reader.GetInt32("id"),
-                        Nome = reader.GetString("nome"),
-                        Preco = reader.GetDecimal("preco"),
-                        Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
+                        Id = reader.GetInt32("produto_id"),
+                        Nome = reader.GetString("produto_nome"),
+                        Preco = reader.GetDecimal("produto_preco"),
+                        Fornecedor = new Fornecedor
+                        {
+                            Id = reader.GetInt32("fornecedor_id"),
+                            Nome = reader.GetString("fornecedor_nome")
+                        }
                     });
                 }
             }
@@ -41,20 +80,21 @@ namespace SistemaPI.repositorio
             return produtos;
         }
 
+
         public void InserirProduto(Produto novoProduto)
         {
             using (var conection = Database.GetConnection())
             {
                 conection.Open();
 
-                string queryProduto = "INSERT INTO produto (nome , preco, fornecedor) " +
-                                        "VALUES (@nome, @preco, @fornecedor);";
+                string queryProduto = "INSERT INTO produto (nome , preco, fornecedor_id) " +
+                                        "VALUES (@nome, @preco, @fornecedor_id);";
 
                 using (var cmd = new MySqlCommand(queryProduto, conection))
                 {
                     cmd.Parameters.AddWithValue("@nome", novoProduto.Nome);
                     cmd.Parameters.AddWithValue("@preco", novoProduto.Preco);
-                    cmd.Parameters.AddWithValue("@fornecedor", novoProduto.Fornecedor);
+                    cmd.Parameters.AddWithValue("@fornecedor_id", novoProduto.Fornecedor.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -62,15 +102,35 @@ namespace SistemaPI.repositorio
 
         public Produto? BuscarProdutoPorNome(string nome)
         {
-            string query = "SELECT * FROM produto WHERE nome = @param;";
+            string query = @"
+                            SELECT 
+                                produto.id AS produto_id,
+                                produto.nome AS produto_nome,
+                                produto.preco AS produto_preco,
+                                fornecedor.id AS fornecedor_id,
+                                fornecedor.nome AS fornecedor_nome
+                            FROM produto
+                            JOIN fornecedor ON produto.fornecedor_id = fornecedor.id
+                            WHERE produto.nome = @param;";
             return BuscarProdutoPorUnique(query, nome);
         }
 
         public Produto? BuscarProdutoPorId(int id)
         {
-            string query = "SELECT nome, preco, fornecedor FROM produto WHERE id = @param;";
+            string query = @"
+                            SELECT 
+                                produto.id AS produto_id,
+                                produto.nome AS produto_nome,
+                                produto.preco AS produto_preco,
+                                fornecedor.id AS fornecedor_id,
+                                fornecedor.nome AS fornecedor_nome
+                            FROM produto
+                            JOIN fornecedor ON produto.fornecedor_id = fornecedor.id
+                            WHERE produto.id = @param;";
+
             return BuscarProdutoPorUnique(query, id.ToString());
         }
+
 
         public void AtualizarProduto(Produto produto)
         {
@@ -110,27 +170,77 @@ namespace SistemaPI.repositorio
                     {
                         Nome = reader.GetString("nome"),
                         Preco = reader.GetDecimal("preco"),
-                        Fornecedor = (Fornecedor)reader.GetInt32("fornecedor")
+                        Fornecedor = new Fornecedor
+                        {
+                            Id = reader.GetInt32("fornecedor_id"),
+                            Nome = reader.GetString("fornecedor_nome")
+                        }
                     };
                 }
             }
         }
+
 
         public void DeletarProduto(int id)
         {
             using (var conn = Database.GetConnection())
             {
                 conn.Open();
-
-                string query = "DELETE FROM produto WHERE id = @id;";
-
-                using (var cmd = new MySqlCommand(query, conn))
+                using (var transaction = conn.BeginTransaction())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        
+                        string queryProdutosPedido = "DELETE FROM produto_pedido WHERE id_produto = @id;";
+                        using (var cmdProdutosPedido = new MySqlCommand(queryProdutosPedido, conn, transaction))
+                        {
+                            cmdProdutosPedido.Parameters.AddWithValue("@id", id);
+                            cmdProdutosPedido.ExecuteNonQuery();
+                        }
+
+                        
+                        string queryProduto = "DELETE FROM produto WHERE id = @id;";
+                        using (var cmdProduto = new MySqlCommand(queryProduto, conn, transaction))
+                        {
+                            cmdProduto.Parameters.AddWithValue("@id", id);
+                            cmdProduto.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Erro ao deletar o produto: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        public List<Fornecedor> ListarTodosFornecedores()
+        {
+            var fornecedores = new List<Fornecedor>();
+
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM fornecedor";
+
+                using var cmd = new MySqlCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    fornecedores.Add(new Fornecedor
+                    {
+                        Id = reader.GetInt32("id"),
+                        Nome = reader.GetString("nome")
+                    });
                 }
             }
 
+            return fornecedores;
+
         }
+
     }
 }

@@ -70,7 +70,7 @@ namespace SistemaPI
         public void ListarPedido()
         {
             BindingSource.DataSource = Pedido.ListarPedidos();
-            dataGridViewPedidos.DataSource = BindingSource;
+            dgvPedidos.DataSource = BindingSource;
         }
 
         public void ListarTodosClientes()
@@ -99,35 +99,6 @@ namespace SistemaPI
             }
         }
 
-        //private void InicializarDataGridView()
-        //{
-        //    // Limpa as colunas existentes
-        //    dataGridViewPedidos.Columns.Clear();
-
-        //    // Adiciona as colunas manualmente
-        //    dataGridViewPedidos.Columns.Add("pedidoId", "ID do Pedido");
-        //    dataGridViewPedidos.Columns.Add("clienteNome", "Nome do Cliente");
-        //    dataGridViewPedidos.Columns.Add("produtoNome", "Nome do Produto");
-        //    dataGridViewPedidos.Columns.Add("total", "Total");
-
-        //    // Certifique-se de que as colunas estão configuradas antes de adicionar dados
-        //}
-
-        //public void CarregarPedidos()
-        //{
-        //    var pedidos = Pedido.ListarPedidos();
-
-
-        //    foreach (var pedido in pedidos)
-        //    {
-        //        dataGridViewPedidos.Rows.Add(
-        //            pedido.Id,
-        //            pedido.Cliente.Nome,
-        //            pedido.Produto.Nome,
-        //            pedido.Total.ToString("C")
-        //        );
-        //    }
-        //}
 
         private bool CriarPedido()
         {
@@ -137,11 +108,18 @@ namespace SistemaPI
             }
             catch
             {
-
+                MessageBox.Show("Erro ao converter o total");
+                return false;
             }
 
             Pedido.Cliente = (Cliente)comboBoxCliente.SelectedItem;
-            Pedido.Produto = (Produto)comboBoxProduto.SelectedItem;
+            var produtoSelecionado = (Produto)comboBoxProduto.SelectedItem;
+
+            if (produtoSelecionado == null)
+            {
+                labelErro.Text = "Selecione um produto.";
+                return false;
+            }
 
             string validacaoProduto = Pedido.Validar();
             if (!string.IsNullOrWhiteSpace(validacaoProduto))
@@ -166,15 +144,15 @@ namespace SistemaPI
                 return;
             }
 
-            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
             {
-                Pedido.InserirPedido();
+                Pedido.SalvarPedido();
                 ListarPedido();
                 LimparForm();
                 return;
             }
 
-            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+            int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
 
             if (Pedido.BuscarPedidoPorId(id) == null)
             {
@@ -183,28 +161,19 @@ namespace SistemaPI
 
             LimparForm();
             Pedido.Id = id;
-            Pedido.AtualizarPedido();
             ListarPedido();
-        }
-
-        public void LimparForm()
-        {
-            comboBoxCliente.SelectedItem = -1;
-            comboBoxProduto.SelectedItem = -1;
-            numericQuantidade.Value = 0;
-            labelErro.Text = string.Empty;
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
             {
                 return;
             }
 
             buttonSalvar.Text = "Salvar";
 
-            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+            int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
 
             var pedido = Pedido.BuscarPedidoPorId(id);
 
@@ -215,19 +184,30 @@ namespace SistemaPI
             Pedido = pedido;
 
             comboBoxCliente.SelectedValue = pedido.Cliente.ToString();
-            comboBoxProduto.Text = pedido.Produto.ToString();
+            //comboBoxProduto.Text = pedido.Produto.ToString();
         }
 
 
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPedidos.SelectedRows.Count == 0 || dataGridViewPedidos.SelectedRows[0].Index < 0)
+            if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
             {
                 return;
             }
 
-            int id = (int)dataGridViewPedidos.SelectedRows[0].Cells[0].Value;
+            var confirmarRemover = MessageBox.Show(
+                "Tem certeza que deseja remover este pedido?",
+                "Confirmação de remoção",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmarRemover != DialogResult.Yes)
+            {
+                return;
+            }
+
+            int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
 
             Pedido.DeletarPedido(id);
 
@@ -236,14 +216,15 @@ namespace SistemaPI
 
         private void buttonAddProduto_Click(object sender, EventArgs e)
         {
-            if (comboBoxProduto.SelectedItem == null || string.IsNullOrWhiteSpace(numericQuantidade.Text))
+            if (comboBoxProduto.SelectedItem == null || numericQuantidade.Value <= 0)
             {
                 MessageBox.Show("Selecione um produto e informe a quantidade.");
                 return;
             }
 
             Produto produtoSelecionado = (Produto)comboBoxProduto.SelectedItem;
-            int quantidade = int.Parse(numericQuantidade.Text);
+            int quantidade = (int)numericQuantidade.Value;
+
             decimal valorTotalProduto = produtoSelecionado.Preco * quantidade;
 
             itensPedido.Add((produtoSelecionado, quantidade));
@@ -280,5 +261,19 @@ namespace SistemaPI
                 dgvProdutosSelecionados.Rows.RemoveAt(rowIndex);
             }
         }
+
+        private void LimparForm()
+        {
+            
+            dgvProdutosSelecionados.Rows.Clear();
+            itensPedido.Clear();
+            totalGeral = 0;
+            textBoxTotal.Text = totalGeral.ToString("C");
+            comboBoxCliente.SelectedIndex = -1;
+            comboBoxProduto.SelectedIndex = -1;
+            numericQuantidade.Value = 1;
+            labelErro.Text = "";
+        }
+
     }
 }

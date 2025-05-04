@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SistemaPI.dominio
 {
-    internal class Fornecedor
+    internal class ProdutoPedido
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
+        public Produto Produto { get; set; }
+        public int Quantidade { get; set; }
+        public decimal Total { get; set; }
 
-        public override string ToString()
-        {
-            return Nome;
-        }
+       
     }
 }

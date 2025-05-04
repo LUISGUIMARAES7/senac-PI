@@ -160,6 +160,17 @@ namespace SistemaPI
                 return;
             }
 
+            var confirmarRemover = MessageBox.Show(
+                "Tem certeza que deseja remover este produto?",
+                "Confirmação de remoção",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmarRemover != DialogResult.Yes)
+            {
+                return;
+            }
+
             int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
 
             Cliente.DeletarCliente(id);

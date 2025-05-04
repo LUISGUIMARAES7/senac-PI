@@ -47,7 +47,8 @@ namespace SistemaPI
             }
             catch { }
 
-            Produto.Fornecedor = (Fornecedor) comboBoxFornecedor.SelectedIndex;
+            Produto.Fornecedor = (Fornecedor)comboBoxFornecedor.SelectedItem;
+
 
             string validacaoProduto = Produto.Validar();
             if (!string.IsNullOrWhiteSpace(validacaoProduto))
@@ -70,6 +71,7 @@ namespace SistemaPI
             {
                 Produto.InserirProduto();
                 ListarProduto();
+                LimparForm();
                 return;
             }
 
@@ -96,6 +98,17 @@ namespace SistemaPI
         private void buttonRemover_Click(object sender, EventArgs e)
         {
             if (dataGridViewProdutos.SelectedRows.Count == 0 || dataGridViewProdutos.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            var confirmarRemover = MessageBox.Show(
+                "Tem certeza que deseja remover este produto?",
+                "Confirmação de remoção",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmarRemover != DialogResult.Yes)
             {
                 return;
             }
@@ -160,6 +173,25 @@ namespace SistemaPI
             textBoxProduto.Clear();
             comboBoxFornecedor.SelectedIndex = -1;
             labelErro.Text = string.Empty;
+        }
+
+        public void ListarTodosFornecedores()
+        {
+            var fornecedores = Produto.ListarTodosFornecedores();
+
+            comboBoxFornecedor.DataSource = fornecedores;
+            comboBoxFornecedor.DisplayMember = "Nome";
+            comboBoxFornecedor.ValueMember = "Id";
+
+            //foreach (var item in fornecedores)
+            //{
+            //    comboBoxFornecedor.Items.Add(fornecedores.);
+            //}
+        }
+
+        private void TelaProduto_Load(object sender, EventArgs e)
+        {
+            ListarTodosFornecedores();
         }
     }
 }

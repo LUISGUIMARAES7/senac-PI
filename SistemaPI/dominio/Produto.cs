@@ -22,6 +22,7 @@ namespace SistemaPI.dominio
         public decimal Preco { get; set; }
         public Fornecedor Fornecedor { get; set; }
 
+
         public override string ToString()
         {
             return Nome;
@@ -31,24 +32,19 @@ namespace SistemaPI.dominio
         {
             if (string.IsNullOrWhiteSpace(Nome))
             {
-                return "O campo 'nome' é obrigatório.";
+                return "O campo 'produto' é obrigatório.";
             }
 
-            //var produtoExistente = Repositorio.BuscarProdutoPorNome(Nome);
-            //if (produtoExistente != null && produtoExistente?.Id == Id)
-            //{
-            //    return "Já existe um produto com esse 'nome'.";
-            //}
 
             if (Preco <= 0)
             {
                 return "O campo 'preço' é obrigatório.";
             }
 
-            if (Fornecedor == Fornecedor.Nenhum)
-            {
-                return "O campo 'fornecedor' é obrigatório.";
-            }
+            //if (Fornecedor == Fornecedor.Nenhum)
+            //{
+            //    return "O campo 'fornecedor' é obrigatório.";
+            //}
 
             return "";
         }
@@ -76,6 +72,11 @@ namespace SistemaPI.dominio
         public void DeletarCliente(int id)
         {
             Repositorio.DeletarProduto(id);
+        }
+
+        public List<Fornecedor> ListarTodosFornecedores()
+        {
+            return Repositorio.ListarTodosFornecedores();
         }
     }
 }

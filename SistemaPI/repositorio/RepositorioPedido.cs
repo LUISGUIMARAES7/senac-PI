@@ -48,7 +48,16 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string query = "SELECT * FROM produto;";
+                string query = @"
+                                SELECT 
+                                    produto.id,
+                                    produto.nome,
+                                    produto.preco,
+                                    fornecedor.id AS fornecedor_id,
+                                    fornecedor.nome AS fornecedor_nome
+                                FROM produto
+                                JOIN fornecedor ON produto.fornecedor_id = fornecedor.id;";
+
 
                 using var cmd = new MySqlCommand(query, conection);
                 using var reader = cmd.ExecuteReader();
@@ -59,7 +68,11 @@ namespace SistemaPI.repositorio
                         Id = reader.GetInt32("id"),
                         Nome = reader.GetString("nome"),
                         Preco = reader.GetDecimal("preco"),
-                        Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
+                        Fornecedor = new Fornecedor
+                        {
+                            Id = reader.GetInt32("fornecedor_id"),
+                            Nome = reader.GetString("fornecedor_nome")
+                        }
                     });
                 }
             }
@@ -67,59 +80,7 @@ namespace SistemaPI.repositorio
             return produtos;
         }
 
-        //public List<Pedido> ListarPedidos()
-        //{
-        //    var pedidos = new List<Pedido>();
 
-        //    using (var connection = Database.GetConnection())
-        //    {
-        //        connection.Open();
-
-        //        string query = @"
-        //            SELECT
-        //                pedido.id AS pedido_id, 
-        //                cliente.id AS cliente_id, 
-        //                cliente.nome AS cliente_nome,
-        //                cliente.email AS cliente_email,
-        //                cliente.telefone AS cliente_telefone,
-        //                pedido.total AS pedido_total,
-        //                produto.id AS produto_id,
-        //                produto.nome AS produto_nome,
-        //                produto.preco AS produto_preco,
-        //                produto.fornecedor AS produto_fornecedor
-        //            FROM pedido
-        //            JOIN cliente ON pedido.cliente_id = cliente.id
-        //            JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
-        //            JOIN produto ON produto_pedido.id_produto = produto.id;";
-
-        //        using var cmd = new MySqlCommand(query, connection);
-        //        using var reader = cmd.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            pedidos.Add(new Pedido
-        //            {
-        //                Id = reader.GetInt32("pedido_id"),
-        //                Total = reader.GetDecimal("pedido_total"),
-        //                Produto = new Produto
-        //                {
-        //                    Id = reader.GetInt32("produto_id"),
-        //                    Nome = reader.GetString("produto_nome"),
-        //                    Preco = reader.GetDecimal("produto_preco"),
-        //                    Fornecedor = (Fornecedor)reader.GetInt32("produto_fornecedor")
-        //                },
-        //                Cliente = new Cliente
-        //                {
-        //                    Id = reader.GetInt32("cliente_id"),
-        //                    Nome = reader.GetString("cliente_nome"),
-        //                    Email = reader.GetString("cliente_email"),
-        //                    Telefone = reader.GetString("cliente_telefone")
-        //                }
-        //            });
-        //        }
-        //    }
-        //    return pedidos;
-        //}
 
         public List<Pedido> ListarPedidos()
         {
@@ -129,24 +90,19 @@ namespace SistemaPI.repositorio
             {
                 connection.Open();
 
-                string query = @"
-            SELECT
-                pedido.id AS pedido_id, 
-                cliente.id AS cliente_id, 
-                cliente.nome AS cliente_nome,
-                cliente.email AS cliente_email,
-                cliente.telefone AS cliente_telefone,
-                pedido.total AS pedido_total,
-                produto.id AS produto_id,
-                produto.nome AS produto_nome,
-                produto.preco AS produto_preco,
-                produto.fornecedor AS produto_fornecedor
-            FROM pedido
-            JOIN cliente ON pedido.cliente_id = cliente.id
-            JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
-            JOIN produto ON produto_pedido.id_produto = produto.id;";
+                string queryPedidos = @"SELECT
+                                    pedido.id AS pedido_id,
+                                    pedido.data_pedido AS pedido_data,
+                                    cliente.id AS cliente_id, 
+                                    cliente.nome AS cliente_nome,
+                                    cliente.email AS cliente_email,
+                                    cliente.telefone AS cliente_telefone,
+                                    pedido.total AS pedido_total
+                                FROM pedido
+                                JOIN cliente ON pedido.cliente_id = cliente.id
+                                ORDER BY pedido.data_pedido DESC;";
 
-                using var cmd = new MySqlCommand(query, connection);
+                using var cmd = new MySqlCommand(queryPedidos, connection);
                 using var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -154,23 +110,51 @@ namespace SistemaPI.repositorio
                     var pedido = new Pedido
                     {
                         Id = reader.GetInt32("pedido_id"),
+                        DataPedido = reader.GetDateTime("pedido_data"),
                         Total = reader.GetDecimal("pedido_total"),
-                        Produto = new Produto
-                        {
-                            Id = reader.GetInt32("produto_id"),
-                            Nome = reader.GetString("produto_nome"),
-                            Preco = reader.GetDecimal("produto_preco"),
-                            Fornecedor = (Fornecedor)reader.GetInt32("produto_fornecedor")
-                        },
                         Cliente = new Cliente
                         {
                             Id = reader.GetInt32("cliente_id"),
                             Nome = reader.GetString("cliente_nome"),
                             Email = reader.GetString("cliente_email"),
                             Telefone = reader.GetString("cliente_telefone")
-                        }
+                        },
+                        
+                        Produtos = ""
                     };
+
                     pedidos.Add(pedido);
+                }
+
+            }
+
+            using (var connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                foreach (var pedido in pedidos)
+                {
+                    string queryProdutos = @"
+                                            SELECT 
+                                                produto.nome,
+                                                produto_pedido.quantidade
+                                            FROM produto
+                                            JOIN produto_pedido ON produto.id = produto_pedido.id_produto
+                                            WHERE produto_pedido.id_pedido = @pedidoId;";
+
+                    using var cmd = new MySqlCommand(queryProdutos, connection);
+                    cmd.Parameters.AddWithValue("@pedidoId", pedido.Id);
+
+                    using var reader = cmd.ExecuteReader();
+                    var produtos = new List<string>();
+
+                    while (reader.Read())
+                    {
+                        var produtoComQuantidade = $"{reader.GetString("nome")} {reader.GetInt32("quantidade")}x ";
+                        produtos.Add(produtoComQuantidade);
+                    }
+
+                    pedido.Produtos = string.Join(", ", produtos);
                 }
             }
 
@@ -178,7 +162,7 @@ namespace SistemaPI.repositorio
         }
 
 
-        public void InserirPedido(Pedido novoPedido)
+        public void SalvarPedido(Pedido novoPedido)
         {
             using (var connection = Database.GetConnection())
             {
@@ -209,35 +193,81 @@ namespace SistemaPI.repositorio
             using (var conn = Database.GetConnection())
             {
                 conn.Open();
-
-                string query = "DELETE FROM pedido WHERE id = @id;";
-
-                using (var cmd = new MySqlCommand(query, conn))
+                using (var transaction = conn.BeginTransaction())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
+                    try
+                    {
+                        // Primeiro deleta os produtos relacionados ao pedido
+                        string queryProdutos = "DELETE FROM produto_pedido WHERE id_pedido = @id;";
+                        using (var cmdProdutos = new MySqlCommand(queryProdutos, conn, transaction))
+                        {
+                            cmdProdutos.Parameters.AddWithValue("@id", id);
+                            cmdProdutos.ExecuteNonQuery();
+                        }
 
-            using (var conn = Database.GetConnection())
-            {
-                conn.Open();
+                        // Depois deleta o pedido
+                        string queryPedido = "DELETE FROM pedido WHERE id = @id;";
+                        using (var cmdPedido = new MySqlCommand(queryPedido, conn, transaction))
+                        {
+                            cmdPedido.Parameters.AddWithValue("@id", id);
+                            cmdPedido.ExecuteNonQuery();
+                        }
 
-                string query = "DELETE FROM pedido_produto WHERE id = @id;";
-
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Erro ao deletar o pedido: " + ex.Message);
+                    }
                 }
             }
         }
+
 
         public Pedido? BuscarPedidoPorId(int id)
         {
             string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto, data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id WHERE id = @param;;";
             return BuscarPedidoPorUnique(query, id.ToString());
         }
+
+        //private Pedido? BuscarPedidoPorUnique(string query, string param)
+        //{
+        //    using (var conn = Database.GetConnection())
+        //    {
+        //        conn.Open();
+
+        //        using (var cmd = new MySqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@param", param);
+        //            using var reader = cmd.ExecuteReader();
+        //            if (!reader.Read())
+        //            {
+        //                return null;
+        //            }
+
+        //            return new Pedido
+        //            {
+        //                Id = reader.GetInt32("id"),
+        //                Total = reader.GetDecimal("total"),
+        //                Produto = new Produto
+        //                {
+        //                    Id = reader.GetInt32("id"),
+        //                    Nome = reader.GetString("nome"),
+        //                    Preco = reader.GetDecimal("preco"),
+        //                    Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
+        //                },
+        //                Cliente = new Cliente
+        //                {
+        //                    Id = reader.GetInt32("id"),
+        //                    Nome = reader.GetString("nome"),
+        //                    Email = reader.GetString("email"),
+        //                    Telefone = reader.GetString("telefone")
+        //                }
+        //            };
+        //        }
+        //    }
+        //}
 
         private Pedido? BuscarPedidoPorUnique(string query, string param)
         {
@@ -256,43 +286,17 @@ namespace SistemaPI.repositorio
 
                     return new Pedido
                     {
-                        Id = reader.GetInt32("id"),
-                        Total = reader.GetDecimal("total"),
-                        Produto = new Produto
-                        {
-                            Id = reader.GetInt32("id"),
-                            Nome = reader.GetString("nome"),
-                            Preco = reader.GetDecimal("preco"),
-                            Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
-                        },
+                        Id = reader.GetInt32("pedido_id"),
+                        Total = reader.GetDecimal("pedido_total"),
+                        DataPedido = reader.GetDateTime("pedido_data"),
                         Cliente = new Cliente
                         {
-                            Id = reader.GetInt32("id"),
-                            Nome = reader.GetString("nome"),
-                            Email = reader.GetString("email"),
-                            Telefone = reader.GetString("telefone")
+                            Id = reader.GetInt32("cliente_id"),
+                            Nome = reader.GetString("cliente_nome"),
+                            Email = reader.GetString("cliente_email"),
+                            Telefone = reader.GetString("cliente_telefone")
                         }
                     };
-                }
-            }
-        }
-
-        public void AtualizarPedido(Pedido pedido)
-        {
-            using (var conn = Database.GetConnection())
-            {
-                conn.Open();
-
-                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, fornecedor = @fornecedor WHERE id = @id;";
-                using (var cmd = new MySqlCommand(queryEndereco, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", pedido.Id);
-                    cmd.Parameters.AddWithValue("@cliente_id", pedido.Cliente.Id);
-                    cmd.Parameters.AddWithValue("@produto_id", pedido.Produto.Id);
-                    cmd.Parameters.AddWithValue("@fornecedor", pedido.Produto.Fornecedor);
-                    cmd.Parameters.AddWithValue("@total", pedido.Total);
-
-                    cmd.ExecuteNonQuery();
                 }
             }
         }

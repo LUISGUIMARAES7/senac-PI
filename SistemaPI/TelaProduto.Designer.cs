@@ -160,8 +160,8 @@ namespace SistemaPI
             // 
             // comboBoxFornecedor
             // 
+            comboBoxFornecedor.Anchor = AnchorStyles.Top;
             comboBoxFornecedor.FormattingEnabled = true;
-            comboBoxFornecedor.Items.AddRange(new object[] { "--", "Avon", "Natura", "Eudora", "oBoticario", "Jequiti" });
             comboBoxFornecedor.Location = new Point(505, 54);
             comboBoxFornecedor.Name = "comboBoxFornecedor";
             comboBoxFornecedor.Size = new Size(121, 23);
@@ -267,6 +267,7 @@ namespace SistemaPI
             MainMenuStrip = menuStrip1;
             Name = "TelaProduto";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += TelaProduto_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

@@ -48,7 +48,7 @@
             buttonSalvar = new Button();
             buttonRemover = new Button();
             buttonEditar = new Button();
-            dataGridViewPedidos = new DataGridView();
+            dgvPedidos = new DataGridView();
             labelCadastrarPedido = new Label();
             panel1 = new Panel();
             menuStrip1 = new MenuStrip();
@@ -59,7 +59,7 @@
             groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -196,9 +196,11 @@
             // 
             numericQuantidade.Anchor = AnchorStyles.Top;
             numericQuantidade.Location = new Point(121, 72);
+            numericQuantidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericQuantidade.Name = "numericQuantidade";
             numericQuantidade.Size = new Size(120, 23);
             numericQuantidade.TabIndex = 2;
+            numericQuantidade.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // labelProduto
             // 
@@ -263,21 +265,21 @@
             buttonEditar.UseVisualStyleBackColor = true;
             buttonEditar.Click += buttonEditar_Click;
             // 
-            // dataGridViewPedidos
+            // dgvPedidos
             // 
-            dataGridViewPedidos.AllowUserToAddRows = false;
-            dataGridViewPedidos.AllowUserToDeleteRows = false;
-            dataGridViewPedidos.AllowUserToResizeColumns = false;
-            dataGridViewPedidos.AllowUserToResizeRows = false;
-            dataGridViewPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            dataGridViewPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPedidos.Location = new Point(27, 305);
-            dataGridViewPedidos.MultiSelect = false;
-            dataGridViewPedidos.Name = "dataGridViewPedidos";
-            dataGridViewPedidos.ReadOnly = true;
-            dataGridViewPedidos.Size = new Size(751, 121);
-            dataGridViewPedidos.TabIndex = 18;
+            dgvPedidos.AllowUserToAddRows = false;
+            dgvPedidos.AllowUserToDeleteRows = false;
+            dgvPedidos.AllowUserToResizeColumns = false;
+            dgvPedidos.AllowUserToResizeRows = false;
+            dgvPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPedidos.Location = new Point(27, 305);
+            dgvPedidos.MultiSelect = false;
+            dgvPedidos.Name = "dgvPedidos";
+            dgvPedidos.ReadOnly = true;
+            dgvPedidos.Size = new Size(751, 121);
+            dgvPedidos.TabIndex = 18;
             // 
             // labelCadastrarPedido
             // 
@@ -350,7 +352,7 @@
             Controls.Add(panel1);
             Controls.Add(labelErro);
             Controls.Add(groupBox);
-            Controls.Add(dataGridViewPedidos);
+            Controls.Add(dgvPedidos);
             Controls.Add(buttonEditar);
             Controls.Add(buttonSalvar);
             Controls.Add(buttonRemover);
@@ -360,7 +362,7 @@
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewPedidos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -378,7 +380,7 @@
         private Button buttonRemover;
         private Button buttonEditar;
         private Label labelCliente;
-        private DataGridView dataGridViewPedidos;
+        private DataGridView dgvPedidos;
         private NumericUpDown numericQuantidade;
         private Label labelProduto;
         private Label labelTotal;

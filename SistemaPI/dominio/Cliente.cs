@@ -16,6 +16,11 @@ namespace SistemaPI.dominio
         public string Email { get; set; }
         public string Telefone { get; set; }
 
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         public List<Cliente> ListarCliente()
         {
             return Repositorio.ListarCliente();
