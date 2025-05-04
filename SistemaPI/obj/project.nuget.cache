@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xKGgQWoqGwM=",
+  "dgSpecHash": "hFCFjyP3jrs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj",
+  "projectFilePath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\SistemaPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FeLuh\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "C:\\Users\\FeLuh\\.nuget\\packages\\google.protobuf\\3.30.0\\google.protobuf.3.30.0.nupkg.sha512",

@@ -8,10 +8,24 @@ namespace SistemaPI
     {
         private Produto Produto = new();
         private readonly BindingSource BindingSource = [];
+        private List<Produto> todosProdutos = new List<Produto>();
         public TelaProduto()
         {
             InitializeComponent();
+            
+        }
+
+        private void TelaProduto_Load(object sender, EventArgs e)
+        {
             ListarProduto();
+            ListarTodosFornecedores();
+        }
+
+        public void ListarProduto()
+        {
+            todosProdutos = Produto.ListarProdutos();
+            BindingSource.DataSource = todosProdutos;
+            dataGridViewProdutos.DataSource = BindingSource;
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -89,11 +103,7 @@ namespace SistemaPI
             buttonAdicionar.Text = "Adicionar";
         }
 
-        public void ListarProduto()
-        {
-            BindingSource.DataSource = Produto.ListarProdutos();
-            dataGridViewProdutos.DataSource = BindingSource;
-        }
+        
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
@@ -167,7 +177,7 @@ namespace SistemaPI
 
         }
 
-        public void LimparForm()
+        private void LimparForm()
         {
             textBoxPreco.Clear();
             textBoxProduto.Clear();
@@ -175,7 +185,7 @@ namespace SistemaPI
             labelErro.Text = string.Empty;
         }
 
-        public void ListarTodosFornecedores()
+        private void ListarTodosFornecedores()
         {
             var fornecedores = Produto.ListarTodosFornecedores();
 
@@ -189,9 +199,41 @@ namespace SistemaPI
             //}
         }
 
-        private void TelaProduto_Load(object sender, EventArgs e)
+        
+
+        private List<Produto> FiltrarProdutos(List<Produto> produtos, string termoBusca)
         {
-            ListarTodosFornecedores();
+            return produtos.Where(p => p.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || p.Fornecedor.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            string termoBusca = textBoxBuscar.Text.Trim();
+            List<Produto> produtosFiltrados;
+
+            if (string.IsNullOrEmpty(termoBusca))
+            {
+                // Se não digitou nada, mostra tudo
+                produtosFiltrados = todosProdutos;
+            }
+            else
+            {
+                produtosFiltrados = FiltrarProdutos(todosProdutos, termoBusca);
+            }
+
+            AtualizarGrid(produtosFiltrados);
+        }
+
+        private void AtualizarGrid(List<Produto> produtos)
+        {
+            BindingSource.DataSource = produtos;
+        }
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string termoBusca = textBoxBuscar.Text.Trim();
+            var produtosFiltrados = FiltrarProdutos(todosProdutos, termoBusca);
+            AtualizarGrid(produtosFiltrados);
         }
     }
 }

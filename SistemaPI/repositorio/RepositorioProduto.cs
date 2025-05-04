@@ -14,33 +14,7 @@ namespace SistemaPI.repositorio
 {
     internal class RepositorioProduto
     {
-        //public List<Produto> ListarProdutos()
-        //{
-        //    var produtos = new List<Produto>();
-
-        //    using (var conection = Database.GetConnection())
-        //    {
-        //        conection.Open();
-
-        //        string query = "SELECT * FROM produto;";
-
-        //        using var cmd = new MySqlCommand(query, conection);
-        //        using var reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            produtos.Add(new Produto
-        //            {
-        //                Id = reader.GetInt32("id"),
-        //                Nome = reader.GetString("nome"),
-        //                Preco = reader.GetDecimal("preco"),
-        //                Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
-        //            });
-        //        }
-        //    }
-
-        //    return produtos;
-        //}
-
+        
         public List<Produto> ListarProdutos()
         {
             var produtos = new List<Produto>();

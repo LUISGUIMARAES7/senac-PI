@@ -50,6 +50,8 @@ namespace SistemaPI
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            textBoxBuscar = new TextBox();
+            buttonBuscar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).BeginInit();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
@@ -106,11 +108,11 @@ namespace SistemaPI
             dataGridViewProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProdutos.Location = new Point(27, 191);
+            dataGridViewProdutos.Location = new Point(27, 218);
             dataGridViewProdutos.MultiSelect = false;
             dataGridViewProdutos.Name = "dataGridViewProdutos";
             dataGridViewProdutos.ReadOnly = true;
-            dataGridViewProdutos.Size = new Size(751, 235);
+            dataGridViewProdutos.Size = new Size(751, 200);
             dataGridViewProdutos.TabIndex = 9;
             // 
             // label1
@@ -251,11 +253,33 @@ namespace SistemaPI
             mySqlCommand1.EnableCaching = false;
             mySqlCommand1.Transaction = null;
             // 
+            // textBoxBuscar
+            // 
+            textBoxBuscar.Anchor = AnchorStyles.Top;
+            textBoxBuscar.Location = new Point(432, 189);
+            textBoxBuscar.Name = "textBoxBuscar";
+            textBoxBuscar.Size = new Size(252, 23);
+            textBoxBuscar.TabIndex = 14;
+            textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
+            // 
+            // buttonBuscar
+            // 
+            buttonBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonBuscar.Location = new Point(703, 188);
+            buttonBuscar.Name = "buttonBuscar";
+            buttonBuscar.Size = new Size(75, 23);
+            buttonBuscar.TabIndex = 18;
+            buttonBuscar.Text = "Buscar";
+            buttonBuscar.UseVisualStyleBackColor = true;
+            buttonBuscar.Click += buttonBuscar_Click;
+            // 
             // TelaProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonBuscar);
+            Controls.Add(textBoxBuscar);
             Controls.Add(panel1);
             Controls.Add(buttonAdicionar);
             Controls.Add(labelErro);
@@ -310,5 +334,7 @@ namespace SistemaPI
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private ToolStripMenuItem homeToolStripMenuItem;
         private ComboBox comboBoxFornecedor;
+        private TextBox textBoxBuscar;
+        private Button buttonBuscar;
     }
 }

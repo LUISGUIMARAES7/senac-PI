@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj": {}
+    "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\SistemaPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj": {
+    "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\SistemaPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj",
+        "projectUniqueName": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\SistemaPI.csproj",
         "projectName": "SistemaPI",
-        "projectPath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\SistemaPI.csproj",
+        "projectPath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\SistemaPI.csproj",
         "packagesPath": "C:\\Users\\FeLuh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-PI\\SistemaPI\\obj\\",
+        "outputPath": "C:\\Users\\FeLuh\\Documentos\\ESTUDOS\\SENAC\\senac-pi\\SistemaPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FeLuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
