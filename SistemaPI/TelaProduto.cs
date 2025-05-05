@@ -192,11 +192,6 @@ namespace SistemaPI
             comboBoxFornecedor.DataSource = fornecedores;
             comboBoxFornecedor.DisplayMember = "Nome";
             comboBoxFornecedor.ValueMember = "Id";
-
-            //foreach (var item in fornecedores)
-            //{
-            //    comboBoxFornecedor.Items.Add(fornecedores.);
-            //}
         }
 
         
@@ -206,23 +201,23 @@ namespace SistemaPI
             return produtos.Where(p => p.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || p.Fornecedor.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        private void buttonBuscar_Click(object sender, EventArgs e)
-        {
-            string termoBusca = textBoxBuscar.Text.Trim();
-            List<Produto> produtosFiltrados;
+        //private void buttonBuscar_Click(object sender, EventArgs e)
+        //{
+        //    string termoBusca = textBoxBuscar.Text.Trim();
+        //    List<Produto> produtosFiltrados;
 
-            if (string.IsNullOrEmpty(termoBusca))
-            {
-                // Se não digitou nada, mostra tudo
-                produtosFiltrados = todosProdutos;
-            }
-            else
-            {
-                produtosFiltrados = FiltrarProdutos(todosProdutos, termoBusca);
-            }
+        //    if (string.IsNullOrEmpty(termoBusca))
+        //    {
+        //        // Se não digitou nada, mostra tudo
+        //        produtosFiltrados = todosProdutos;
+        //    }
+        //    else
+        //    {
+        //        produtosFiltrados = FiltrarProdutos(todosProdutos, termoBusca);
+        //    }
 
-            AtualizarGrid(produtosFiltrados);
-        }
+        //    AtualizarGrid(produtosFiltrados);
+        //}
 
         private void AtualizarGrid(List<Produto> produtos)
         {
