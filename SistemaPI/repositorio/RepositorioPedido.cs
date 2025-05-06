@@ -227,9 +227,22 @@ namespace SistemaPI.repositorio
 
         public Pedido? BuscarPedidoPorId(int id)
         {
-            string query = "SELECT pedido.id, cliente.nome as cliente, produto.nome as produto, data_pedido, total FROM pedido JOIN cliente on pedido.cliente_id = cliente.id JOIN produto on pedido.produto_id = produto.id WHERE id = @param;;";
+            string query = @"SELECT 
+                                pedido.id AS pedido_id,
+                                cliente.nome AS cliente_nome,
+                                produto.nome AS produto_nome,
+                                produto.preco AS produto_preco,
+                                pedido.total AS pedido_total,
+                                pedido.data_pedido AS pedido_data
+                            FROM
+                                pedido
+                            JOIN cliente ON pedido.cliente_id = cliente.id
+                            JOIN produto_pedido ON pedido.id = produto_pedido.id_pedido
+                            JOIN produto ON produto_pedido.id_produto = produto.id;";
             return BuscarPedidoPorUnique(query, id.ToString());
         }
+
+
 
         //private Pedido? BuscarPedidoPorUnique(string query, string param)
         //{
@@ -248,28 +261,22 @@ namespace SistemaPI.repositorio
 
         //            return new Pedido
         //            {
-        //                Id = reader.GetInt32("id"),
-        //                Total = reader.GetDecimal("total"),
-        //                Produto = new Produto
-        //                {
-        //                    Id = reader.GetInt32("id"),
-        //                    Nome = reader.GetString("nome"),
-        //                    Preco = reader.GetDecimal("preco"),
-        //                    Fornecedor = (Fornecedor) reader.GetInt32("fornecedor")
-        //                },
+        //                Id = reader.GetInt32("pedido_id"),
+        //                Total = reader.GetDecimal("pedido_total"),
+        //                DataPedido = reader.GetDateTime("pedido_data"),
         //                Cliente = new Cliente
         //                {
-        //                    Id = reader.GetInt32("id"),
-        //                    Nome = reader.GetString("nome"),
-        //                    Email = reader.GetString("email"),
-        //                    Telefone = reader.GetString("telefone")
+        //                    Id = reader.GetInt32("cliente_id"),
+        //                    Nome = reader.GetString("cliente_nome"),
+        //                    Email = reader.GetString("cliente_email"),
+        //                    Telefone = reader.GetString("cliente_telefone")
         //                }
         //            };
         //        }
         //    }
         //}
 
-        private Pedido? BuscarPedidoPorUnique(string query, string param)
+        private Pedido? BuscarPedidoPorUnique(string query, object param)
         {
             using (var conn = Database.GetConnection())
             {
@@ -278,29 +285,31 @@ namespace SistemaPI.repositorio
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@param", param);
-                    using var reader = cmd.ExecuteReader();
-                    if (!reader.Read())
-                    {
-                        return null;
-                    }
 
-                    return new Pedido
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        Id = reader.GetInt32("pedido_id"),
-                        Total = reader.GetDecimal("pedido_total"),
-                        DataPedido = reader.GetDateTime("pedido_data"),
-                        Cliente = new Cliente
+                        if (!reader.Read())
                         {
-                            Id = reader.GetInt32("cliente_id"),
-                            Nome = reader.GetString("cliente_nome"),
-                            Email = reader.GetString("cliente_email"),
-                            Telefone = reader.GetString("cliente_telefone")
+                            return null;
                         }
-                    };
+
+                        return new Pedido
+                        {
+                            Id = reader.GetInt32("pedido_id"),
+                            Total = reader.GetDecimal("pedido_total"),
+                            DataPedido = reader.GetDateTime("pedido_data"),
+                            Cliente = new Cliente
+                            {
+                                // OBS: Só temos o nome na query
+                                Nome = reader.GetString("cliente_nome")
+                            }
+                        };
+                    }
                 }
             }
         }
 
-        
+
+
     }
 }

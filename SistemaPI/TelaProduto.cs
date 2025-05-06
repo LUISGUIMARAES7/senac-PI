@@ -126,9 +126,8 @@ namespace SistemaPI
             int id = (int)dataGridViewProdutos.SelectedRows[0].Cells[0].Value;
 
             Produto.DeletarCliente(id);
-
+            LimparForm();
             ListarProduto();
-
         }
 
         private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
@@ -156,12 +155,11 @@ namespace SistemaPI
             {
                 return;
             }
-            Produto = produto;
 
+            Produto = produto;
             textBoxProduto.Text = produto.Nome.ToString();
             textBoxPreco.Text = produto.Preco.ToString();
-            comboBoxFornecedor.Text = produto.Fornecedor.ToString();
-
+            comboBoxFornecedor.SelectedItem = produto.Fornecedor.ToString();
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,6 +180,7 @@ namespace SistemaPI
             textBoxPreco.Clear();
             textBoxProduto.Clear();
             comboBoxFornecedor.SelectedIndex = -1;
+            textBoxBuscar.Clear();
             labelErro.Text = string.Empty;
         }
 
@@ -192,32 +191,13 @@ namespace SistemaPI
             comboBoxFornecedor.DataSource = fornecedores;
             comboBoxFornecedor.DisplayMember = "Nome";
             comboBoxFornecedor.ValueMember = "Id";
-        }
-
-        
+        }        
 
         private List<Produto> FiltrarProdutos(List<Produto> produtos, string termoBusca)
         {
             return produtos.Where(p => p.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || p.Fornecedor.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        //private void buttonBuscar_Click(object sender, EventArgs e)
-        //{
-        //    string termoBusca = textBoxBuscar.Text.Trim();
-        //    List<Produto> produtosFiltrados;
-
-        //    if (string.IsNullOrEmpty(termoBusca))
-        //    {
-        //        // Se não digitou nada, mostra tudo
-        //        produtosFiltrados = todosProdutos;
-        //    }
-        //    else
-        //    {
-        //        produtosFiltrados = FiltrarProdutos(todosProdutos, termoBusca);
-        //    }
-
-        //    AtualizarGrid(produtosFiltrados);
-        //}
 
         private void AtualizarGrid(List<Produto> produtos)
         {

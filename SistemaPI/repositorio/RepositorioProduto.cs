@@ -112,13 +112,21 @@ namespace SistemaPI.repositorio
             {
                 conn.Open();
 
-                string queryEndereco = "UPDATE produto SET nome = @nome, preco = @preco, fornecedor = @fornecedor WHERE id = @id;";
-                using (var cmd = new MySqlCommand(queryEndereco, conn))
+                string queryFornecedor = "UPDATE fornecedor SET nome = @nome WHERE id = @id;";
+                using (var cmd = new MySqlCommand(queryFornecedor, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", produto.Fornecedor.Id);
+                    cmd.Parameters.AddWithValue("@nome", produto.Fornecedor.Nome);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string queryProduto = "UPDATE produto SET nome = @nome, preco = @preco, fornecedor_id = @fornecedor_id WHERE id = @id;";
+                using (var cmd = new MySqlCommand(queryProduto, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", produto.Id);
                     cmd.Parameters.AddWithValue("@nome", produto.Nome);
                     cmd.Parameters.AddWithValue("@preco", produto.Preco);
-                    cmd.Parameters.AddWithValue("@fornecedor", produto.Fornecedor);
+                    cmd.Parameters.AddWithValue("@fornecedor_id", produto.Fornecedor.Id);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -142,8 +150,8 @@ namespace SistemaPI.repositorio
 
                     return new Produto
                     {
-                        Nome = reader.GetString("nome"),
-                        Preco = reader.GetDecimal("preco"),
+                        Nome = reader.GetString("produto_nome"),
+                        Preco = reader.GetDecimal("produto_preco"),
                         Fornecedor = new Fornecedor
                         {
                             Id = reader.GetInt32("fornecedor_id"),

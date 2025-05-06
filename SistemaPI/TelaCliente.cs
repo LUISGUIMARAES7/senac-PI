@@ -16,10 +16,10 @@ namespace SistemaPI
     {
         private Cliente Cliente = new();
         private readonly BindingSource BindingSource = [];
+        private List<Cliente> todosClientes = new List<Cliente>();
         public TelaCliente()
         {
             InitializeComponent();
-            ListarCliente();
         }
 
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace SistemaPI
 
         private void TelaCliente_Load(object sender, EventArgs e)
         {
-
+            ListarCliente();
         }
 
         private bool CriarCliente()
@@ -116,8 +116,12 @@ namespace SistemaPI
 
         public void ListarCliente()
         {
-            BindingSource.DataSource = Cliente.ListarCliente();
+            todosClientes = Cliente.ListarCliente();
+            BindingSource.DataSource = todosClientes;
             dataGridViewClientes.DataSource = BindingSource;
+
+            //BindingSource.DataSource = Cliente.ListarCliente();
+            //dataGridViewClientes.DataSource = BindingSource;
         }
 
         private void LimparForm()
@@ -125,6 +129,7 @@ namespace SistemaPI
             textBoxNome.Clear();
             textBoxEmail.Clear();
             maskedTextBoxTelefone.Clear();
+            textBoxBuscar.Clear();
             labelErro.Text = string.Empty;
         }
 
@@ -174,8 +179,28 @@ namespace SistemaPI
             int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
 
             Cliente.DeletarCliente(id);
-
+            LimparForm();
             ListarCliente();
+        }
+
+        private List<Cliente> FiltrarClientes(List<Cliente> clientes, string termoBusca)
+        {
+            return clientes.Where(p => p.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || 
+            p.Telefone.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || 
+            p.Email.Contains(termoBusca, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+
+        private void AtualizarGrid(List<Cliente> clientes)
+        {
+            BindingSource.DataSource = clientes;
+        }
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string termoBusca = textBoxBuscar.Text.Trim();
+            var produtosFiltrados = FiltrarClientes(todosClientes, termoBusca);
+            AtualizarGrid(produtosFiltrados);
         }
     }
 }

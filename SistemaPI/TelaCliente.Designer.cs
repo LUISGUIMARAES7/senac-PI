@@ -48,6 +48,7 @@
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
+            textBoxBuscar = new TextBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             panel1.SuspendLayout();
@@ -174,11 +175,11 @@
             dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClientes.Location = new Point(27, 191);
+            dataGridViewClientes.Location = new Point(27, 222);
             dataGridViewClientes.MultiSelect = false;
             dataGridViewClientes.Name = "dataGridViewClientes";
             dataGridViewClientes.ReadOnly = true;
-            dataGridViewClientes.Size = new Size(751, 235);
+            dataGridViewClientes.Size = new Size(751, 200);
             dataGridViewClientes.TabIndex = 15;
             // 
             // label4
@@ -242,11 +243,22 @@
             pedidosToolStripMenuItem.Text = "Pedidos";
             pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click_1;
             // 
+            // textBoxBuscar
+            // 
+            textBoxBuscar.Anchor = AnchorStyles.Top;
+            textBoxBuscar.Location = new Point(526, 193);
+            textBoxBuscar.Name = "textBoxBuscar";
+            textBoxBuscar.PlaceholderText = "Buscar";
+            textBoxBuscar.Size = new Size(252, 23);
+            textBoxBuscar.TabIndex = 22;
+            textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
+            // 
             // TelaCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBoxBuscar);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
             Controls.Add(buttonAdicionar);
@@ -292,5 +304,6 @@
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem homeToolStripMenuItem;
+        private TextBox textBoxBuscar;
     }
 }
