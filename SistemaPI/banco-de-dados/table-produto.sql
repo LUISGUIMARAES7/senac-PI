@@ -11,3 +11,18 @@ SELECT * FROM produto;
 drop table produto;
 
 DESC produto;
+
+@"SELECT 
+    pedido.id,
+    cliente.nome AS cliente,
+    produto.nome AS produto,
+    data_pedido,
+    total
+FROM
+    pedido
+        JOIN
+    cliente ON pedido.cliente_id = cliente.id
+        JOIN
+    produto_pedido ON produto_pedido.produto_id = pedido.id
+WHERE
+    id = @param;"

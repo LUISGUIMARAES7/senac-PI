@@ -358,6 +358,7 @@
             Controls.Add(buttonRemover);
             Name = "TelaPedido";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += TelaPedido_Load;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).EndInit();

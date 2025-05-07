@@ -85,7 +85,7 @@ namespace SistemaPI.dominio
 
         public void AtualizarCliente()
         {
-            Repositorio.EditarCliente(this);
+            Repositorio.AtualizarCliente(this);
         }
 
         public void DeletarCliente(int id)

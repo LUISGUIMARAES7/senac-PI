@@ -25,10 +25,13 @@ namespace SistemaPI
         {
             InitializeComponent();
 
+        }
+
+        private void TelaPedido_Load(object sender, EventArgs e)
+        {
             ListarTodosClientes();
             ListarTodosProdutos();
             ListarPedido();
-            
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -161,30 +164,62 @@ namespace SistemaPI
 
             LimparForm();
             Pedido.Id = id;
+            Pedido.AtualizarPedido();
             ListarPedido();
         }
+
+        //private void buttonEditar_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
+        //    {
+        //        return;
+        //    }
+
+        //    int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
+
+        //    var pedido = Pedido.BuscarPedidoPorId(id);
+
+        //    if (pedido == null)
+        //    {
+        //        return;
+        //    }
 
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
             {
+                MessageBox.Show("Selecione um pedido para editar.");
                 return;
             }
 
-            buttonSalvar.Text = "Salvar";
-
             int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
-
             var pedido = Pedido.BuscarPedidoPorId(id);
 
             if (pedido == null)
             {
+                MessageBox.Show("Pedido não encontrado.");
                 return;
             }
-            Pedido = pedido;
 
-            comboBoxCliente.SelectedValue = pedido.Cliente.ToString();
-            //comboBoxProduto.Text = pedido.Produto.ToString();
+            foreach (var item in pedido.Itens)
+            {
+                Produto produto = item.produto;
+                int quantidade = item.quantidade;
+
+                decimal valorTotalProduto = produto.Preco * quantidade;
+                itensPedido.Add((produto, quantidade));
+
+                dgvProdutosSelecionados.Rows.Add(
+                    produto.Nome,
+                    quantidade,
+                    produto.Preco.ToString("C"),
+                    valorTotalProduto.ToString("C"));
+
+                totalGeral += valorTotalProduto;
+            }
+
+            textBoxTotal.Text = totalGeral.ToString("C");
+
         }
 
 
@@ -264,7 +299,7 @@ namespace SistemaPI
 
         private void LimparForm()
         {
-            
+
             dgvProdutosSelecionados.Rows.Clear();
             itensPedido.Clear();
             totalGeral = 0;
@@ -275,5 +310,6 @@ namespace SistemaPI
             labelErro.Text = "";
         }
 
+        
     }
 }

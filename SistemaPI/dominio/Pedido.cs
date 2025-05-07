@@ -73,5 +73,10 @@ namespace SistemaPI.dominio
         {
             Repositorio.DeletarPedido(id);
         }
+
+        public void AtualizarPedido()
+        {
+            Repositorio.AtualizarPedido(this);
+        }
     }
 }

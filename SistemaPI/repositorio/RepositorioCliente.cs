@@ -102,7 +102,7 @@ namespace SistemaPI.repositorio
             }
         }
 
-        public void EditarCliente(Cliente cliente)
+        public void AtualizarCliente(Cliente cliente)
         {
             using (var conn = Database.GetConnection())
             {
