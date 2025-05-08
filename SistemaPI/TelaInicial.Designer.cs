@@ -47,7 +47,7 @@
             // 
             // buttonPedido
             // 
-            buttonPedido.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonPedido.Anchor = AnchorStyles.Top;
             buttonPedido.BackColor = Color.Transparent;
             buttonPedido.Cursor = Cursors.Hand;
             buttonPedido.FlatAppearance.BorderColor = Color.White;
@@ -85,6 +85,7 @@
             // 
             // buttonCliente
             // 
+            buttonCliente.Anchor = AnchorStyles.Top;
             buttonCliente.BackColor = Color.Transparent;
             buttonCliente.CausesValidation = false;
             buttonCliente.Cursor = Cursors.Hand;
