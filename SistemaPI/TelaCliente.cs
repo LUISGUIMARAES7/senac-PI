@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using Timer = System.Windows.Forms.Timer;
 
 namespace SistemaPI
 {
@@ -22,6 +23,8 @@ namespace SistemaPI
             InitializeComponent();
         }
 
+
+
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             TelaProduto telaProduto = new TelaProduto();
@@ -33,6 +36,7 @@ namespace SistemaPI
             telaProduto.ShowDialog();
             this.Close();
         }
+
 
         private void pedidosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

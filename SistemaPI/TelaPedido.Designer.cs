@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPedido));
             labelErro = new Label();
             groupBox = new GroupBox();
             dgvProdutosSelecionados = new DataGridView();
@@ -57,12 +58,15 @@
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             buttonCancelar = new Button();
+            textBoxBuscar = new TextBox();
+            pictureBox1 = new PictureBox();
             groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // labelErro
@@ -101,6 +105,7 @@
             dgvProdutosSelecionados.AllowUserToResizeRows = false;
             dgvProdutosSelecionados.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dgvProdutosSelecionados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProdutosSelecionados.BackgroundColor = SystemColors.ControlLight;
             dgvProdutosSelecionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProdutosSelecionados.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
             dgvProdutosSelecionados.Location = new Point(98, 108);
@@ -272,14 +277,15 @@
             dgvPedidos.AllowUserToDeleteRows = false;
             dgvPedidos.AllowUserToResizeColumns = false;
             dgvPedidos.AllowUserToResizeRows = false;
-            dgvPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPedidos.BackgroundColor = SystemColors.ControlLight;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(34, 305);
+            dgvPedidos.Location = new Point(27, 334);
             dgvPedidos.MultiSelect = false;
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
-            dgvPedidos.Size = new Size(751, 152);
+            dgvPedidos.Size = new Size(765, 112);
             dgvPedidos.TabIndex = 18;
             // 
             // labelCadastrarPedido
@@ -297,7 +303,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.Black;
+            panel1.BackColor = Color.Red;
             panel1.Controls.Add(labelCadastrarPedido);
             panel1.Location = new Point(0, 27);
             panel1.Name = "panel1";
@@ -355,11 +361,34 @@
             buttonCancelar.UseVisualStyleBackColor = true;
             buttonCancelar.Click += buttonCancelar_Click;
             // 
+            // textBoxBuscar
+            // 
+            textBoxBuscar.Anchor = AnchorStyles.Top;
+            textBoxBuscar.Location = new Point(540, 305);
+            textBoxBuscar.Name = "textBoxBuscar";
+            textBoxBuscar.PlaceholderText = "Buscar";
+            textBoxBuscar.Size = new Size(252, 23);
+            textBoxBuscar.TabIndex = 26;
+            textBoxBuscar.TextChanged += textBoxBuscar_TextChanged_1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.Image = Properties.Resources.logomini;
+            pictureBox1.Location = new Point(702, 454);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 28);
+            pictureBox1.TabIndex = 27;
+            pictureBox1.TabStop = false;
+            // 
             // TelaPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(814, 481);
+            Controls.Add(pictureBox1);
+            Controls.Add(textBoxBuscar);
             Controls.Add(buttonCancelar);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
@@ -369,6 +398,7 @@
             Controls.Add(buttonEditar);
             Controls.Add(buttonSalvar);
             Controls.Add(buttonRemover);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaPedido";
             StartPosition = FormStartPosition.CenterScreen;
             Load += TelaPedido_Load;
@@ -381,6 +411,7 @@
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -416,5 +447,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private Button buttonCancelar;
+        private TextBox textBoxBuscar;
+        private PictureBox pictureBox1;
     }
 }

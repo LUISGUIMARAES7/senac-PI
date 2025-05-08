@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCliente));
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             labelErro = new Label();
             groupBox2 = new GroupBox();
@@ -49,10 +50,12 @@
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             textBoxBuscar = new TextBox();
+            pictureBox1 = new PictureBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // labelErro
@@ -174,12 +177,13 @@
             dataGridViewClientes.AllowUserToResizeRows = false;
             dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewClientes.BackgroundColor = SystemColors.ControlLight;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewClientes.Location = new Point(34, 222);
             dataGridViewClientes.MultiSelect = false;
             dataGridViewClientes.Name = "dataGridViewClientes";
             dataGridViewClientes.ReadOnly = true;
-            dataGridViewClientes.Size = new Size(751, 231);
+            dataGridViewClientes.Size = new Size(751, 226);
             dataGridViewClientes.TabIndex = 15;
             // 
             // label4
@@ -197,7 +201,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.Black;
+            panel1.BackColor = Color.Red;
             panel1.Controls.Add(label4);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
@@ -253,11 +257,23 @@
             textBoxBuscar.TabIndex = 22;
             textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.Image = Properties.Resources.logomini;
+            pictureBox1.Location = new Point(702, 454);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 28);
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
+            // 
             // TelaCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(814, 481);
+            Controls.Add(pictureBox1);
             Controls.Add(textBoxBuscar);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
@@ -267,6 +283,7 @@
             Controls.Add(groupBox2);
             Controls.Add(buttonEditar);
             Controls.Add(dataGridViewClientes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Load += TelaCliente_Load;
@@ -277,6 +294,7 @@
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -305,5 +323,6 @@
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem homeToolStripMenuItem;
         private TextBox textBoxBuscar;
+        private PictureBox pictureBox1;
     }
 }

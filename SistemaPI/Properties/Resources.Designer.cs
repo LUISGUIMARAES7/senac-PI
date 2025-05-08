@@ -113,6 +113,16 @@ namespace SistemaPI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logomini {
+            get {
+                object obj = ResourceManager.GetObject("logomini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Prodbase {
             get {
                 object obj = ResourceManager.GetObject("Prodbase", resourceCulture);

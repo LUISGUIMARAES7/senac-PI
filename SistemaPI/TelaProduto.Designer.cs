@@ -30,6 +30,7 @@ namespace SistemaPI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProduto));
             textBoxProduto = new TextBox();
             buttonAdicionar = new Button();
             buttonEditar = new Button();
@@ -51,10 +52,12 @@ namespace SistemaPI
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             textBoxBuscar = new TextBox();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProdutos).BeginInit();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // textBoxProduto
@@ -106,6 +109,7 @@ namespace SistemaPI
             dataGridViewProdutos.AllowUserToResizeRows = false;
             dataGridViewProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewProdutos.BackgroundColor = SystemColors.ControlLight;
             dataGridViewProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProdutos.Location = new Point(34, 218);
             dataGridViewProdutos.MultiSelect = false;
@@ -200,7 +204,7 @@ namespace SistemaPI
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = SystemColors.ActiveCaptionText;
+            panel1.BackColor = Color.Red;
             panel1.Controls.Add(label4);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
@@ -262,11 +266,23 @@ namespace SistemaPI
             textBoxBuscar.TabIndex = 14;
             textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.Image = Properties.Resources.logomini;
+            pictureBox1.Location = new Point(702, 455);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 28);
+            pictureBox1.TabIndex = 18;
+            pictureBox1.TabStop = false;
+            // 
             // TelaProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(814, 481);
+            Controls.Add(pictureBox1);
             Controls.Add(textBoxBuscar);
             Controls.Add(panel1);
             Controls.Add(buttonAdicionar);
@@ -276,6 +292,7 @@ namespace SistemaPI
             Controls.Add(buttonEditar);
             Controls.Add(dataGridViewProdutos);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "TelaProduto";
             StartPosition = FormStartPosition.CenterScreen;
@@ -287,6 +304,7 @@ namespace SistemaPI
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -323,5 +341,6 @@ namespace SistemaPI
         private ToolStripMenuItem homeToolStripMenuItem;
         private ComboBox comboBoxFornecedor;
         private TextBox textBoxBuscar;
+        private PictureBox pictureBox1;
     }
 }

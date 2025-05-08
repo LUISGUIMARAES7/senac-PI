@@ -9,6 +9,7 @@ namespace SistemaPI
 
         private decimal totalGeral = 0;
         private List<(Produto produto, int quantidade)> itensPedido = new();
+        private List<Pedido> todosPedidos = new List<Pedido>();
         public TelaPedido()
         {
             InitializeComponent();
@@ -19,7 +20,7 @@ namespace SistemaPI
         {
             ListarTodosClientes();
             ListarTodosProdutos();
-            ListarPedido();
+            ListarPedidos();
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,9 +59,10 @@ namespace SistemaPI
             this.Close();
         }
 
-        public void ListarPedido()
+        public void ListarPedidos()
         {
-            BindingSource.DataSource = Pedido.ListarPedidos();
+            todosPedidos = Pedido.ListarPedidos();
+            BindingSource.DataSource = todosPedidos;
             dgvPedidos.DataSource = BindingSource;
         }
 
@@ -170,7 +172,7 @@ namespace SistemaPI
             }
 
             LimparForm();
-            ListarPedido();
+            ListarPedidos();
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
@@ -244,7 +246,7 @@ namespace SistemaPI
             Pedido.DeletarPedido(id);
 
             LimparForm();
-            ListarPedido();
+            ListarPedidos();
         }
 
         private void buttonAddProduto_Click(object sender, EventArgs e)
@@ -315,7 +317,27 @@ namespace SistemaPI
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             LimparForm();
-            ListarPedido();
+            ListarPedidos();
+        }
+
+        private List<Pedido> FiltrarPedidos(List<Pedido> pedidos, string termoBusca)
+        {
+            return pedidos.Where(p => p.Cliente.Nome.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || 
+                    p.Produtos.Contains(termoBusca, StringComparison.OrdinalIgnoreCase) || 
+                    p.DataPedido.ToString("dd/MM/yyyy").Contains(termoBusca, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        private void AtualizarGrid(List<Pedido> pedidos)
+        {
+            BindingSource.DataSource = pedidos;
+            dgvPedidos.DataSource = BindingSource;
+        }
+
+        private void textBoxBuscar_TextChanged_1(object sender, EventArgs e)
+        {
+            string termoBusca = textBoxBuscar.Text.Trim();
+            var pedidosFiltrados = FiltrarPedidos(todosPedidos, termoBusca);
+            AtualizarGrid(pedidosFiltrados);
         }
     }
 }
