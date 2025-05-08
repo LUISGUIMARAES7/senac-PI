@@ -63,9 +63,49 @@ namespace SistemaPI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cadcli {
+            get {
+                object obj = ResourceManager.GetObject("cadcli", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cadcli1 {
+            get {
+                object obj = ResourceManager.GetObject("cadcli1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cadcli2 {
+            get {
+                object obj = ResourceManager.GetObject("cadcli2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cadrevo {
             get {
                 object obj = ResourceManager.GetObject("cadrevo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imagem {
+            get {
+                object obj = ResourceManager.GetObject("imagem", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +156,16 @@ namespace SistemaPI.Properties {
         internal static System.Drawing.Bitmap Prodbase2 {
             get {
                 object obj = ResourceManager.GetObject("Prodbase2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap qqq {
+            get {
+                object obj = ResourceManager.GetObject("qqq", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

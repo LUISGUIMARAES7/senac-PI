@@ -56,6 +56,7 @@
             produtosToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
+            buttonCancelar = new Button();
             groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutosSelecionados).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
@@ -88,7 +89,7 @@
             groupBox.Controls.Add(labelCliente);
             groupBox.Location = new Point(27, 78);
             groupBox.Name = "groupBox";
-            groupBox.Size = new Size(645, 221);
+            groupBox.Size = new Size(659, 221);
             groupBox.TabIndex = 19;
             groupBox.TabStop = false;
             // 
@@ -102,7 +103,7 @@
             dgvProdutosSelecionados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProdutosSelecionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProdutosSelecionados.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
-            dgvProdutosSelecionados.Location = new Point(91, 108);
+            dgvProdutosSelecionados.Location = new Point(98, 108);
             dgvProdutosSelecionados.MultiSelect = false;
             dgvProdutosSelecionados.Name = "dgvProdutosSelecionados";
             dgvProdutosSelecionados.ReadOnly = true;
@@ -136,7 +137,7 @@
             // textBoxTotal
             // 
             textBoxTotal.Anchor = AnchorStyles.Top;
-            textBoxTotal.Location = new Point(287, 72);
+            textBoxTotal.Location = new Point(294, 72);
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.ReadOnly = true;
             textBoxTotal.Size = new Size(100, 23);
@@ -145,7 +146,7 @@
             // buttonRemoverProduto
             // 
             buttonRemoverProduto.Anchor = AnchorStyles.Top;
-            buttonRemoverProduto.Location = new Point(408, 72);
+            buttonRemoverProduto.Location = new Point(415, 72);
             buttonRemoverProduto.Name = "buttonRemoverProduto";
             buttonRemoverProduto.Size = new Size(75, 23);
             buttonRemoverProduto.TabIndex = 27;
@@ -156,7 +157,7 @@
             // buttonAddProduto
             // 
             buttonAddProduto.Anchor = AnchorStyles.Top;
-            buttonAddProduto.Location = new Point(489, 72);
+            buttonAddProduto.Location = new Point(496, 72);
             buttonAddProduto.Name = "buttonAddProduto";
             buttonAddProduto.Size = new Size(75, 23);
             buttonAddProduto.TabIndex = 26;
@@ -168,7 +169,7 @@
             // 
             comboBoxProduto.Anchor = AnchorStyles.Top;
             comboBoxProduto.FormattingEnabled = true;
-            comboBoxProduto.Location = new Point(121, 47);
+            comboBoxProduto.Location = new Point(128, 47);
             comboBoxProduto.Name = "comboBoxProduto";
             comboBoxProduto.Size = new Size(443, 23);
             comboBoxProduto.TabIndex = 24;
@@ -177,7 +178,7 @@
             // 
             comboBoxCliente.Anchor = AnchorStyles.Top;
             comboBoxCliente.FormattingEnabled = true;
-            comboBoxCliente.Location = new Point(121, 21);
+            comboBoxCliente.Location = new Point(128, 21);
             comboBoxCliente.Name = "comboBoxCliente";
             comboBoxCliente.Size = new Size(443, 23);
             comboBoxCliente.TabIndex = 23;
@@ -186,7 +187,7 @@
             // 
             labelTotal.Anchor = AnchorStyles.Top;
             labelTotal.AutoSize = true;
-            labelTotal.Location = new Point(249, 81);
+            labelTotal.Location = new Point(256, 81);
             labelTotal.Name = "labelTotal";
             labelTotal.Size = new Size(32, 15);
             labelTotal.TabIndex = 21;
@@ -195,7 +196,7 @@
             // numericQuantidade
             // 
             numericQuantidade.Anchor = AnchorStyles.Top;
-            numericQuantidade.Location = new Point(121, 72);
+            numericQuantidade.Location = new Point(128, 72);
             numericQuantidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericQuantidade.Name = "numericQuantidade";
             numericQuantidade.Size = new Size(120, 23);
@@ -206,7 +207,7 @@
             // 
             labelProduto.Anchor = AnchorStyles.Top;
             labelProduto.AutoSize = true;
-            labelProduto.Location = new Point(54, 51);
+            labelProduto.Location = new Point(61, 51);
             labelProduto.Name = "labelProduto";
             labelProduto.Size = new Size(50, 15);
             labelProduto.TabIndex = 16;
@@ -216,7 +217,7 @@
             // 
             labelQuantidade.Anchor = AnchorStyles.Top;
             labelQuantidade.AutoSize = true;
-            labelQuantidade.Location = new Point(35, 77);
+            labelQuantidade.Location = new Point(42, 77);
             labelQuantidade.Name = "labelQuantidade";
             labelQuantidade.Size = new Size(69, 15);
             labelQuantidade.TabIndex = 12;
@@ -226,7 +227,7 @@
             // 
             labelCliente.Anchor = AnchorStyles.Top;
             labelCliente.AutoSize = true;
-            labelCliente.Location = new Point(54, 24);
+            labelCliente.Location = new Point(61, 24);
             labelCliente.Name = "labelCliente";
             labelCliente.Size = new Size(44, 15);
             labelCliente.TabIndex = 10;
@@ -235,7 +236,7 @@
             // buttonSalvar
             // 
             buttonSalvar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonSalvar.Location = new Point(703, 92);
+            buttonSalvar.Location = new Point(717, 92);
             buttonSalvar.Name = "buttonSalvar";
             buttonSalvar.Size = new Size(75, 23);
             buttonSalvar.TabIndex = 3;
@@ -246,7 +247,7 @@
             // buttonRemover
             // 
             buttonRemover.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonRemover.Location = new Point(703, 159);
+            buttonRemover.Location = new Point(717, 179);
             buttonRemover.Name = "buttonRemover";
             buttonRemover.Size = new Size(75, 23);
             buttonRemover.TabIndex = 5;
@@ -257,7 +258,7 @@
             // buttonEditar
             // 
             buttonEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonEditar.Location = new Point(703, 125);
+            buttonEditar.Location = new Point(717, 150);
             buttonEditar.Name = "buttonEditar";
             buttonEditar.Size = new Size(75, 23);
             buttonEditar.TabIndex = 4;
@@ -271,14 +272,14 @@
             dgvPedidos.AllowUserToDeleteRows = false;
             dgvPedidos.AllowUserToResizeColumns = false;
             dgvPedidos.AllowUserToResizeRows = false;
-            dgvPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dgvPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPedidos.Location = new Point(27, 305);
+            dgvPedidos.Location = new Point(34, 305);
             dgvPedidos.MultiSelect = false;
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.ReadOnly = true;
-            dgvPedidos.Size = new Size(751, 121);
+            dgvPedidos.Size = new Size(751, 152);
             dgvPedidos.TabIndex = 18;
             // 
             // labelCadastrarPedido
@@ -287,7 +288,7 @@
             labelCadastrarPedido.AutoSize = true;
             labelCadastrarPedido.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelCadastrarPedido.ForeColor = Color.White;
-            labelCadastrarPedido.Location = new Point(301, 7);
+            labelCadastrarPedido.Location = new Point(308, 7);
             labelCadastrarPedido.Name = "labelCadastrarPedido";
             labelCadastrarPedido.Size = new Size(198, 25);
             labelCadastrarPedido.TabIndex = 21;
@@ -300,7 +301,7 @@
             panel1.Controls.Add(labelCadastrarPedido);
             panel1.Location = new Point(0, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 45);
+            panel1.Size = new Size(814, 45);
             panel1.TabIndex = 23;
             // 
             // menuStrip1
@@ -308,7 +309,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, produtosToolStripMenuItem, clientesToolStripMenuItem, pedidosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(814, 24);
             menuStrip1.TabIndex = 24;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -343,11 +344,23 @@
             pedidosToolStripMenuItem.Size = new Size(62, 20);
             pedidosToolStripMenuItem.Text = "Pedidos";
             // 
+            // buttonCancelar
+            // 
+            buttonCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonCancelar.Location = new Point(717, 121);
+            buttonCancelar.Name = "buttonCancelar";
+            buttonCancelar.Size = new Size(75, 23);
+            buttonCancelar.TabIndex = 25;
+            buttonCancelar.Text = "Cancelar";
+            buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += buttonCancelar_Click;
+            // 
             // TelaPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(814, 481);
+            Controls.Add(buttonCancelar);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);
             Controls.Add(labelErro);
@@ -402,5 +415,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private Button buttonCancelar;
     }
 }

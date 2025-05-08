@@ -22,27 +22,6 @@ namespace SistemaPI.dominio
         public string Produtos { get; set; } = "";
 
 
-
-        public string Validar()
-        {
-            //if (string.IsNullOrEmpty(Cliente.Nome))
-            //{
-            //    return "O campo cliente é obrigatório";
-            //}
-
-            //if (Produto.Id <= 0)
-            //{
-            //    return "O campo produto é obrigatório";
-            //}
-
-            //if (Quantidade < 1)
-            //{
-            //    return "O campo quantidade é obrigatório";
-            //}
-
-            return "";
-        }
-
         public List<Cliente> ListarTodosClientes()
         {
             return Repositorio.ListarTodosClientes();

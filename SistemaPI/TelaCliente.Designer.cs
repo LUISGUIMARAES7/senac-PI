@@ -74,14 +74,14 @@
             groupBox2.Controls.Add(textBoxEmail);
             groupBox2.Location = new Point(27, 75);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(645, 110);
+            groupBox2.Size = new Size(659, 110);
             groupBox2.TabIndex = 16;
             groupBox2.TabStop = false;
             // 
             // maskedTextBoxTelefone
             // 
             maskedTextBoxTelefone.Anchor = AnchorStyles.Top;
-            maskedTextBoxTelefone.Location = new Point(119, 74);
+            maskedTextBoxTelefone.Location = new Point(126, 74);
             maskedTextBoxTelefone.Mask = "(99) 00000-0000";
             maskedTextBoxTelefone.Name = "maskedTextBoxTelefone";
             maskedTextBoxTelefone.Size = new Size(103, 23);
@@ -91,7 +91,7 @@
             // 
             labelTelefone.Anchor = AnchorStyles.Top;
             labelTelefone.AutoSize = true;
-            labelTelefone.Location = new Point(54, 82);
+            labelTelefone.Location = new Point(61, 82);
             labelTelefone.Name = "labelTelefone";
             labelTelefone.Size = new Size(51, 15);
             labelTelefone.TabIndex = 12;
@@ -101,7 +101,7 @@
             // 
             labelEmail.Anchor = AnchorStyles.Top;
             labelEmail.AutoSize = true;
-            labelEmail.Location = new Point(54, 53);
+            labelEmail.Location = new Point(61, 53);
             labelEmail.Name = "labelEmail";
             labelEmail.Size = new Size(36, 15);
             labelEmail.TabIndex = 11;
@@ -111,7 +111,7 @@
             // 
             labelNome.Anchor = AnchorStyles.Top;
             labelNome.AutoSize = true;
-            labelNome.Location = new Point(54, 24);
+            labelNome.Location = new Point(61, 24);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(40, 15);
             labelNome.TabIndex = 10;
@@ -120,7 +120,7 @@
             // textBoxNome
             // 
             textBoxNome.Anchor = AnchorStyles.Top;
-            textBoxNome.Location = new Point(119, 16);
+            textBoxNome.Location = new Point(126, 16);
             textBoxNome.Name = "textBoxNome";
             textBoxNome.Size = new Size(405, 23);
             textBoxNome.TabIndex = 0;
@@ -128,7 +128,7 @@
             // textBoxEmail
             // 
             textBoxEmail.Anchor = AnchorStyles.Top;
-            textBoxEmail.Location = new Point(119, 45);
+            textBoxEmail.Location = new Point(126, 45);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(405, 23);
             textBoxEmail.TabIndex = 1;
@@ -136,7 +136,7 @@
             // buttonAdicionar
             // 
             buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonAdicionar.Location = new Point(703, 90);
+            buttonAdicionar.Location = new Point(717, 90);
             buttonAdicionar.Name = "buttonAdicionar";
             buttonAdicionar.Size = new Size(75, 23);
             buttonAdicionar.TabIndex = 3;
@@ -147,7 +147,7 @@
             // buttonRemover
             // 
             buttonRemover.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonRemover.Location = new Point(703, 157);
+            buttonRemover.Location = new Point(717, 157);
             buttonRemover.Name = "buttonRemover";
             buttonRemover.Size = new Size(75, 23);
             buttonRemover.TabIndex = 5;
@@ -158,7 +158,7 @@
             // buttonEditar
             // 
             buttonEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonEditar.Location = new Point(703, 124);
+            buttonEditar.Location = new Point(717, 124);
             buttonEditar.Name = "buttonEditar";
             buttonEditar.Size = new Size(75, 23);
             buttonEditar.TabIndex = 4;
@@ -175,11 +175,11 @@
             dataGridViewClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClientes.Location = new Point(27, 222);
+            dataGridViewClientes.Location = new Point(34, 222);
             dataGridViewClientes.MultiSelect = false;
             dataGridViewClientes.Name = "dataGridViewClientes";
             dataGridViewClientes.ReadOnly = true;
-            dataGridViewClientes.Size = new Size(751, 200);
+            dataGridViewClientes.Size = new Size(751, 231);
             dataGridViewClientes.TabIndex = 15;
             // 
             // label4
@@ -188,7 +188,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(299, 10);
+            label4.Location = new Point(306, 10);
             label4.Name = "label4";
             label4.Size = new Size(202, 25);
             label4.TabIndex = 18;
@@ -201,7 +201,7 @@
             panel1.Controls.Add(label4);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 45);
+            panel1.Size = new Size(814, 45);
             panel1.TabIndex = 20;
             // 
             // menuStrip1
@@ -209,7 +209,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, produtosToolStripMenuItem, clientesToolStripMenuItem, pedidosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(814, 24);
             menuStrip1.TabIndex = 21;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -246,7 +246,7 @@
             // textBoxBuscar
             // 
             textBoxBuscar.Anchor = AnchorStyles.Top;
-            textBoxBuscar.Location = new Point(526, 193);
+            textBoxBuscar.Location = new Point(533, 193);
             textBoxBuscar.Name = "textBoxBuscar";
             textBoxBuscar.PlaceholderText = "Buscar";
             textBoxBuscar.Size = new Size(252, 23);
@@ -257,7 +257,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(814, 481);
             Controls.Add(textBoxBuscar);
             Controls.Add(menuStrip1);
             Controls.Add(panel1);

@@ -310,10 +310,9 @@ namespace SistemaPI.repositorio
         {
             using (var conn = Database.GetConnection()) { 
                 conn.Open();
-                string queryPedido = "UPDATE pedido SET cliente_id = @cliente, total = @total WHERE id = @id;";
+                string queryPedido = "UPDATE pedido SET total = @total WHERE id = @id;";
                 using (var cmd = new MySqlCommand(queryPedido, conn))
                 {
-                    cmd.Parameters.AddWithValue("@cliente", pedido.Cliente.Id );
                     cmd.Parameters.AddWithValue("@total", pedido.Total );
                     cmd.Parameters.AddWithValue("@id",pedido.Id );
                     cmd.ExecuteNonQuery();

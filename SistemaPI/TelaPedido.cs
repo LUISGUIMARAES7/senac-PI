@@ -1,16 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using SistemaPI.banco_de_dados;
-using SistemaPI.dominio;
-using SistemaPI.repositorio;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SistemaPI.dominio;
 
 namespace SistemaPI
 {
@@ -102,87 +90,88 @@ namespace SistemaPI
             }
         }
 
-
         private bool CriarPedido()
         {
-            try
-            {
-                Pedido.Total = Convert.ToDecimal(totalGeral);
-            }
-            catch
-            {
-                MessageBox.Show("Erro ao converter o total");
-                return false;
-            }
+            Pedido.DataPedido = DateTime.Now;
 
             Pedido.Cliente = (Cliente)comboBoxCliente.SelectedItem;
-            var produtoSelecionado = (Produto)comboBoxProduto.SelectedItem;
-
-            if (produtoSelecionado == null)
+            if (Pedido.Cliente == null)
             {
-                labelErro.Text = "Selecione um produto.";
+                MessageBox.Show("Selecione um cliente.");
                 return false;
             }
 
-            string validacaoProduto = Pedido.Validar();
-            if (!string.IsNullOrWhiteSpace(validacaoProduto))
-            {
-                labelErro.Text = validacaoProduto;
-                return false;
-            }
-
-            Pedido.DataPedido = DateTime.Now;
             Pedido.Itens = new List<(Produto, int)>(itensPedido);
-            Pedido.Total = Pedido.Itens.Sum(i => i.produto.Preco * i.quantidade);
+            if (Pedido.Itens == null || Pedido.Itens.Count <= 0)
+            {
+                MessageBox.Show("Selecione um produto.");
+                return false;
+            }
 
-            MessageBox.Show("Pedido salvo com sucesso!");
+            Pedido.Total = Pedido.Itens.Sum(i => i.produto.Preco * i.quantidade);
+            if (Pedido.Total <= 0)
+            {
+                MessageBox.Show("Selecione ao menos um produto.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool AtualizarPedido()
+        {
+            var pedido = Pedido.BuscarPedidoPorId((int)dgvPedidos.SelectedRows[0].Cells[0].Value);
+            if (pedido == null)
+            {
+                MessageBox.Show("Selecione um pedido.");
+                return false;
+            }
+
+            Pedido = pedido;
+
+            Pedido.Itens = new List<(Produto, int)>(itensPedido);
+            if (Pedido.Itens == null || Pedido.Itens.Count <= 0)
+            {
+                MessageBox.Show("Selecione um produto.");
+                return false;
+            }
+
+            Pedido.Total = Pedido.Itens.Sum(i => i.produto.Preco * i.quantidade);
+            if (Pedido.Total <= 0)
+            {
+                MessageBox.Show("Selecione ao menos um produto.");
+                return false;
+            }
 
             return true;
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-            if (!CriarPedido())
+            var criacao = dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0;
+
+            if (criacao && !CriarPedido())
             {
                 return;
             }
 
-            if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
+            if (!criacao && !AtualizarPedido())
+            {
+                return;
+            }
+
+            if (criacao)
             {
                 Pedido.SalvarPedido();
-                ListarPedido();
-                LimparForm();
-                return;
             }
-
-            int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
-
-            if (Pedido.BuscarPedidoPorId(id) == null)
+            else
             {
-                return;
+                Pedido.AtualizarPedido();
             }
 
             LimparForm();
-            Pedido.Id = id;
-            Pedido.AtualizarPedido();
             ListarPedido();
         }
-
-        //private void buttonEditar_Click(object sender, EventArgs e)
-        //{
-        //    if (dgvPedidos.SelectedRows.Count == 0 || dgvPedidos.SelectedRows[0].Index < 0)
-        //    {
-        //        return;
-        //    }
-
-        //    int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
-
-        //    var pedido = Pedido.BuscarPedidoPorId(id);
-
-        //    if (pedido == null)
-        //    {
-        //        return;
-        //    }
 
         private void buttonEditar_Click(object sender, EventArgs e)
         {
@@ -192,16 +181,26 @@ namespace SistemaPI
                 return;
             }
 
-            int id = (int)dgvPedidos.SelectedRows[0].Cells[0].Value;
-            var pedido = Pedido.BuscarPedidoPorId(id);
-
+            var pedido = Pedido.BuscarPedidoPorId((int)dgvPedidos.SelectedRows[0].Cells[0].Value);
             if (pedido == null)
             {
-                MessageBox.Show("Pedido não encontrado.");
+                MessageBox.Show("Selecione um pedido.");
                 return;
             }
 
-            foreach (var item in pedido.Itens)
+            Pedido = pedido;
+
+            for (int i = 0; i < comboBoxCliente.Items.Count; i++)
+            {
+                if (comboBoxCliente.Items[i].ToString() == Pedido.Cliente.Nome)
+                {
+                    comboBoxCliente.SelectedIndex = i;
+                    comboBoxCliente.Enabled = false;
+                    break;
+                }
+            }
+
+            foreach (var item in Pedido.Itens)
             {
                 Produto produto = item.produto;
                 int quantidade = item.quantidade;
@@ -221,8 +220,6 @@ namespace SistemaPI
             textBoxTotal.Text = totalGeral.ToString("C");
 
         }
-
-
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
@@ -246,6 +243,7 @@ namespace SistemaPI
 
             Pedido.DeletarPedido(id);
 
+            LimparForm();
             ListarPedido();
         }
 
@@ -308,8 +306,16 @@ namespace SistemaPI
             comboBoxProduto.SelectedIndex = -1;
             numericQuantidade.Value = 1;
             labelErro.Text = "";
+
+            comboBoxCliente.Enabled = true;
+
+            Pedido = new();
         }
 
-        
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            LimparForm();
+            ListarPedido();
+        }
     }
 }

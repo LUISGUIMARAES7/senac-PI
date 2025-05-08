@@ -60,7 +60,7 @@ namespace SistemaPI
             // textBoxProduto
             // 
             textBoxProduto.Anchor = AnchorStyles.Top;
-            textBoxProduto.Location = new Point(47, 52);
+            textBoxProduto.Location = new Point(54, 52);
             textBoxProduto.Name = "textBoxProduto";
             textBoxProduto.Size = new Size(252, 23);
             textBoxProduto.TabIndex = 0;
@@ -68,7 +68,7 @@ namespace SistemaPI
             // buttonAdicionar
             // 
             buttonAdicionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonAdicionar.Location = new Point(703, 82);
+            buttonAdicionar.Location = new Point(717, 82);
             buttonAdicionar.Name = "buttonAdicionar";
             buttonAdicionar.Size = new Size(75, 23);
             buttonAdicionar.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace SistemaPI
             // buttonEditar
             // 
             buttonEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonEditar.Location = new Point(703, 118);
+            buttonEditar.Location = new Point(717, 118);
             buttonEditar.Name = "buttonEditar";
             buttonEditar.Size = new Size(75, 23);
             buttonEditar.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace SistemaPI
             // buttonRemover
             // 
             buttonRemover.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonRemover.Location = new Point(703, 153);
+            buttonRemover.Location = new Point(717, 153);
             buttonRemover.Name = "buttonRemover";
             buttonRemover.Size = new Size(75, 23);
             buttonRemover.TabIndex = 5;
@@ -107,18 +107,18 @@ namespace SistemaPI
             dataGridViewProdutos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridViewProdutos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProdutos.Location = new Point(27, 218);
+            dataGridViewProdutos.Location = new Point(34, 218);
             dataGridViewProdutos.MultiSelect = false;
             dataGridViewProdutos.Name = "dataGridViewProdutos";
             dataGridViewProdutos.ReadOnly = true;
-            dataGridViewProdutos.Size = new Size(751, 200);
+            dataGridViewProdutos.Size = new Size(751, 231);
             dataGridViewProdutos.TabIndex = 9;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Location = new Point(47, 34);
+            label1.Location = new Point(54, 34);
             label1.Name = "label1";
             label1.Size = new Size(50, 15);
             label1.TabIndex = 10;
@@ -128,7 +128,7 @@ namespace SistemaPI
             // 
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
-            label2.Location = new Point(348, 35);
+            label2.Location = new Point(355, 35);
             label2.Name = "label2";
             label2.Size = new Size(37, 15);
             label2.TabIndex = 11;
@@ -138,7 +138,7 @@ namespace SistemaPI
             // 
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
-            label3.Location = new Point(505, 36);
+            label3.Location = new Point(512, 36);
             label3.Name = "label3";
             label3.Size = new Size(67, 15);
             label3.TabIndex = 12;
@@ -155,7 +155,7 @@ namespace SistemaPI
             groupBox1.Controls.Add(textBoxProduto);
             groupBox1.Location = new Point(27, 75);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(657, 101);
+            groupBox1.Size = new Size(671, 101);
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             // 
@@ -163,7 +163,7 @@ namespace SistemaPI
             // 
             comboBoxFornecedor.Anchor = AnchorStyles.Top;
             comboBoxFornecedor.FormattingEnabled = true;
-            comboBoxFornecedor.Location = new Point(505, 54);
+            comboBoxFornecedor.Location = new Point(512, 54);
             comboBoxFornecedor.Name = "comboBoxFornecedor";
             comboBoxFornecedor.Size = new Size(121, 23);
             comboBoxFornecedor.TabIndex = 13;
@@ -171,7 +171,7 @@ namespace SistemaPI
             // textBoxPreco
             // 
             textBoxPreco.Anchor = AnchorStyles.Top;
-            textBoxPreco.Location = new Point(348, 53);
+            textBoxPreco.Location = new Point(355, 53);
             textBoxPreco.Name = "textBoxPreco";
             textBoxPreco.Size = new Size(100, 23);
             textBoxPreco.TabIndex = 1;
@@ -191,7 +191,7 @@ namespace SistemaPI
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(291, 10);
+            label4.Location = new Point(298, 10);
             label4.Name = "label4";
             label4.Size = new Size(218, 25);
             label4.TabIndex = 14;
@@ -204,7 +204,7 @@ namespace SistemaPI
             panel1.Controls.Add(label4);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 45);
+            panel1.Size = new Size(814, 45);
             panel1.TabIndex = 16;
             // 
             // menuStrip1
@@ -212,7 +212,7 @@ namespace SistemaPI
             menuStrip1.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, produtosToolStripMenuItem, clientesToolStripMenuItem, pedidosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(814, 24);
             menuStrip1.TabIndex = 17;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -255,7 +255,7 @@ namespace SistemaPI
             // textBoxBuscar
             // 
             textBoxBuscar.Anchor = AnchorStyles.Top;
-            textBoxBuscar.Location = new Point(526, 188);
+            textBoxBuscar.Location = new Point(533, 188);
             textBoxBuscar.Name = "textBoxBuscar";
             textBoxBuscar.PlaceholderText = "Buscar";
             textBoxBuscar.Size = new Size(252, 23);
@@ -266,7 +266,7 @@ namespace SistemaPI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(814, 481);
             Controls.Add(textBoxBuscar);
             Controls.Add(panel1);
             Controls.Add(buttonAdicionar);
