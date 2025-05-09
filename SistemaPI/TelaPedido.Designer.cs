@@ -91,6 +91,7 @@
             groupBox.Controls.Add(labelProduto);
             groupBox.Controls.Add(labelQuantidade);
             groupBox.Controls.Add(labelCliente);
+            groupBox.ForeColor = Color.Black;
             groupBox.Location = new Point(27, 78);
             groupBox.Name = "groupBox";
             groupBox.Size = new Size(659, 221);

@@ -18,6 +18,7 @@ namespace SistemaPI
         private Cliente Cliente = new();
         private readonly BindingSource BindingSource = [];
         private List<Cliente> todosClientes = new List<Cliente>();
+
         public TelaCliente()
         {
             InitializeComponent();

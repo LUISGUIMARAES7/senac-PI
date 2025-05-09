@@ -69,12 +69,14 @@
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(maskedTextBoxTelefone);
             groupBox2.Controls.Add(labelTelefone);
             groupBox2.Controls.Add(labelEmail);
             groupBox2.Controls.Add(labelNome);
             groupBox2.Controls.Add(textBoxNome);
             groupBox2.Controls.Add(textBoxEmail);
+            groupBox2.ForeColor = Color.Red;
             groupBox2.Location = new Point(27, 75);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(659, 110);
@@ -94,6 +96,7 @@
             // 
             labelTelefone.Anchor = AnchorStyles.Top;
             labelTelefone.AutoSize = true;
+            labelTelefone.ForeColor = Color.Black;
             labelTelefone.Location = new Point(61, 82);
             labelTelefone.Name = "labelTelefone";
             labelTelefone.Size = new Size(51, 15);
@@ -104,6 +107,7 @@
             // 
             labelEmail.Anchor = AnchorStyles.Top;
             labelEmail.AutoSize = true;
+            labelEmail.ForeColor = Color.Black;
             labelEmail.Location = new Point(61, 53);
             labelEmail.Name = "labelEmail";
             labelEmail.Size = new Size(36, 15);
@@ -114,6 +118,7 @@
             // 
             labelNome.Anchor = AnchorStyles.Top;
             labelNome.AutoSize = true;
+            labelNome.ForeColor = Color.Black;
             labelNome.Location = new Point(61, 24);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(40, 15);
