@@ -20,7 +20,8 @@ namespace SistemaPI.repositorio
             {
                 conection.Open();
 
-                string query = "SELECT * FROM cliente;";
+                string query = @"SELECT * FROM cliente
+                                ORDER BY id DESC;";
 
                 using var cmd = new MySqlCommand(query, conection);
                 using var reader = cmd.ExecuteReader();

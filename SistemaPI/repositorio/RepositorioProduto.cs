@@ -31,7 +31,8 @@ namespace SistemaPI.repositorio
                                     fornecedor.id AS fornecedor_id,
                                     fornecedor.nome AS fornecedor_nome
                                 FROM produto
-                                JOIN fornecedor ON produto.fornecedor_id = fornecedor.id;";
+                                JOIN fornecedor ON produto.fornecedor_id = fornecedor.id
+                                ORDER BY produto.id DESC;";
 
                 using var cmd = new MySqlCommand(query, conection);
                 using var reader = cmd.ExecuteReader();
