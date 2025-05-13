@@ -92,6 +92,7 @@ namespace SistemaPI
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
         {
+
             if (!CriarCliente())
             {
                 return;

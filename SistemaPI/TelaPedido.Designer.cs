@@ -174,11 +174,13 @@
             // comboBoxProduto
             // 
             comboBoxProduto.Anchor = AnchorStyles.Top;
+            comboBoxProduto.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBoxProduto.FormattingEnabled = true;
             comboBoxProduto.Location = new Point(128, 47);
             comboBoxProduto.Name = "comboBoxProduto";
             comboBoxProduto.Size = new Size(443, 23);
             comboBoxProduto.TabIndex = 24;
+
             // 
             // comboBoxCliente
             // 

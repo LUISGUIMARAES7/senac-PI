@@ -170,7 +170,7 @@ namespace SistemaPI
             comboBoxFornecedor.Location = new Point(512, 54);
             comboBoxFornecedor.Name = "comboBoxFornecedor";
             comboBoxFornecedor.Size = new Size(121, 23);
-            comboBoxFornecedor.TabIndex = 13;
+            comboBoxFornecedor.TabIndex = 2;
             // 
             // textBoxPreco
             // 
@@ -263,7 +263,7 @@ namespace SistemaPI
             textBoxBuscar.Name = "textBoxBuscar";
             textBoxBuscar.PlaceholderText = "Buscar";
             textBoxBuscar.Size = new Size(252, 23);
-            textBoxBuscar.TabIndex = 14;
+            textBoxBuscar.TabIndex = 6;
             textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
             // 
             // pictureBox1

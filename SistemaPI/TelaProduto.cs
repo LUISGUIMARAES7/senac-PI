@@ -159,7 +159,14 @@ namespace SistemaPI
             Produto = produto;
             textBoxProduto.Text = produto.Nome.ToString();
             textBoxPreco.Text = produto.Preco.ToString();
-            comboBoxFornecedor.SelectedItem = produto.Fornecedor.ToString();
+            for (int i = 0; i < comboBoxFornecedor.Items.Count; i++)
+            {
+                if (comboBoxFornecedor.Items[i].ToString() == Produto.Fornecedor.Nome)
+                {
+                    comboBoxFornecedor.SelectedIndex = i;
+                    break;
+                }
+            }
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,9 +195,14 @@ namespace SistemaPI
         {
             var fornecedores = Produto.ListarTodosFornecedores();
 
-            comboBoxFornecedor.DataSource = fornecedores;
+            //comboBoxFornecedor.DataSource = fornecedores;
             comboBoxFornecedor.DisplayMember = "Nome";
             comboBoxFornecedor.ValueMember = "Id";
+
+            foreach (var fornecedoresq in fornecedores)
+            {
+                comboBoxFornecedor.Items.Add(fornecedoresq);
+            }
         }        
 
         private List<Produto> FiltrarProdutos(List<Produto> produtos, string termoBusca)

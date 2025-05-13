@@ -41,10 +41,10 @@ namespace SistemaPI.dominio
                 return "O campo 'preço' é obrigatório.";
             }
 
-            //if (Fornecedor == Fornecedor.Nenhum)
-            //{
-            //    return "O campo 'fornecedor' é obrigatório.";
-            //}
+            if (Fornecedor == null)
+            {
+                return "O campo 'fornecedor' é obrigatório.";
+            }
 
             return "";
         }

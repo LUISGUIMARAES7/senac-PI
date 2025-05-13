@@ -21,6 +21,7 @@ namespace SistemaPI
             ListarTodosClientes();
             ListarTodosProdutos();
             ListarPedidos();
+
         }
 
         private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
